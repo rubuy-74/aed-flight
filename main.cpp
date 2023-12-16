@@ -1,6 +1,14 @@
 #include <iostream>
 
+#include "classes/Parser.h"
+#include "classes/Utils.h"
+using namespace std;
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Parser parser;
+    list<vector<string>> rawFlights = parser.readFile("../dataset/flights.csv");
+    list<vector<string>> rawAirlines = parser.readFile("../dataset/airlines.csv");
+    list<vector<string>> rawAirports = parser.readFile("../dataset/airports.csv");
+
     return 0;
 }
