@@ -27,4 +27,14 @@ add_executable(aed_flight main.cpp
         classes/Parser.h
         classes/Parser.cpp
         classes/Utils.cpp
+        classes/Airport.cpp
+        classes/Airport.h
+        classes/Coordinate.cpp
+        classes/Coordinate.h
+        classes/Airline.cpp
+        classes/Airline.h
+        classes/Flight.cpp
+        classes/Flight.h
+        classes/Graph.cpp
+        classes/Graph.h
 )
