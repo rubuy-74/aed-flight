@@ -35,4 +35,6 @@ add_executable(aed_flight main.cpp
         classes/Airline.h
         classes/Flight.cpp
         classes/Flight.h
+        classes/Graph.cpp
+        classes/Graph.h
 )
