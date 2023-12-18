@@ -3,13 +3,13 @@
 
 class Coordinate {
     private:
-        float latitude;
-        float longitude;
+        double latitude;
+        double longitude;
     public:
         Coordinate();
-        Coordinate(float latitude, float longitude);
-        float getLatitude() const;
-        float getLongitude() const;
+        Coordinate(double latitude, double longitude);
+        double getLatitude() const;
+        double getLongitude() const;
 };
 
 

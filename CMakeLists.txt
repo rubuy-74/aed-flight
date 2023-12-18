@@ -37,4 +37,6 @@ add_executable(aed_flight main.cpp
         classes/Flight.h
         classes/Graph.cpp
         classes/Graph.h
+        classes/Dataset.cpp
+        classes/Dataset.h
 )

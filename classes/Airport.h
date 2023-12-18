@@ -15,6 +15,7 @@ class Airport {
         Coordinate coordinates;
     public:
         Airport();
+        Airport(string code);
         Airport(string code, string name, string city, string country, Coordinate coordinates);
         string getCode() const;
         string getName() const;

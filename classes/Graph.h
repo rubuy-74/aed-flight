@@ -9,25 +9,31 @@ class Vertex {
     private:
         Airport airport;
         vector<Flight *> flights; // only outgoing (?)
+    public:
+        Vertex();
+        Vertex(Airport airport);
+
+        Airport getAirport() const;
+        void setAirport(Airport airport);
+
+        vector<Flight *> getFlights() const;
+        void setFlights(const vector<Flight *>);
 
         void addFlight(Flight *flight);
         bool removeFlight(Flight *flight);
-    public:
-        Vertex(Airport airport);
-        Airport getAirport() const;
-        void setAirport(Airport airport);
-        vector<Flight *> getFlights() const;
-        void setFlights(const vector<Flight *>);
 };
 
 
 class Graph {
     private:
-        vector<Vertex *> airports;
+        unordered_map<string, Vertex *> airports;
     public:
-        Airport findAirport(Airport airport);
+        Graph();
+        Graph(unordered_map<string, Vertex *> airports);
+        Vertex* findAirport(Airport airport);
         bool addAirport(const Airport airport);
         bool removeAirport(const Airport airport);
+        unordered_map<string, Vertex *> getAirports() const;
 };
 
 

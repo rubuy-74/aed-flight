@@ -1,5 +1,9 @@
 #include "Graph.h"
 
+Vertex::Vertex() {
+    this->airport = Airport();
+}
+
 Vertex::Vertex(Airport airport) {
     this->airport = airport;
 }
@@ -33,28 +37,40 @@ void Vertex::setFlights(const vector<Flight *> flights) {
     this->flights = flights;
 }
 
-Airport Graph::findAirport(Airport airport) {
-    auto it = find(this->airports.begin(), this->airports.end(), new Vertex(airport));
+Graph::Graph() {
+    this->airports = {};
+}
+
+Graph::Graph(unordered_map<string, Vertex *> airports) {
+    this->airports = airports;
+}
+
+Vertex* Graph::findAirport(Airport airport) {
+    auto it = this->airports.find(airport.getCode());
     if(it != airports.end()){
-        return (*it)->getAirport();
+        return it->second;
     }
-    return Airport();
+    return new Vertex();
 }
 
 bool Graph::addAirport(const Airport airport) {
-    auto it = find(this->airports.begin(), this->airports.end(), new Vertex(airport));
+    auto it = this->airports.find(airport.getCode());
     if(it != airports.end()){
         return false;
     }
-    this->airports.push_back(new Vertex(airport));
+    this->airports[airport.getCode()] = new Vertex(airport);
     return true;
 }
 
 bool Graph::removeAirport(const Airport airport) {
-    auto it = find(this->airports.begin(), this->airports.end(), new Vertex(airport));
+    auto it = this->airports.find(airport.getCode());
     if(it != airports.end()){
         airports.erase(it);
         return true;
     }
     return false;
+}
+
+unordered_map<string, Vertex *> Graph::getAirports() const {
+    return this->airports;
 }
