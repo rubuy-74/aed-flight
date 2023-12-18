@@ -5,11 +5,11 @@ Coordinate::Coordinate() {
     this->longitude = 0.0;
 }
 
-Coordinate::Coordinate(float latitude, float longitude) {
+Coordinate::Coordinate(double latitude, double longitude) {
     this->latitude = latitude;
     this->longitude = longitude;
 }
 
-float Coordinate::getLatitude() const { return this->latitude; }
+double Coordinate::getLatitude() const { return this->latitude; }
 
-float Coordinate::getLongitude() const { return this->longitude; }
+double Coordinate::getLongitude() const { return this->longitude; }

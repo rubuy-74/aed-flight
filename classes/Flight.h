@@ -2,22 +2,24 @@
 #define AED_FLIGHT_FLIGHT_H
 
 #include <string>
+#include "Airline.h"
+#include "Airport.h"
 
 using namespace std;
 
 class Flight {
     private:
-        string src;
-        string dest;
-        string airline;
-        float distance;
+        Airport src;
+        Airport dest;
+        Airline airline;
+        double distance;
     public:
         Flight();
-        Flight(string src, string dest, string airline, float distance);
-        string getSource() const;
-        string getDestination() const;
-        string getAirline() const;
-        float getDistance() const;
+        Flight(Airport src, Airport dest, Airline airline, double distance);
+        Airport getSource() const;
+        Airport getDestination() const;
+        Airline getAirline() const;
+        double getDistance() const;
 };
 
 

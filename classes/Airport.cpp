@@ -8,6 +8,14 @@ Airport::Airport() {
     this->coordinates = Coordinate();
 }
 
+Airport::Airport(string code){
+    this->code = code;
+    this->city = "";
+    this->country = "";
+    this->name = "";
+    this->coordinates = Coordinate();
+}
+
 Airport::Airport(string code, string name, string city, string country, Coordinate coordinates) {
     this->code = code;
     this->name = name;
