@@ -1,5 +1,6 @@
 #include <stack>
 #include "Graph.h"
+#include <algorithm>
 
 
 Graph::Graph() {

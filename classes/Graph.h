@@ -7,6 +7,8 @@
 #include "Airport.h"
 #include "Flight.h"
 #include <queue>
+#include <vector>
+#include <unordered_map>
 
 class Graph {
     private:
@@ -28,6 +30,7 @@ class Graph {
         bool isDAG();
         int numConnectedComponents();
         unordered_set<Airport *> getArticulationPoints();
+
 };
 
 #endif //AED_FLIGHT_GRAPH_H
