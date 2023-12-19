@@ -2,7 +2,7 @@
 #define AED_FLIGHT_AIRPORT_H
 
 #include <string>
-#include "vector"
+#include <vector>
 #include "Coordinate.h"
 
 class Flight;
@@ -18,6 +18,9 @@ class Airport {
         Coordinate coordinates;
         vector<Flight *> flights;
         bool visited;
+        bool processing;
+        int num;
+        int low;
     public:
         Airport();
         Airport(Airport const &airport);
@@ -38,6 +41,15 @@ class Airport {
 
         bool isVisited() { return visited; }
         void setVisited(bool b) { this->visited = b; }
+
+        bool isProcessing() {return processing;}
+        void setProcessing(bool b) {this->processing = b;}
+
+        int getNum() {return num;}
+        void setNum(int num) {this->num = num;}
+
+        int getLow() {return low;}
+        void setLow(int low) {this->low = low;}
 };
 
 
