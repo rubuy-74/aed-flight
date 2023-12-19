@@ -1,5 +1,6 @@
 #include "Dataset.h"
-#include <math.h>
+#include "Flight.h"
+#include <cmath>
 
 Graph Dataset::getNetwork() const {
     return network;
@@ -33,10 +34,9 @@ void Dataset::loadAirports(list<vector<string>> rawAirports) {
 
 void Dataset::loadFlights(list<vector<string>> rawFlights) {
     for(vector<string> flight : rawFlights){
-        Vertex* srcAirport = network.findAirport(Airport(flight[0]));
-        Vertex* destAirport = network.findAirport(Airport(flight[1]));
-        srcAirport->addFlight(new Flight(srcAirport->getAirport(), destAirport->getAirport(), airlines[flight[2]],
-                                         computeDistance(srcAirport->getAirport().getCoordinates(), destAirport->getAirport().getCoordinates())));
+        Airport* srcAirport = network.findAirport(Airport(flight[0]));
+        Airport* destAirport = network.findAirport(Airport(flight[1]));
+        srcAirport->addFlight(new Flight(destAirport, this->airlines[flight[2]], computeDistance(srcAirport->getCoordinates(), destAirport->getCoordinates())));
     }
 }
 
