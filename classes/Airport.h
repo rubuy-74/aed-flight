@@ -16,6 +16,7 @@ class Airport {
         string country;
         Coordinate coordinates;
         vector<Flight *> flights;
+        bool visited;
     public:
         Airport();
         Airport(Airport const &airport);
@@ -33,6 +34,9 @@ class Airport {
 
         void addFlight(Flight *flight);
         bool removeFlight(Flight *flight);
+
+        bool isVisited() { return visited; }
+        void setVisited(bool b) { this->visited = b; }
 };
 
 
