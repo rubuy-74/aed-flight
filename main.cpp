@@ -3,10 +3,13 @@
 #include "classes/Parser.h"
 #include "classes/Utils.h"
 #include "classes/Dataset.h"
+#include "classes/Functions.h"
+#include "classes/Coordinate.h"
+#include "vector"
 using namespace std;
 
 
-void dfsVisit(Airport *a, vector<Airport *> &res){
+/*void dfsVisit(Airport *a, vector<Airport *> &res){
     a->setVisited(true);
     res.push_back(a);
     for(Flight *f : a->getFlights()){
@@ -35,7 +38,7 @@ void dfs(Graph g){
     }
     cout << "Total flights (edges): " << count << endl;
     cout << "Total airports (nodes): " << res.size();
-}
+}*/
 
 
 int main() {
@@ -46,15 +49,18 @@ int main() {
 
     Dataset dataset = Dataset(rawFlights, rawAirports, rawAirlines);
 
-    /* for(pair<string, Airport *> p : dataset.getNetwork().getAirports()){
-        cout << p.first << endl;
-        cout << "--------" << endl;
-        for(Flight* f : p.second->getFlights()){
-            cout << p.second->getCode() << "->" << f->getDestination()->getCode() << "->" << f->getDistance() << endl;
-        }
-    } */
+    Airport airport = Airport("CDG","Charles De Gaulle","Paris","France",Coordinate(49.012779,2.550000));
 
-    dfs(dataset.getNetwork());
+    cout << Functions::getNumFlightsOutOfAnAirport(dataset.getNetwork(),airport) << '\n';
+    cout << Functions::getNumAirlinesOfAnAirport(dataset.getNetwork(),airport) << '\n';
+    cout << Functions::getNumDestinationsAirportsOfAnAirport(dataset.getNetwork(),airport) << '\n';
+    cout << Functions::getNumDestinationsCountriesOfAnAirport(dataset.getNetwork(),airport) << '\n';
+    cout << Functions::getNumDestinationsCitiesOfAnAirport(dataset.getNetwork(),airport) << '\n';
+    vector<string> topK = Functions::topKAirports(dataset.getNetwork(),7);
+    for(string s : topK){
+        cout << s << '\n';
+    }
+    //dfs(dataset.getNetwork());
 
     return 0;
 }
