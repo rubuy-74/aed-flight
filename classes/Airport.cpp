@@ -1,4 +1,5 @@
 #include "Airport.h"
+#include <algorithm>
 
 Airport::Airport() {
     this->code = "";

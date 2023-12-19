@@ -9,10 +9,12 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "Airport.h"
 
 class Utils {
 public:
     static void showRaw(std::list<std::vector<std::string>> raw);
+    static void showAirport(Airport *airport);
 };
 
 
