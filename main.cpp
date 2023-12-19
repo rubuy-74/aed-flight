@@ -13,5 +13,13 @@ int main() {
 
     Dataset dataset = Dataset(rawFlights, rawAirports, rawAirlines);
 
+    for(pair<string, Airport *> p : dataset.getNetwork().getAirports()){
+        cout << p.first << endl;
+        cout << "--------" << endl;
+        for(Flight* f : p.second->getFlights()){
+            cout << p.second->getCode() << "->" << f->getDestination()->getCode() << "->" << f->getDistance() << endl;
+        }
+    }
+
     return 0;
 }
