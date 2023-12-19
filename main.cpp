@@ -11,8 +11,12 @@ using namespace std;
 
 int main() {
     Parser parser;
+    Functions functions;
     list<vector<string>> rawFlights = parser.readFile("../dataset/flights.csv");
     list<vector<string>> rawAirlines = parser.readFile("../dataset/airlines.csv");
     list<vector<string>> rawAirports = parser.readFile("../dataset/airports.csv");
+
+    Dataset dataset = Dataset(rawFlights,rawAirports,rawAirlines);
+    Graph network = dataset.getNetwork();
     return 0;
 }

@@ -1,8 +1,5 @@
 #include "Dataset.h"
-<<<<<<< HEAD
 #include "Flight.h"
-=======
->>>>>>> 61ba205 (first function)
 #include <cmath>
 
 Graph Dataset::getNetwork() const {

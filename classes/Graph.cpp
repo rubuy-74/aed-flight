@@ -66,6 +66,7 @@ vector<Airport *> Graph::dfs(Airport *airport) {
     return res;
 }
 
+
 void Graph::dfsVisit(Airport *a, vector<Airport *> &res){
     a->setVisited(true);
     res.push_back(a);
