@@ -1,5 +1,6 @@
 #include <stack>
 #include "Graph.h"
+#include <algorithm>
 
 
 Graph::Graph() {
@@ -64,6 +65,7 @@ vector<Airport *> Graph::dfs(Airport *airport) {
     dfsVisit(airport,res);
     return res;
 }
+
 
 void Graph::dfsVisit(Airport *a, vector<Airport *> &res){
     a->setVisited(true);
