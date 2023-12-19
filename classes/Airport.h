@@ -2,6 +2,7 @@
 #define AED_FLIGHT_AIRPORT_H
 
 #include <string>
+#include "vector"
 #include "Coordinate.h"
 
 class Flight;
