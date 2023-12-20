@@ -8,24 +8,29 @@
 #include "Airport.h"
 #include "Graph.h"
 #include "vector"
-#include <algorithm>
+#include "Dataset.h"
+#include "Parser.h"
 #include <unordered_set>
+#include <unordered_map>
 
 class Functions {
+    Dataset dataset =Dataset(Parser::readFile("../dataset/flights.csv"),
+    Parser::readFile("../dataset/airports.csv"),
+    Parser::readFile("../dataset/airlines.csv"));;
 public:
-    static unsigned int getNumFlightsOutOfAnAirport(Graph g, Airport airport);
-    static int getNumAirlinesOfAnAirport(Graph g, Airport airport);
-    static int getNumDestinationsAirportsOfAnAirport(Graph g, Airport airport);
-    static int getNumDestinationsCitiesOfAnAirport(Graph g, Airport airport);
-    static int getNumDestinationsCountriesOfAnAirport(Graph g, Airport airport);
-    static bool findInVector(const vector<string>& v, const string& code);
-    static vector<string> topKAirports(Graph g, int k);
-    static unordered_map<string, int> getFlightsPerCity(Graph g);
-    static unordered_map<string, int> getFlightsPerAirline(Graph g);
-    static int getNumAirportsAtDistance(Graph g,Airport airport, int distance);
-    static int getNumCititesAtDistance(Graph g, Airport airport, int distance);
-    static int getNumCountriesAtDistance(Graph g,Airport airport,int distance);
-    static unordered_set<Airport *> getArticulationPoints(Graph g);
+    unsigned int getNumFlightsOutOfAnAirport(Airport airport);
+    int getNumAirlinesOfAnAirport(Airport airport);
+    int getNumDestinationsAirportsOfAnAirport(Airport airport);
+    int getNumDestinationsCitiesOfAnAirport(Airport airport);
+    int getNumDestinationsCountriesOfAnAirport(Airport airport);
+    bool findInVector(const vector<string>& v, const string& code);
+    vector<string> topKAirports(int k);
+    unordered_map<string, int> getFlightsPerCity();
+    unordered_map<string, int> getFlightsPerAirline();
+    int getNumAirportsAtDistance(Airport airport, int distance);
+    int getNumCititesAtDistance(Airport airport, int distance);
+    int getNumCountriesAtDistance(Airport airport,int distance);
+    unordered_set<Airport *> getArticulationPoints();
 };
 
 
