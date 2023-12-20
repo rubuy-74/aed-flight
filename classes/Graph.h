@@ -10,6 +10,10 @@
 #include <vector>
 #include <unordered_map>
 
+enum AIRPORT_OPTION {
+    CODE,NAME
+};
+
 class Graph {
     private:
         unordered_map<string, Airport *> airports;
@@ -17,7 +21,7 @@ class Graph {
         Graph();
         Graph(unordered_map<string, Airport *> airports);
         Airport* findAirport(Airport airport);
-        Airport* findAirport(string airportCode);
+        Airport* findAirport(string airportAtt, AIRPORT_OPTION airportOption);
         bool addAirport(const Airport airport);
         bool removeAirport(const Airport airport);
         unordered_map<string, Airport *> getAirports() const;

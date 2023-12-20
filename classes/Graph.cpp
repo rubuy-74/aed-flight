@@ -12,16 +12,18 @@ Graph::Graph(unordered_map<string, Airport *> airports) {
 }
 
 Airport* Graph::findAirport(Airport airport) {
-    auto it = this->airports.find(airport.getCode());
-    if(it != airports.end()){
-        return it->second;
-    }
-    return new Airport();
+    return airports[airport.getCode()];
 }
 
-Airport *Graph::findAirport(string airportCode) {
-    auto it = this->airports.find(airportCode);
-    if(it != airports.end()) return it->second;
+Airport *Graph::findAirport(string airportAtt,AIRPORT_OPTION airportOption) {
+    if(airportOption == CODE)
+        return airports[airportAtt];
+    if(airportOption == NAME){
+        for(auto element : airports){
+            if(element.second->getName() == airportAtt)
+                return element.second;
+        }
+    }
     return nullptr;
 }
 
