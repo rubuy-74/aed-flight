@@ -81,6 +81,7 @@ vector<string> Functions::topKAirports(int k) {
     return res;
 }
 
+
 unordered_map<string, int> Functions::getFlightsPerCity() {
     unordered_map<string,int> flightsPerCity;
     for(auto airports: dataset.getNetwork().getAirports()){
@@ -101,6 +102,7 @@ unordered_map<string, int> Functions::getFlightsPerAirline() {
     }
     return flightsPerAirline;
 }
+
 
 int Functions::getNumAirportsAtDistance(Airport airport, int distance) {
     return dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance).size();
