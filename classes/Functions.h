@@ -10,6 +10,8 @@
 #include "vector"
 #include "Dataset.h"
 #include "Parser.h"
+#include <unordered_set>
+#include <unordered_map>
 
 class Functions {
     Dataset dataset =Dataset(Parser::readFile("../dataset/flights.csv"),
