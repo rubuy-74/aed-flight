@@ -30,7 +30,8 @@ class Graph {
         bool isDAG();
         int numConnectedComponents();
         unordered_set<Airport *> getArticulationPoints();
-
+        vector<Airport *> findMinPathByAirportCode(string start, string destination);
+        void reversePath(vector<Airport *> &path);
 };
 
 #endif //AED_FLIGHT_GRAPH_H

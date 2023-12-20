@@ -1,6 +1,9 @@
 #include <stack>
 #include "Graph.h"
 #include <algorithm>
+#include <queue>
+#include <limits>
+#include <unordered_set>
 
 
 Graph::Graph() {
@@ -230,4 +233,65 @@ void dfs_art(Airport *a,stack<Airport *> &s,unordered_set<Airport *> &res,int pa
     a->setProcessing(false);
     if(parent == -1 && children > 1) res.insert(a);
     s.pop();
+}
+
+void Graph::reversePath(vector<Airport *> &path) {
+    int start = 0;
+    int end = path.size() - 1;
+
+    while (start < end) {
+        swap(path[start], path[end]);
+        start++;
+        end--;
+    }
+}
+
+vector<Airport *> Graph::findMinPathByAirportCode(string s, string d){
+    Airport *start = findAirport(s);
+    Airport *destination = findAirport(d);
+
+    priority_queue<pair<int, Airport *>, vector<pair<int, Airport *>>, greater<>> p;
+    unordered_map<Airport *, int> distances;
+    unordered_map<Airport *, Airport *> parent;
+
+    for (auto a : getAirports()) {
+        distances[a.second] = numeric_limits<int>::max();
+        parent[a.second] = nullptr;
+    }
+
+    distances[start] = 0;
+    p.push({0, start});
+
+    while (!p.empty()) {
+        int current_distance = p.top().first;
+        Airport *current = p.top().second;
+        p.pop();
+
+        if (current_distance > distances[current]) {
+            continue;
+        }
+
+        for (Flight *flight : current->getFlights()) {
+            Airport *neighbor = flight->getDestination();
+            int new_distance = distances[current] + flight->getDistance();
+
+            if (new_distance < distances[neighbor]) {
+                distances[neighbor] = new_distance;
+                parent[neighbor] = current;
+                p.push({new_distance, neighbor});
+            }
+        }
+    }
+
+    vector<Airport *> path;
+    Airport *current = destination;
+
+    while (current != nullptr) {
+        path.push_back(current);
+        current = parent[current];
+    }
+
+    reversePath(path);
+
+    return path;
 }
