@@ -29,7 +29,7 @@ class Functions {
         int getNumDestinationsCountriesOfAnAirport(Airport airport);
 
         // viii
-        vector<string> topKAirports(int k);
+        Airport *topKAirports(int k);
 
         // iii
         unordered_map<string, int> getFlightsPerCity();

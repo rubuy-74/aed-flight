@@ -11,6 +11,10 @@ class Utils {
 public:
     static void showRaw(std::list<std::vector<std::string>> raw);
     static void showAirport(Airport *airport);
+    static void clearScreen();
+    static void showFile(list<vector<string>> menu);
+    static void drawPageAirports(vector<Airport *> airports);
+    static void drawBox(vector<string> text);
 };
 
 
