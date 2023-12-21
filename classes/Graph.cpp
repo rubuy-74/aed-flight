@@ -12,10 +12,6 @@ Graph::Graph(unordered_map<string, Airport *> airports) {
 }
 
 Airport* Graph::findAirport(Airport airport) {
-    auto it = this->airports.find(airport.getCode());
-    if(it != airports.end()){
-        return it->second;
-    }
     return airports[airport.getCode()];
 }
 
