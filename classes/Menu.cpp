@@ -5,6 +5,7 @@
 #include "Menu.h"
 #include "Parser.h"
 #include <iostream>
+#include <algorithm>
 
 void clearScreen(){
     #if defined(__linux__)
@@ -26,7 +27,10 @@ void showFile(list<vector<string>> menu){
         }
         res.push_back(s);
     }
-    utils.drawBox(res);
+    //utils.drawBox(res);
+    for(auto i : res){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showMainMenu() {
@@ -117,22 +121,28 @@ void Menu::showListingOption(string option) {
                 break;
             case 4:
                 //"4 - See number of different countries that a given airport/city flies to" <<'\n';
+                showOption4();
                 break;
             case 5:
                 //"5 - See number of destinations (airports, cities or countries) available for a given airport"
+                showOption5();
                 break;
             case 6:
                 //"6 - See number of reachable destinations (airports, cities or countries) from a given airport in a\n"
                 //                "maximum number of X stops"
+                showOption6();
                 break;
             case 7:
                 // "7 - See trip(s) with the greatest number of stops in between them"
+                showOption7();
                 break;
             case 8:
                 //"8 - See the top-k airport with the greatest air traffic capacity"
+                showOption8();
                 break;
             case 9:
                 // "9 - See the articulation points of the network"
+                showOption9();
                 break;
         }
         if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
@@ -147,17 +157,20 @@ void Menu::showOption2() {
     string airportCode;
     vector<string> text;
     cin >> airportCode;
-    if(graph.findAirport(airportCode) == nullptr) {
+    auto ptrAirport = graph.findAirport(airportCode,CODE);
+    if(ptrAirport == nullptr) {
         cout << "AIRPORT NOT FOUND" << '\n';
         return;
     }
-    auto airport = *graph.findAirport(airportCode);
-    int numFlights = functions.getNumFlightsOutOfAnAirport(airport);
-    int numAirlines = functions.getNumAirlinesOfAnAirport(airport);
-    text.push_back("Airport: " + graph.findAirport(airportCode)->getName());
+    int numFlights = functions.getNumFlightsOutOfAnAirport(*ptrAirport);
+    int numAirlines = functions.getNumAirlinesOfAnAirport(*ptrAirport);
+    text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Number of flights: " + to_string(numFlights));
     text.push_back("Number of airlines: "  + to_string(numAirlines));
-    utils.drawBox(text);
+    //utils.drawBox(text);
+    for(auto i : text){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showOption3() {
@@ -174,8 +187,7 @@ void Menu::showOption3() {
         string s;
         cout << "City: ";
         cin.ignore();
-        getline(cin >> s,city);
-        cout << flightsPerCity[city] << '\n';
+        getline(cin,city);
         if(flightsPerCity[city] == 0) {text = "CITY NOT FOUND";}
         else {text += to_string(flightsPerCity[city]);}
     }
@@ -183,36 +195,146 @@ void Menu::showOption3() {
         unordered_map<string,int> flightsPerAirline = functions.getFlightsPerAirline();
         string airline;
         cout << "Airline Code:";
-        cin >> airline;
         cin.ignore();
+        getline(cin,airline);
         if(flightsPerAirline[airline] == 0) {text = "AIRLINE NOT FOUND";}
         else {text += to_string(flightsPerAirline[airline]);}
     }
-    utils.drawBox(text);
+    //utils.drawBox(text);
+    cout << text << '\n';
 }
 
 void Menu::showOption4() {
-
+    clearScreen();
+    string option = "";
+    while(option != "1" && option != "2"){
+        cout << "City(1) or Airport(2):";
+        cin >> option;
+    }
+    string text = "Number of destinations: ";
+    if(option == "1") {
+        string city;
+        cout << "City: ";
+        cin.ignore(); getline(cin,city);
+        text += to_string(functions.getNumDestinationsFromCity(city));
+    }
+    if(option == "2") {
+        string airport;
+        cout << "Airport Code:";
+        cin.ignore();
+        getline(cin,airport);
+        auto ptrAirport = graph.findAirport(airport,CODE);
+        if(ptrAirport == nullptr) {
+            text = "AIRPORT NOT FOUND";
+            return;
+        } else{
+            text += to_string(functions.getReachableDestinationsFromAirport(*ptrAirport));
+        }
+    }
+    cout << text << '\n';
 }
 
 void Menu::showOption5() {
-
+    clearScreen();
+    cout << "Airport Code:" << '\n';
+    string airportCode;
+    vector<string> text;
+    cin >> airportCode;
+    auto ptrAirport = graph.findAirport(airportCode,CODE);
+    if(ptrAirport == nullptr) {
+        cout << "AIRPORT NOT FOUND" << '\n';
+        return;
+    }
+    int numAirports = functions.getNumDestinationsAirportsOfAnAirport(*ptrAirport);
+    int numCities = functions.getNumDestinationsCitiesOfAnAirport(*ptrAirport);
+    int numCountries = functions.getNumDestinationsCountriesOfAnAirport(*ptrAirport);
+    text.push_back("Airport: " + ptrAirport->getName());
+    text.push_back("Number of airports: " + to_string(numAirports));
+    text.push_back("Number of cities: " + to_string(numCities));
+    text.push_back("Number of countries: " + to_string(numCountries));
+    //utils.drawBox(text);
+    for(auto i : text){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showOption6() {
-
+    clearScreen();
+    string airportCode;
+    string distance;
+    vector<string> text;
+    cout << "Airport Code: ";
+    cin >> airportCode;
+    cout << "Number of Stops: ";
+    cin >> distance;
+    auto ptrAirport = graph.findAirport(airportCode,CODE);
+    if(ptrAirport == nullptr || !std::all_of(distance.begin(),distance.end(), ::isdigit)) {
+        cout << "AIRPORT NOT FOUND" << '\n';
+        return;
+    }
+    int d = stoi(distance);
+    int numAirports = functions.getNumAirportsAtDistance(*ptrAirport,d);
+    int numCities = functions.getNumCitiesAtDistance(*ptrAirport,d);
+    int numCountries = functions.getNumCountriesAtDistance(*ptrAirport,d);
+    text.push_back("Airport: " + ptrAirport->getName());
+    text.push_back("Distance: " + distance);
+    text.push_back("Number of airports: " + to_string(numAirports));
+    text.push_back("Number of cities: " + to_string(numCities));
+    text.push_back("Number of countries: " + to_string(numCountries));
+    //utils.drawBox(text);
+    for(auto i : text){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showOption7() {
-
+    clearScreen();
+    cout << "Airport Code:" << '\n';
+    string airportCode;
+    vector<string> text;
+    cin >> airportCode;
+    auto ptrAirport = graph.findAirport(airportCode,CODE);
+    if(ptrAirport == nullptr) {
+        cout << "AIRPORT NOT FOUND" << '\n';
+        return;
+    }
+    vector<Trip> maxTrips = functions.maxTripStops(ptrAirport);
+    text.push_back("Airport: " + ptrAirport->getName());
+    text.push_back("Max number of trips: " + to_string(maxTrips[0].stops));
+    for(auto i : maxTrips){
+        text.push_back(i.airports.first->getCode() + " -> " + i.airports.second->getCode());
+    }
+    for(auto i: text){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showOption8() {
-
+    clearScreen();
+    string input;
+    vector<string> text;
+    cout << "K: ";
+    cin >> input;
+    if(!std::all_of(input.begin(),input.end(), ::isdigit)){
+        cout << "NOT VALID NUMBER" << '\n'; return;
+    }
+    for(auto s : functions.topKAirports(stoi(input))){
+        text.push_back(s);
+    }
+    for(auto i: text){
+        cout << i << '\n';
+    }
 }
 
 void Menu::showOption9() {
-
+    vector<string> text;
+    unordered_set<Airport *> articulationPoints = functions.getArticulationPoints();
+    for(auto i : articulationPoints){
+        text.push_back(i->getCode());
+    }
+    for(auto i : text){
+        cout << i << '\n';
+    }
 }
 
 

@@ -7,9 +7,6 @@
 #include "algorithm"
 #include "Utils.h"
 
-Functions::Functions() {
-    this->dataset = Dataset();
-}
 
 Functions::Functions(Dataset dataset) {
     this->dataset = dataset;
@@ -68,7 +65,7 @@ int Functions::getNumCitiesAtDistance(Airport airport, int distance) {
     auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
     vector<string> cities;
     for(auto a : destinations){
-        if(find(cities.begin(),cities.end(),a->getCity()) != cities.end())
+        if(find(cities.begin(),cities.end(),a->getCity()) == cities.end())
             cities.push_back(a->getCity());
     }
     return cities.size();
@@ -78,7 +75,7 @@ int Functions::getNumCountriesAtDistance(Airport airport, int distance) {
     auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
     vector<string> countries;
     for(auto a: destinations){
-        if(find(countries.begin(),countries.end(),a->getCountry()) != countries.end())
+        if(find(countries.begin(),countries.end(),a->getCountry()) == countries.end())
             countries.push_back(a->getCountry());
     }
     return countries.size();
@@ -148,7 +145,7 @@ unordered_map<string, int> Functions::getFlightsPerAirline() {
     unordered_map<string,int> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight:airports.second->getFlights()){
-            flightsPerAirline[flight->getAirline().getName()]++;
+            flightsPerAirline[flight->getAirline().getCode()]++;
         }
     }
     return flightsPerAirline;
