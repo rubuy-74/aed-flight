@@ -61,6 +61,8 @@ class Functions {
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
         vector<Trip> findMinPath(const string& s, const string& d, Filters filter);
         vector<Airport*> serializeInput(const string &i);
+
+    unordered_map<string, int> getFlightsPerCity();
 };
 
 

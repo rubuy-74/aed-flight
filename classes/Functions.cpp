@@ -7,6 +7,7 @@
 #include "algorithm"
 #include "Utils.h"
 #include "set"
+#include "algorithm"
 
 
 Functions::Functions(Dataset dataset) {
