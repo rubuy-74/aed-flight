@@ -36,7 +36,7 @@ class Functions {
         int getNumDestinationsCountriesOfAnAirport(Airport airport);
 
         // viii
-        vector<string> topKAirports(int k);
+        Airport *topKAirports(int k);
 
         // iii
         // use map from dataset to get all airports from city and therefore the flights

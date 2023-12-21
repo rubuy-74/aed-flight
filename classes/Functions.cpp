@@ -135,8 +135,7 @@ int Functions::getNumDestinationsCountriesOfAnAirport(Airport airport) {
     return getNumCountriesAtDistance(airport, 1);
 }
 
-vector<string> Functions::topKAirports(int k) {
-    vector<string> res;
+Airport *Functions::topKAirports(int k) {
     vector<Airport*> tmp;
     for(auto airport : dataset.getNetwork().getAirports()){
         tmp.push_back(airport.second);
@@ -144,10 +143,7 @@ vector<string> Functions::topKAirports(int k) {
     sort(tmp.begin(),tmp.end(),[](Airport* a1, Airport* a2){
         return a1->getFlights().size() > a2->getFlights().size();
     });
-    for(int i=0; i<k; i++){
-        res.push_back(tmp[i]->getName());
-    }
-    return res;
+    return tmp[max(0,k-1)];
 }
 
 unordered_map<string, int> Functions::getFlightsPerAirline() {
