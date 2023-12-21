@@ -18,7 +18,6 @@ class Functions {
     private:
         Dataset dataset;
     public:
-        Functions();
         Functions(Dataset dataset);
 
         void setAllAirportsUnvisited();
