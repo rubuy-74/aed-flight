@@ -1,43 +1,14 @@
-//
-// Created by rubem on 19-12-2023.
-//
-
 #include "Menu.h"
 #include "Parser.h"
 #include <iostream>
 #include <algorithm>
 
-void clearScreen(){
-    #if defined(__linux__)
-        system("clear");
-    #elif _WIN32
-        system("cls");
-    #endif
-}
-
-
-void showFile(list<vector<string>> menu){
-    clearScreen();
-    vector<string> res;
-    Utils utils;
-    for(auto v : menu){
-        string s;
-        for(auto c: v){
-            s += c;
-        }
-        res.push_back(s);
-    }
-    //utils.drawBox(res);
-    for(auto i : res){
-        cout << i << '\n';
-    }
-}
 
 void Menu::showMainMenu() {
     string option = ""; // TO AVOID INVALID OPTION LINE
     list<vector<string>> mainMenu = parser.readFile("../docs/mainMenu");
     while(option != "0" && option != "1" && option != "2"){
-        showFile(mainMenu);
+        Utils::showFile(mainMenu);
         cout << "1 - See statistics about the Network" << '\n';
         cout << "2 - See best flight option" << '\n';
         if(option != "1" && option != "2" && option != ""){
@@ -74,13 +45,13 @@ void Menu::showListingFunctionsMenu() {
     list<vector<string>> listingMenu = parser.readFile("../docs/listingMenu");
     int numOptions = 9;
     while(option != "0" && !isValidOption(option,numOptions)){
-        showFile(listingMenu);
+        Utils::showFile(listingMenu);
         cout << "1 - See Global number of airports and number of available flights" << '\n';
         cout << "2 - See number of flights out of an airport and from how many airlines" << '\n';
         cout << "3 - See number of flights per city/airline"<<'\n';
         cout << "4 - See number of different countries that a given airport/city flies to" <<'\n';
-        cout << "5 - See number of destinations (airports, cities or countries) available for a given airport" << "\n";
-        cout << "6 - See number of reachable destinations (airports, cities or countries) from a given airport in a\n"
+        cout << "5 - See number of destinations (airports, cities or countries) available for a\n given airport" << "\n";
+        cout << "6 - See number of reachable destinations (airports, cities or countries) from a\n given airport in a"
                 "maximum number of X stops" << "\n";
         cout << "7 - See trip(s) with the greatest number of stops between them" << "\n";
         cout << "8 - See the top-k airport with the greatest air traffic capacity" << "\n";
@@ -108,6 +79,8 @@ void Menu::showBestOption() {
 void Menu::showListingOption(string option) {
     string second_option = "";
     while(second_option != "0"){
+        second_option = "";
+        Utils::clearScreen();
         switch (stoi(option)) { // IT IS A VALID OPTION
             case 1:
                 break;
@@ -145,14 +118,15 @@ void Menu::showListingOption(string option) {
                 showOption9();
                 break;
         }
-        if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
-        cout << "Exit(0): ";
-        cin >> second_option;
+        while(second_option != "0" && second_option != "1"){
+            if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
+            cout << "Exit(0) or Retry(1):";
+            cin >> second_option;
+        }
     }
 }
 
 void Menu::showOption2() {
-    clearScreen();
     cout << "Airport Code:" << '\n';
     string airportCode;
     vector<string> text;
@@ -167,14 +141,10 @@ void Menu::showOption2() {
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Number of flights: " + to_string(numFlights));
     text.push_back("Number of airlines: "  + to_string(numAirlines));
-    //utils.drawBox(text);
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption3() {
-    clearScreen();
     string option = "";
     while(option != "1" && option != "2"){
         cout << "City(1) or Airline(2):";
@@ -200,12 +170,10 @@ void Menu::showOption3() {
         if(flightsPerAirline[airline] == 0) {text = "AIRLINE NOT FOUND";}
         else {text += to_string(flightsPerAirline[airline]);}
     }
-    //utils.drawBox(text);
-    cout << text << '\n';
+    Utils::drawBox({text});
 }
 
 void Menu::showOption4() {
-    clearScreen();
     string option = "";
     while(option != "1" && option != "2"){
         cout << "City(1) or Airport(2):";
@@ -231,11 +199,10 @@ void Menu::showOption4() {
             text += to_string(functions.getReachableDestinationsFromAirport(*ptrAirport));
         }
     }
-    cout << text << '\n';
+    Utils::drawBox({text});
 }
 
 void Menu::showOption5() {
-    clearScreen();
     cout << "Airport Code:" << '\n';
     string airportCode;
     vector<string> text;
@@ -252,14 +219,10 @@ void Menu::showOption5() {
     text.push_back("Number of airports: " + to_string(numAirports));
     text.push_back("Number of cities: " + to_string(numCities));
     text.push_back("Number of countries: " + to_string(numCountries));
-    //utils.drawBox(text);
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption6() {
-    clearScreen();
     string airportCode;
     string distance;
     vector<string> text;
@@ -281,14 +244,10 @@ void Menu::showOption6() {
     text.push_back("Number of airports: " + to_string(numAirports));
     text.push_back("Number of cities: " + to_string(numCities));
     text.push_back("Number of countries: " + to_string(numCountries));
-    //utils.drawBox(text);
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption7() {
-    clearScreen();
     cout << "Airport Code:" << '\n';
     string airportCode;
     vector<string> text;
@@ -304,13 +263,10 @@ void Menu::showOption7() {
     for(auto i : maxTrips){
         text.push_back(i.airports.first->getCode() + " -> " + i.airports.second->getCode());
     }
-    for(auto i: text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption8() {
-    clearScreen();
     string input;
     vector<string> text;
     cout << "K: ";
@@ -318,12 +274,8 @@ void Menu::showOption8() {
     if(!std::all_of(input.begin(),input.end(), ::isdigit)){
         cout << "NOT VALID NUMBER" << '\n'; return;
     }
-    for(auto s : functions.topKAirports(stoi(input))){
-        text.push_back(s);
-    }
-    for(auto i: text){
-        cout << i << '\n';
-    }
+    text.push_back(functions.topKAirports(stoi(input))->getName());
+    Utils::drawBox(text);
 }
 
 void Menu::showOption9() {
@@ -332,9 +284,9 @@ void Menu::showOption9() {
     for(auto i : articulationPoints){
         text.push_back(i->getCode());
     }
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    vector<Airport *> ap;
+    for(auto a: articulationPoints)  ap.push_back(a);
+    Utils::drawPageAirports(ap);
 }
 
 

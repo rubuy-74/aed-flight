@@ -1,7 +1,3 @@
-//
-// Created by rubem on 19-12-2023.
-//
-
 #ifndef AED_FLIGHT_MENU_H
 #define AED_FLIGHT_MENU_H
 
