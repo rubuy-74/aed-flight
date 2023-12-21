@@ -31,10 +31,9 @@ double Utils::computeDistance(Coordinate c1, Coordinate c2){
     dist *= 6371;
     return dist;
 }
+
 void Utils::clearScreen(){
 #if defined(__linux__)
-    system("clear");
-#elif __APPLE__
     system("clear");
 #elif _WIN32
     system("cls");

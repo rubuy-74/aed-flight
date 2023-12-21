@@ -39,7 +39,6 @@ public:
     static void drawBox(vector<string> text);
 
     static void drawPageFlights(vector<Trip> trips);
-
 };
 
 

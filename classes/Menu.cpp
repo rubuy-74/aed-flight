@@ -3,31 +3,6 @@
 #include <iostream>
 #include <algorithm>
 
-void clearScreen(){
-    #if defined(__linux__)
-        system("clear");
-    #elif _WIN32
-        system("cls");
-    #endif
-}
-
-
-void showFile(list<vector<string>> menu){
-    clearScreen();
-    vector<string> res;
-    Utils utils;
-    for(auto v : menu){
-        string s;
-        for(auto c: v){
-            s += c;
-        }
-        res.push_back(s);
-    }
-    //utils.drawBox(res);
-    for(auto i : res){
-        cout << i << '\n';
-    }
-}
 
 void Menu::showMainMenu() {
     string option = ""; // TO AVOID INVALID OPTION LINE
@@ -162,6 +137,8 @@ vector<Airport *> Menu::inputAirports(string element){
 void Menu::showListingOption(string option) {
     string second_option = "";
     while(second_option != "0"){
+        second_option = "";
+        Utils::clearScreen();
         switch (stoi(option)) { // IT IS A VALID OPTION
             case 1:
                 break;
@@ -207,6 +184,11 @@ void Menu::showListingOption(string option) {
             cout << "Exit(0) or Retry(1):";
             cin >> second_option;
         }
+        while(second_option != "0" && second_option != "1"){
+            if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
+            cout << "Exit(0) or Retry(1):";
+            cin >> second_option;
+        }
     }
 }
 
@@ -225,10 +207,7 @@ void Menu::showOption2() {
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Number of flights: " + to_string(numFlights));
     text.push_back("Number of airlines: "  + to_string(numAirlines));
-    //utils.drawBox(text);
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption3() {
@@ -257,8 +236,7 @@ void Menu::showOption3() {
         if(flightsPerAirline[airline] == 0) {text = "AIRLINE NOT FOUND";}
         else {text += to_string(flightsPerAirline[airline]);}
     }
-    //utils.drawBox(text);
-    cout << text << '\n';
+    Utils::drawBox({text});
 }
 
 void Menu::showOption4() {
@@ -307,10 +285,7 @@ void Menu::showOption5() {
     text.push_back("Number of airports: " + to_string(numAirports));
     text.push_back("Number of cities: " + to_string(numCities));
     text.push_back("Number of countries: " + to_string(numCountries));
-    //utils.drawBox(text);
-    for(auto i : text){
-        cout << i << '\n';
-    }
+    Utils::drawBox(text);
 }
 
 void Menu::showOption6() {
@@ -378,7 +353,6 @@ void Menu::showOption9() {
     vector<Airport *> ap;
     for(auto a: articulationPoints)  ap.push_back(a);
     Utils::drawPageAirports(ap);
-
 }
 
 void Menu::showOption10() {
