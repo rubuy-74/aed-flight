@@ -14,25 +14,39 @@ enum AIRPORT_OPTION {
     CODE,NAME
 };
 
+struct Trip{
+    int stops;
+    pair<Airport*, Airport*> airports;
+};
+
 class Graph {
     private:
         unordered_map<string, Airport *> airports;
     public:
         Graph();
         Graph(unordered_map<string, Airport *> airports);
+
         Airport* findAirport(Airport airport);
         Airport* findAirport(string airportAtt, AIRPORT_OPTION airportOption);
+
         bool addAirport(const Airport airport);
         bool removeAirport(const Airport airport);
+
         unordered_map<string, Airport *> getAirports() const;
+
         vector<Airport *> dfs();
         vector<Airport *> dfs(Airport *airport);
         vector<Airport *> dfsAtDistance(Airport *airport,int distance);
         void dfsVisit(Airport *a, vector<Airport *> &res);
+
         vector<Airport *> bfs(Airport *airport);
         vector<Airport *> bfsAtDistance(Airport *airport,int distance);
+        vector<Trip> bfsMaxDepth(Airport *airport);
+
         bool isDAG();
+
         int numConnectedComponents();
+
         unordered_set<Airport *> getArticulationPoints();
 
 };

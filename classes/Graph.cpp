@@ -1,7 +1,7 @@
 #include <stack>
 #include "Graph.h"
+#include "Utils.h"
 #include <algorithm>
-
 
 Graph::Graph() {
     this->airports = {};
@@ -94,6 +94,47 @@ vector<Airport *> Graph::bfs(Airport *airport) {
             if(! w->isVisited()){
                 queueAirports.push(w);
                 w->setVisited(true);
+            }
+        }
+    }
+    return res;
+}
+
+vector<Trip> Graph::bfsMaxDepth(Airport *airport) {
+    vector<Trip> res;
+    queue<pair<Airport *, int>> q;
+    int maxDepth = 0;
+
+    if(airport == nullptr) return res;
+    for(auto a: getAirports()) a.second->setVisited(false);
+
+    q.push({airport, 0});
+    airport->setVisited(true);
+    while(!q.empty()){
+        auto p  = q.front();
+        q.pop();
+        for(Flight *f : p.first->getFlights()){
+            Airport *dest = f->getDestination();
+            if(!dest->isVisited()){
+                q.push({dest, p.second+1});
+                dest->setVisited(true);
+                if(p.second + 1 > maxDepth){
+                    maxDepth += 1;
+                    res.clear();
+
+                    // add new trip
+                    Trip toAdd;
+                    toAdd.stops = maxDepth;
+                    toAdd.airports = {airport, dest};
+                    res.push_back(toAdd);
+                }
+                else if(p.second + 1 == maxDepth){
+                    // add new trip
+                    Trip toAdd;
+                    toAdd.stops = maxDepth;
+                    toAdd.airports = {airport, dest};
+                    res.push_back(toAdd);
+                }
             }
         }
     }
