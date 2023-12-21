@@ -6,6 +6,10 @@
 #include "Graph.h"
 #include "algorithm"
 #include "vector"
+#include <queue>
+#include <limits>
+#include <unordered_set>
+#include "math.h"
 
 unsigned int Functions::getNumFlightsOutOfAnAirport(Airport airport) {
     return dataset.getNetwork().findAirport(airport)->getFlights().size();
@@ -130,4 +134,423 @@ int Functions::getNumCountriesAtDistance(Airport airport, int distance) {
 
 unordered_set<Airport *> Functions::getArticulationPoints() {
     return dataset.getNetwork().getArticulationPoints();
+}
+
+void Functions::reversePath(vector<Airport *> &path) {
+    int start = 0;
+    unsigned end = path.size() - 1;
+
+    while (start < end) {
+        swap(path[start], path[end]);
+        start++;
+        end--;
+    }
+}
+
+vector<Airport *> Functions::findMinPathByCity(string s, string d){
+    vector<Airport *> result;
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for (const auto& airport : dataset.getNetwork().getAirports()) {
+        const string& start = airport.second->getCity();
+        if (start == s) {
+            for (const auto& otherAirport : dataset.getNetwork().getAirports()) {
+                if (otherAirport.second->getCity() == d) {
+                    vector<Airport *> path = findMinPathByAirportCode(airport.first, otherAirport.first);
+                    allMinPaths.push_back(path);
+                    if (path.size() < minSize && !path.empty()) {
+                        minSize = path.size();
+                    }
+                }
+            }
+        }
+    }
+
+    for(auto v : allMinPaths){
+        if(v.size() == minSize){
+            result = v;
+            break;
+        }
+    }
+
+    return result;
+}
+
+
+vector<Airport *> Functions::findMinPathByAirportName(string s, string d){
+    Airport *start = dataset.getNetwork().findAirport(s,NAME);
+    Airport *destination = dataset.getNetwork().findAirport(d,NAME);
+
+    priority_queue<pair<int, Airport *>, vector<pair<int, Airport *>>, greater<>> p;
+    unordered_map<Airport *, int> distances;
+    unordered_map<Airport *, Airport *> parent;
+
+    for (const auto& a : dataset.getNetwork().getAirports()) {
+        distances[a.second] = numeric_limits<int>::max();
+        parent[a.second] = nullptr;
+    }
+
+    distances[start] = 0;
+    p.push({0, start});
+
+    while (!p.empty()) {
+        int current_distance = p.top().first;
+        Airport *current = p.top().second;
+        p.pop();
+
+        if (current_distance > distances[current]) {
+            continue;
+        }
+
+        for (Flight *flight : current->getFlights()) {
+            Airport *neighbor = flight->getDestination();
+            int new_distance = distances[current] + flight->getDistance();
+
+            if (new_distance < distances[neighbor]) {
+                distances[neighbor] = new_distance;
+                parent[neighbor] = current;
+                p.push({new_distance, neighbor});
+            }
+        }
+    }
+
+    vector<Airport *> path;
+    Airport *current = destination;
+
+    while (current != nullptr) {
+        path.push_back(current);
+        current = parent[current];
+    }
+
+    reversePath(path);
+
+    return path;
+}
+
+vector<Airport *> Functions::findMinPathByAirportCode(string s, string d){
+    Airport *start = dataset.getNetwork().findAirport(s,CODE);
+    Airport *destination = dataset.getNetwork().findAirport(d,CODE);
+
+    priority_queue<pair<int, Airport *>, vector<pair<int, Airport *>>, greater<>> p;
+    unordered_map<Airport *, int> distances;
+    unordered_map<Airport *, Airport *> parent;
+
+    for (const auto& a : dataset.getNetwork().getAirports()) {
+        distances[a.second] = numeric_limits<int>::max();
+        parent[a.second] = nullptr;
+    }
+
+    distances[start] = 0;
+    p.push({0, start});
+
+    while (!p.empty()) {
+        int current_distance = p.top().first;
+        Airport *current = p.top().second;
+        p.pop();
+
+        if (current_distance > distances[current]) {
+            continue;
+        }
+
+        for (Flight *flight : current->getFlights()) {
+            Airport *neighbor = flight->getDestination();
+            int new_distance = distances[current] + flight->getDistance();
+
+            if (new_distance < distances[neighbor]) {
+                distances[neighbor] = new_distance;
+                parent[neighbor] = current;
+                p.push({new_distance, neighbor});
+            }
+        }
+    }
+
+    vector<Airport *> path;
+    Airport *current = destination;
+
+    while (current != nullptr) {
+        path.push_back(current);
+        current = parent[current];
+    }
+
+    reversePath(path);
+
+    return path;
+}
+
+vector<Airport *> Functions::findMinPathByCoordinates(Coordinate s,Coordinate d){
+    vector<Airport *> result;
+    vector<Airport *> start;
+    vector<Airport *> destination;
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+    double d_min1 = numeric_limits<double>::max();
+    double d_min2 = numeric_limits<double>::max();
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance1 = sqrt(pow((airport.second->getCoordinates().getLatitude()-s.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - s.getLongitude()),2));
+        double distance2 = sqrt((pow((airport.second->getCoordinates().getLatitude()-d.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - d.getLongitude()),2)));
+        if(distance1 < d_min1){
+            d_min1 = distance1;
+        }
+        if(distance2 < d_min2){
+            d_min2 = distance2;
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double dist1 = sqrt((pow((airport.second->getCoordinates().getLatitude()-s.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - s.getLongitude()),2)));
+        double dist2 = sqrt((pow((airport.second->getCoordinates().getLatitude()-d.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - d.getLongitude()),2)));
+        if(dist1 == d_min1){
+            start.push_back(airport.second);
+        }
+        else if(dist2 == d_min2){
+            destination.push_back(airport.second);
+        }
+    }
+
+    for(auto airport_source : start){
+        for(auto airport_destination : destination){
+            vector<Airport *> path = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
+            allMinPaths.push_back(path);
+            if (path.size() < minSize && !path.empty()) {
+                minSize = path.size();
+            }
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            result = v;
+        }
+    }
+
+    return result;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenAirportCity(string airportCode, string city){
+    vector<vector<Airport *>> res;
+    vector<Airport *> destination;
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        if(airport.second->getCity() == city){
+            destination.push_back(airport.second);
+        }
+    }
+
+    for(const auto & airport_destination : destination){
+        vector<Airport *> path = findMinPathByAirportCode(airportCode,airport_destination->getCode());
+        allMinPaths.push_back(path);
+        if(path.size() < minSize && !path.empty()){
+            minSize = path.size();
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenCityAirport(string city, string airportCode){
+    vector<vector<Airport *>> res;
+    vector<Airport *> start;
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        if(airport.second->getCity() == city){
+            start.push_back(airport.second);
+        }
+    }
+
+    for(const auto & airport_source : start){
+        vector<Airport *> path = findMinPathByAirportCode(airport_source->getCode(),airportCode);
+        allMinPaths.push_back(path);
+        if(path.size() < minSize && !path.empty()){
+            minSize = path.size();
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenAirportCoordinates(string airportCode, Coordinate c){
+    vector<vector<Airport *>> res;
+    vector<Airport *> destination;
+    double d_min = numeric_limits<double>::max();
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance < d_min){
+            d_min = distance;
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance == d_min){
+            destination.push_back(airport.second);
+        }
+    }
+
+    for(const auto & airport_destination : destination){
+        vector<Airport *> path = findMinPathByAirportCode(airportCode,airport_destination->getCode());
+        allMinPaths.push_back(path);
+        if(path.size() < minSize && !path.empty()){
+            minSize = path.size();
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode){
+    vector<vector<Airport *>> res;
+    vector<Airport *> start;
+    double d_min = numeric_limits<double>::max();
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance < d_min){
+            d_min = distance;
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance == d_min){
+            start.push_back(airport.second);
+        }
+    }
+
+    for(const auto & airport_source : start){
+        vector<Airport *> path = findMinPathByAirportCode(airport_source->getCode(),airportCode);
+        allMinPaths.push_back(path);
+        if(path.size() < minSize && !path.empty()){
+            minSize = path.size();
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesCity(Coordinate c, string city){
+    vector<vector<Airport *>> res;
+    vector<Airport *> start;
+    vector<Airport *> destination;
+    double d_min = numeric_limits<double>::max();
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance < d_min){
+            d_min = distance;
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance == d_min){
+            start.push_back(airport.second);
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        if(airport.second->getCity() == city){
+            destination.push_back(airport.second);
+        }
+    }
+
+    for(auto airport_source : start){
+        for(auto airport_destination : destination){
+            vector<Airport *> path = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
+            allMinPaths.push_back(path);
+            if (path.size() < minSize && !path.empty()) {
+                minSize = path.size();
+            }
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathBetweenCityCoordinnates(string city, Coordinate c){
+    vector<vector<Airport *>> res;
+    vector<Airport *> start;
+    vector<Airport *> destination;
+    double d_min = numeric_limits<double>::max();
+    vector<vector<Airport *>> allMinPaths;
+    unsigned minSize = numeric_limits<int>::max();
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance < d_min){
+            d_min = distance;
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        if(distance == d_min){
+            destination.push_back(airport.second);
+        }
+    }
+
+    for(const auto& airport : dataset.getNetwork().getAirports()){
+        if(airport.second->getCity() == city){
+            start.push_back(airport.second);
+        }
+    }
+
+    for(auto airport_source : start){
+        for(auto airport_destination : destination){
+            vector<Airport *> path = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
+            allMinPaths.push_back(path);
+            if (path.size() < minSize && !path.empty()) {
+                minSize = path.size();
+            }
+        }
+    }
+
+    for(const auto& v : allMinPaths){
+        if(v.size() == minSize){
+            res.push_back(v);
+        }
+    }
+
+    return res;
 }

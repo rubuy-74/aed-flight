@@ -1,9 +1,6 @@
 #include <stack>
 #include "Graph.h"
 #include <algorithm>
-#include <queue>
-#include <limits>
-#include <unordered_set>
 
 
 Graph::Graph() {
@@ -19,12 +16,18 @@ Airport* Graph::findAirport(Airport airport) {
     if(it != airports.end()){
         return it->second;
     }
-    return new Airport();
+    return airports[airport.getCode()];
 }
 
-Airport *Graph::findAirport(string airportCode) {
-    auto it = this->airports.find(airportCode);
-    if(it != airports.end()) return it->second;
+Airport *Graph::findAirport(string airportAtt,AIRPORT_OPTION airportOption) {
+    if(airportOption == CODE)
+        return airports[airportAtt];
+    if(airportOption == NAME){
+        for(auto element : airports){
+            if(element.second->getName() == airportAtt)
+                return element.second;
+        }
+    }
     return nullptr;
 }
 
@@ -234,28 +237,18 @@ void dfs_art(Airport *a,stack<Airport *> &s,unordered_set<Airport *> &res,int pa
     if(parent == -1 && children > 1) res.insert(a);
     s.pop();
 }
-
-void Graph::reversePath(vector<Airport *> &path) {
-    int start = 0;
-    int end = path.size() - 1;
-
-    while (start < end) {
-        swap(path[start], path[end]);
-        start++;
-        end--;
-    }
-}
-
-vector<Airport *> Graph::findMinPathByAirportCode(string s, string d){
-    Airport *start = findAirport(s);
-    Airport *destination = findAirport(d);
+/*
+vector<vector<Airport *>> Graph::findMinPathByAirportCode(string s, string d){
+    Airport *start = findAirport(s, CODE);
+    Airport *destination = findAirport(d, CODE);
 
     priority_queue<pair<int, Airport *>, vector<pair<int, Airport *>>, greater<>> p;
     unordered_map<Airport *, int> distances;
+    unordered_map<Airport *, vector<Airport *>> paths;
     unordered_map<Airport *, Airport *> parent;
 
     for (auto a : getAirports()) {
-        distances[a.second] = numeric_limits<int>::max();
+        distances[a.second] = std::numeric_limits<int>::max();
         parent[a.second] = nullptr;
     }
 
@@ -283,15 +276,69 @@ vector<Airport *> Graph::findMinPathByAirportCode(string s, string d){
         }
     }
 
+    vector<vector<Airport *>> result;
     vector<Airport *> path;
-    Airport *current = destination;
-
-    while (current != nullptr) {
-        path.push_back(current);
-        current = parent[current];
+    path.push_back(destination);
+    while (parent[destination] != nullptr) {
+        destination = parent[destination];
+        path.push_back(destination);
     }
 
     reversePath(path);
+    result.push_back(path);
 
-    return path;
+    return result;
 }
+
+vector<vector<Airport *>> Graph::findMinPathByAirportName(string s, string d){
+    Airport *start = findAirport(s, NAME);
+    Airport *destination = findAirport(d, NAME);
+
+    priority_queue<pair<int, Airport *>, vector<pair<int, Airport *>>, greater<>> p;
+    unordered_map<Airport *, int> distances;
+    unordered_map<Airport *, vector<Airport *>> paths;
+    unordered_map<Airport *, Airport *> parent;
+
+    for (auto a : getAirports()) {
+        distances[a.second] = std::numeric_limits<int>::max();
+        parent[a.second] = nullptr;
+    }
+
+    distances[start] = 0;
+    p.push({0, start});
+
+    while (!p.empty()) {
+        int current_distance = p.top().first;
+        Airport *current = p.top().second;
+        p.pop();
+
+        if (current_distance > distances[current]) {
+            continue;
+        }
+
+        for (Flight *flight : current->getFlights()) {
+            Airport *neighbor = flight->getDestination();
+            int new_distance = distances[current] + flight->getDistance();
+
+            if (new_distance < distances[neighbor]) {
+                distances[neighbor] = new_distance;
+                parent[neighbor] = current;
+                p.push({new_distance, neighbor});
+            }
+        }
+    }
+
+    vector<vector<Airport *>> result;
+    vector<Airport *> path;
+    path.push_back(destination);
+    while (parent[destination] != nullptr) {
+        destination = parent[destination];
+        path.push_back(destination);
+    }
+
+    reversePath(path);
+    result.push_back(path);
+
+    return result;
+}*/
+

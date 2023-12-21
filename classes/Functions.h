@@ -31,6 +31,17 @@ public:
     int getNumCititesAtDistance(Airport airport, int distance);
     int getNumCountriesAtDistance(Airport airport,int distance);
     unordered_set<Airport *> getArticulationPoints();
+    vector<Airport *> findMinPathByAirportCode(string s, string d);
+    vector<Airport *> findMinPathByAirportName(string s, string d);
+    vector<Airport *> findMinPathByCity(string s, string d);
+    vector<Airport *> findMinPathByCoordinates(Coordinate s,Coordinate d);
+    vector<vector<Airport *>> findMinPathBetweenAirportCity(string airportCode, string city);
+    vector<vector<Airport *>> findMinPathBetweenCityAirport(string city, string airportCode);
+    vector<vector<Airport *>> findMinPathBetweenAirportCoordinates(string airportCode, Coordinate c);
+    vector<vector<Airport *>> findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode);
+    vector<vector<Airport *>> findMinPathBetweenCoordinatesCity(Coordinate c, string city);
+    vector<vector<Airport *>> findMinPathBetweenCityCoordinnates(string city, Coordinate c);
+    static void reversePath(vector<Airport *> &path);
 };
 
 
