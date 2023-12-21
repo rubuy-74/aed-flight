@@ -17,7 +17,7 @@ class Menu {
     Utils utils;
     Functions functions;
 public:
-    Menu(Graph graph) : graph(graph) {functions = Functions();};
+    Menu(Graph graph,Functions functions) : functions(functions),graph(graph) { };
     void showMainMenu();
     void showListingFunctionsMenu();
     void showBestOption();

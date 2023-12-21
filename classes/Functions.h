@@ -13,7 +13,6 @@ class Functions {
     private:
         Dataset dataset;
     public:
-        Functions();
         Functions(Dataset dataset);
 
         // iv
