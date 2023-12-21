@@ -1,14 +1,51 @@
+<<<<<<< HEAD
 #include "Menu.h"
 #include "Parser.h"
 #include <iostream>
 #include <algorithm>
 
+=======
+//
+// Created by rubem on 19-12-2023.
+//
+
+#include "Menu.h"
+#include "Parser.h"
+#include <iostream>
+
+void clearScreen(){
+    #if defined(__linux__)
+        system("clear");
+    #elif _WIN32
+        system("cls");
+    #endif
+}
+
+
+void showFile(list<vector<string>> menu){
+    clearScreen();
+    vector<string> res;
+    Utils utils;
+    for(auto v : menu){
+        string s;
+        for(auto c: v){
+            s += c;
+        }
+        res.push_back(s);
+    }
+    utils.drawBox(res);
+}
+>>>>>>> 75fc45c (Menu implementation)
 
 void Menu::showMainMenu() {
     string option = ""; // TO AVOID INVALID OPTION LINE
     list<vector<string>> mainMenu = parser.readFile("../docs/mainMenu");
     while(option != "0" && option != "1" && option != "2"){
+<<<<<<< HEAD
         Utils::showFile(mainMenu);
+=======
+        showFile(mainMenu);
+>>>>>>> 75fc45c (Menu implementation)
         cout << "1 - See statistics about the Network" << '\n';
         cout << "2 - See best flight option" << '\n';
         if(option != "1" && option != "2" && option != ""){
@@ -67,6 +104,7 @@ void Menu::showListingFunctionsMenu() {
         showMainMenu();
         return;
     }
+    string second_option;
     showListingOption(option);
     showListingFunctionsMenu();
 }
@@ -136,8 +174,6 @@ vector<Airport *> Menu::inputAirports(string element){
 void Menu::showListingOption(string option) {
     string second_option = "";
     while(second_option != "0"){
-        second_option = "";
-        Utils::clearScreen();
         switch (stoi(option)) { // IT IS A VALID OPTION
             case 1:
                 break;
@@ -191,17 +227,17 @@ void Menu::showOption2() {
     string airportCode;
     vector<string> text;
     cin >> airportCode;
-    auto ptrAirport = graph.findAirport(airportCode,CODE);
-    if(ptrAirport == nullptr) {
+    if(graph.findAirport(airportCode) == nullptr) {
         cout << "AIRPORT NOT FOUND" << '\n';
         return;
     }
-    int numFlights = functions.getNumFlightsOutOfAnAirport(*ptrAirport);
-    int numAirlines = functions.getNumAirlinesOfAnAirport(*ptrAirport);
-    text.push_back("Airport: " + ptrAirport->getName());
+    auto airport = *graph.findAirport(airportCode);
+    int numFlights = functions.getNumFlightsOutOfAnAirport(airport);
+    int numAirlines = functions.getNumAirlinesOfAnAirport(airport);
+    text.push_back("Airport: " + graph.findAirport(airportCode)->getName());
     text.push_back("Number of flights: " + to_string(numFlights));
     text.push_back("Number of airlines: "  + to_string(numAirlines));
-    Utils::drawBox(text);
+    utils.drawBox(text);
 }
 
 void Menu::showOption3() {
@@ -352,5 +388,3 @@ void Menu::showOption9() {
 void Menu::showOption10() {
     Utils::drawPageFlights(functions.maxTripsGraph());
 }
-
-

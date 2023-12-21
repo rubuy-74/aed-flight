@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+//
+// Created by rubem on 19-12-2023.
+//
+
+>>>>>>> 75fc45c (Menu implementation)
 #ifndef AED_FLIGHT_MENU_H
 #define AED_FLIGHT_MENU_H
 
@@ -31,6 +38,8 @@ public:
     void showListingOption(string option);
 
     vector<Airport *> inputAirports(string element);
+
+    void showListingOption(string option);
 };
 
 
