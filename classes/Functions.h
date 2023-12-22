@@ -28,19 +28,20 @@ public:
     unordered_map<string, int> getFlightsPerCity();
     unordered_map<string, int> getFlightsPerAirline();
     int getNumAirportsAtDistance(Airport airport, int distance);
-    int getNumCititesAtDistance(Airport airport, int distance);
+    int getNumCitiesAtDistance(Airport airport, int distance);
     int getNumCountriesAtDistance(Airport airport,int distance);
     unordered_set<Airport *> getArticulationPoints();
-    vector<Airport *> findMinPathByAirportCode(string s, string d);
-    vector<Airport *> findMinPathByAirportName(string s, string d);
-    vector<Airport *> findMinPathByCity(string s, string d);
-    vector<Airport *> findMinPathByCoordinates(Coordinate s,Coordinate d);
-    vector<vector<Airport *>> findMinPathBetweenAirportCity(string airportCode, string city);
-    vector<vector<Airport *>> findMinPathBetweenCityAirport(string city, string airportCode);
+    vector<vector<Airport *>> findMinPathByAirportCode(const string& s, const string& d);
+    vector<vector<Airport *>> findMinPathByAirportName(const string& s, const string& d);
+    static void bfs_all_paths(Airport* start, Airport* end, vector<vector<Airport*>>& allPaths);
+    vector<vector<Airport *>> findMinPathByCity(string s, string d);
+    vector<vector<Airport *>> findMinPathByCoordinates(Coordinate s,Coordinate d);
+    vector<vector<Airport *>> findMinPathBetweenAirportCity(const string& airportCode, const string& city);
+    vector<vector<Airport *>> findMinPathBetweenCityAirport(const string& city, const string& airportCode);
     vector<vector<Airport *>> findMinPathBetweenAirportCoordinates(string airportCode, Coordinate c);
     vector<vector<Airport *>> findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode);
     vector<vector<Airport *>> findMinPathBetweenCoordinatesCity(Coordinate c, string city);
-    vector<vector<Airport *>> findMinPathBetweenCityCoordinnates(string city, Coordinate c);
+    vector<vector<Airport *>> findMinPathBetweenCityCoordinates(string city, Coordinate c);
     static void reversePath(vector<Airport *> &path);
 };
 
