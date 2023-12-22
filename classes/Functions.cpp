@@ -137,18 +137,6 @@ unordered_set<Airport *> Functions::getArticulationPoints() {
     return dataset.getNetwork().getArticulationPoints();
 }
 
-void Functions::reversePath(vector<Airport *> &path) {
-    int start = 0;
-    unsigned end = path.size() - 1;
-
-    while (start < end) {
-        swap(path[start], path[end]);
-        start++;
-        end--;
-    }
-}
-
-
 vector<vector<Airport *>> Functions::findMinPathByCity(string s, string d){
     vector<vector<Airport *>> result;
     vector<Airport *> start;
