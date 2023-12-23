@@ -137,46 +137,6 @@ unordered_set<Airport *> Functions::getArticulationPoints() {
     return dataset.getNetwork().getArticulationPoints();
 }
 
-vector<vector<Airport *>> Functions::findMinPathByCity(string s, string d){
-    vector<vector<Airport *>> result;
-    vector<Airport *> start;
-    vector<Airport *> destination;
-    vector<vector<vector<Airport *>>> allMinPaths;
-    unsigned minSize = numeric_limits<unsigned>::max();
-
-    for(auto a : dataset.getNetwork().getAirports()){
-        if(a.second->getCity() == s){
-            start.push_back(a.second);
-        }
-        else if(a.second->getCity() == d){
-            destination.push_back(a.second);
-        }
-    }
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            airport_destination->setVisited(false);
-            vector<vector<Airport *>> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths.push_back(paths);
-            for(auto p : paths){
-                if(p.size() < minSize){
-                    minSize = p.size();
-                }
-            }
-        }
-    }
-
-    for(auto v : allMinPaths){
-        for(auto p : v){
-            if(p.size() == minSize){
-                result.push_back(p);
-            }
-        }
-    }
-
-    return result;
-}
-
 void Functions::bfs_all_paths(Airport* start, Airport* end, vector<vector<Airport*>>& allPaths){
     std::queue<std::vector<Airport*>> q;
     q.push({start});
@@ -256,6 +216,51 @@ vector<vector<Airport *>> Functions::findMinPathByAirportCode(const string& s, c
     return res;
 }
 
+vector<vector<Airport *>> Functions::checkMinPaths(vector<vector<vector<Airport *>>> allMinPaths, unsigned minSize){
+    vector<vector<Airport *>> res;
+    for(const auto& v : allMinPaths){
+        for(const auto& p : v){
+            if(p.size() == minSize){
+                res.push_back(p);
+            }
+        }
+    }
+
+    return res;
+}
+
+vector<vector<Airport *>> Functions::findMinPathByCity(string s, string d){
+    vector<vector<Airport *>> result;
+    vector<Airport *> start;
+    vector<Airport *> destination;
+    vector<vector<vector<Airport *>>> allMinPaths;
+    unsigned minSize = numeric_limits<unsigned>::max();
+
+    for(auto a : dataset.getNetwork().getAirports()){
+        if(a.second->getCity() == s){
+            start.push_back(a.second);
+        }
+        else if(a.second->getCity() == d){
+            destination.push_back(a.second);
+        }
+    }
+
+    for(auto airport_source : start){
+        for(auto airport_destination : destination){
+            airport_destination->setVisited(false);
+            vector<vector<Airport *>> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
+            allMinPaths.push_back(paths);
+            for(auto p : paths){
+                if(p.size() < minSize){
+                    minSize = p.size();
+                }
+            }
+        }
+    }
+
+    return checkMinPaths(allMinPaths, minSize);
+}
+
 vector<vector<Airport *>> Functions::findMinPathByCoordinates(Coordinate s,Coordinate d){
     vector<vector<Airport *>> result;
     vector<Airport *> start;
@@ -299,15 +304,7 @@ vector<vector<Airport *>> Functions::findMinPathByCoordinates(Coordinate s,Coord
         }
     }
 
-    for(auto v : allMinPaths){
-        for(auto p : v){
-            if(p.size() == minSize){
-                result.push_back(p);
-            }
-        }
-    }
-
-    return result;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenAirportCity(const string& airportCode, const string& city){
@@ -333,15 +330,7 @@ vector<vector<Airport *>> Functions::findMinPathBetweenAirportCity(const string&
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenCityAirport(const string& city, const string& airportCode){
@@ -368,15 +357,7 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCityAirport(const string&
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenAirportCoordinates(string airportCode, Coordinate c){
@@ -411,15 +392,7 @@ vector<vector<Airport *>> Functions::findMinPathBetweenAirportCoordinates(string
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode){
@@ -455,15 +428,7 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesAirport(Coordi
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesCity(Coordinate c, string city){
@@ -507,15 +472,7 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesCity(Coordinat
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths, minSize);
 }
 
 vector<vector<Airport *>> Functions::findMinPathBetweenCityCoordinates(string city, Coordinate c){
@@ -559,13 +516,5 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCityCoordinates(string ci
         }
     }
 
-    for(const auto& v : allMinPaths){
-        for(const auto& p : v){
-            if(p.size() == minSize){
-                res.push_back(p);
-            }
-        }
-    }
-
-    return res;
+    return checkMinPaths(allMinPaths,minSize);
 }

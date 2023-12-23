@@ -42,6 +42,7 @@ public:
     vector<vector<Airport *>> findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode);
     vector<vector<Airport *>> findMinPathBetweenCoordinatesCity(Coordinate c, string city);
     vector<vector<Airport *>> findMinPathBetweenCityCoordinates(string city, Coordinate c);
+    vector<vector<Airport *>> checkMinPaths(vector<vector<vector<Airport *>>>, unsigned minSize);
 };
 
 
