@@ -49,7 +49,7 @@ class Functions {
 
         bool findInVector(const vector<string>& v, const string& code);
         static void bfs_all_paths(Airport* start, Airport* end, vector<vector<Airport*>>& allPaths);
-        vector<vector<Airport *>> checkMinPaths(vector<vector<vector<Airport *>>>, unsigned minSize);
+        vector<vector<Airport *>> checkMinPaths(vector<vector<vector<Airport *>>> allMinPaths, unsigned minSize);
         vector<vector<Airport *>> findMinPathByAirportCode(const string& s, const string& d);
         vector<vector<Airport *>> findMinPathByAirportName(const string& s, const string& d);
         vector<vector<Airport *>> findMinPathByCity(string s, string d);
