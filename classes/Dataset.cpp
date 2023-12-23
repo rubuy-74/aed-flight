@@ -2,6 +2,7 @@
 #include "Flight.h"
 #include <cmath>
 
+
 Graph Dataset::getNetwork() const {
     return network;
 }
@@ -19,6 +20,8 @@ double computeDistance(Coordinate c1, Coordinate c2){
     return dist;
 }
 
+Dataset::Dataset() {}
+
 Dataset::Dataset(list<vector<string>> rawFlights, list<vector<string>> rawAirports, list<vector<string>> rawAirlines){
     loadAirports(rawAirports);
     loadAirlines(rawAirlines);
@@ -29,6 +32,7 @@ void Dataset::loadAirports(list<vector<string>> rawAirports) {
     for(vector<string> airports : rawAirports){
         Airport airport = Airport(airports[0], airports[1], airports[2], airports[3], Coordinate(stof(airports[4]), stof(airports[5])));
         this->network.addAirport(airport);
+        cityAirports[airports[2]].push_back(airport);
     }
 }
 
@@ -44,6 +48,10 @@ void Dataset::loadAirlines(list<vector<string>> rawAirlines) {
     for(vector<string> airline : rawAirlines){
         this->airlines[airline[0]] = Airline(airline[0], airline[1], airline[2], airline[3]);
     }
+}
+
+unordered_map<string, vector<Airport>> Dataset::getCityAirports() const {
+    return this->cityAirports;
 }
 
 

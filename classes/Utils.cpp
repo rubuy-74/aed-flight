@@ -1,7 +1,3 @@
-//
-// Created by rubem on 16-12-2023.
-//
-
 #include "Utils.h"
 
 void Utils::showRaw(std::list<std::vector<std::string>> raw) {
