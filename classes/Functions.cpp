@@ -299,7 +299,6 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCityAndAirport(const stri
     vector<vector<Airport *>> res;
     vector<Airport *> start;
     vector<Airport *> destination;
-    //Airport *destination = dataset.getNetwork().findAirport(airportCode,CODE);
     vector<vector<vector<Airport *>>> allMinPaths;
     unsigned minSize = numeric_limits<int>::max();
 
