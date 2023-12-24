@@ -4,8 +4,6 @@
 #include <queue>
 #include <limits>
 #include <unordered_set>
-#include <cmath>
-#include "iostream"
 #include "algorithm"
 
 Functions::Functions() {
@@ -260,8 +258,8 @@ vector<vector<Airport *>> Functions::findMinPathByCoordinates(Coordinate s,Coord
     double d_min1 = numeric_limits<double>::max();
     double d_min2 = numeric_limits<double>::max();
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance1 = sqrt(pow((airport.second->getCoordinates().getLatitude()-s.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - s.getLongitude()),2));
-        double distance2 = sqrt((pow((airport.second->getCoordinates().getLatitude()-d.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - d.getLongitude()),2)));
+        double distance1 = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),s);
+        double distance2 = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),d);
         if(distance1 < d_min1){
             d_min1 = distance1;
         }
@@ -271,12 +269,12 @@ vector<vector<Airport *>> Functions::findMinPathByCoordinates(Coordinate s,Coord
     }
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double dist1 = sqrt((pow((airport.second->getCoordinates().getLatitude()-s.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - s.getLongitude()),2)));
-        double dist2 = sqrt((pow((airport.second->getCoordinates().getLatitude()-d.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - d.getLongitude()),2)));
-        if(abs(dist1 - d_min1) < 0.000001){
+        double distance1 = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),s);
+        double distance2 = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),d);
+        if(abs(distance1 - d_min1) < 0.000001){
             start.push_back(airport.second);
         }
-        else if(abs(dist2 - d_min2) < 0.000001){
+        else if(abs(distance2 - d_min2) < 0.000001){
             destination.push_back(airport.second);
         }
     }
@@ -358,14 +356,14 @@ vector<vector<Airport *>> Functions::findMinPathBetweenAirportCoordinates(string
     unsigned minSize = numeric_limits<int>::max();
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(distance < d_min){
             d_min = distance;
         }
     }
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(abs(distance - d_min) < 0.000001){
             destination.push_back(airport.second);
         }
@@ -394,14 +392,14 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesAirport(Coordi
     unsigned minSize = numeric_limits<int>::max();
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(distance < d_min){
             d_min = distance;
         }
     }
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(abs(distance - d_min) < 0.000001){
             start.push_back(airport.second);
         }
@@ -430,14 +428,14 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCoordinatesCity(Coordinat
     unsigned minSize = numeric_limits<int>::max();
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(distance < d_min){
             d_min = distance;
         }
     }
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(abs(distance - d_min) < 0.000001){
             start.push_back(airport.second);
         }
@@ -474,14 +472,14 @@ vector<vector<Airport *>> Functions::findMinPathBetweenCityCoordinates(string ci
     unsigned minSize = numeric_limits<int>::max();
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(distance < d_min){
             d_min = distance;
         }
     }
 
     for(const auto& airport : dataset.getNetwork().getAirports()){
-        double distance = sqrt((pow((airport.second->getCoordinates().getLatitude() - c.getLatitude()),2) + pow((airport.second->getCoordinates().getLongitude() - c.getLongitude()),2)));
+        double distance = Coordinate::distanceBetweenTwoCoordinates(airport.second->getCoordinates(),c);
         if(abs(distance - d_min) < 0.000001){
             destination.push_back(airport.second);
         }
