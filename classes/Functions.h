@@ -9,6 +9,10 @@
 #include <unordered_set>
 #include <unordered_map>
 
+enum MENU_OPTION {
+    FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY
+};
+
 class Functions {
     private:
         Dataset dataset;
@@ -54,12 +58,9 @@ class Functions {
         vector<vector<Airport *>> findMinPathByAirportName(const string& s, const string& d);
         vector<vector<Airport *>> findMinPathByCity(string s, string d);
         vector<vector<Airport *>> findMinPathByCoordinates(Coordinate s,Coordinate d);
-        vector<vector<Airport *>> findMinPathBetweenAirportCity(const string& airportCode, const string& city);
-        vector<vector<Airport *>> findMinPathBetweenCityAirport(const string& city, const string& airportCode);
-        vector<vector<Airport *>> findMinPathBetweenAirportCoordinates(string airportCode, Coordinate c);
-        vector<vector<Airport *>> findMinPathBetweenCoordinatesAirport(Coordinate c, string airportCode);
-        vector<vector<Airport *>> findMinPathBetweenCoordinatesCity(Coordinate c, string city);
-        vector<vector<Airport *>> findMinPathBetweenCityCoordinates(string city, Coordinate c);
+        vector<vector<Airport *>> findMinPathBetweenCityAndAirport(const string& city, const string& airportCode, MENU_OPTION menuOption);
+        vector<vector<Airport *>> findMinPathBetweenCoordinatesAndAirport(Coordinate c, const string& airportCode, MENU_OPTION menuOption);
+        vector<vector<Airport *>> findMinPathBetweenCoordinatesAndCity(Coordinate c, const string& city, MENU_OPTION menuOption);
 };
 
 
