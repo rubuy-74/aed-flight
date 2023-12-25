@@ -35,6 +35,8 @@ double Utils::computeDistance(Coordinate c1, Coordinate c2){
 void Utils::clearScreen(){
 #if defined(__linux__)
     system("clear");
+#elif __APPLE__
+    system("clear");
 #elif _WIN32
     system("cls");
 #endif
@@ -131,5 +133,6 @@ void Utils::drawPageFlights(vector<Trip> trips) {
         if(decision == "1") page = max(page-1,0);
 
     } while (decision != "0");
+
 }
 
