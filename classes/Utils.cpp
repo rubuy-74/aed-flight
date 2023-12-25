@@ -21,6 +21,8 @@ void Utils::showAirport(Airport *airport) {
 void Utils::clearScreen(){
 #if defined(__linux__)
     system("clear");
+#elif __APPLE__
+    system("clear");
 #elif _WIN32
     system("cls");
 #endif
@@ -91,12 +93,6 @@ void Utils::drawPageAirports(vector<Airport *> airports) {
         if(decision == "1") page = max(page-1,0);
 
     } while (decision != "0");
-    /*
-    cout << string(sus,'-') << '\n';
-    for(auto a: airports){
-        drawLine(a,attSize);
-    }
-    cout << string(sus,'-') << '\n';
-     */
+
 }
 
