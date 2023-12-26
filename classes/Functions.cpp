@@ -131,7 +131,7 @@ unordered_map<string, int> Functions::getFlightsPerCity() {
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight : airports.second->getFlights()){
             flightsPerCity[airports.second->getCity()]++;
-            flightsPerCity[flight->getDestination()->getCity()]++;
+            //flightsPerCity[flight->getDestination()->getCity()]++;
         }
     }
     return flightsPerCity;
