@@ -43,6 +43,7 @@ class Functions {
 
         // vii
         vector<Trip> maxTripStops(Airport *airport);
+        vector<Trip>  maxTripsGraph();
 
         // ix
         unordered_set<Airport *> getArticulationPoints();
