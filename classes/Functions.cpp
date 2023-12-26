@@ -146,6 +146,18 @@ Airport *Functions::topKAirports(int k) {
     return tmp[max(0,k-1)];
 }
 
+unordered_map<string, int> Functions::getFlightsPerCity() {
+    unordered_map<string,int> flightsPerCity;
+    for(auto airports: dataset.getNetwork().getAirports()){
+        for(auto flight : airports.second->getFlights()){
+            flightsPerCity[airports.second->getCity()]++;
+            //flightsPerCity[flight->getDestination()->getCity()]++;
+        }
+    }
+    return flightsPerCity;
+}
+
+>>>>>>> b0f26ad (Resolve minor issues)
 unordered_map<string, int> Functions::getFlightsPerAirline() {
     unordered_map<string,int> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
