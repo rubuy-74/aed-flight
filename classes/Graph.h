@@ -6,17 +6,14 @@
 #include <unordered_set>
 #include "Airport.h"
 #include "Flight.h"
+#include "Coordinate.h"
+#include "Utils.h"
 #include <queue>
 #include <vector>
 #include <unordered_map>
 
 enum AIRPORT_OPTION {
     CODE,NAME
-};
-
-struct Trip{
-    int stops;
-    pair<Airport*, Airport*> airports;
 };
 
 class Graph {
@@ -29,7 +26,7 @@ class Graph {
         Airport* findAirport(Airport airport);
         Airport* findAirport(string airportAtt, AIRPORT_OPTION airportOption);
 
-        bool addAirport(const Airport airport);
+        bool addAirport(Airport *airport);
         bool removeAirport(const Airport airport);
 
         unordered_map<string, Airport *> getAirports() const;
@@ -48,7 +45,6 @@ class Graph {
         int numConnectedComponents();
 
         unordered_set<Airport *> getArticulationPoints();
-
 };
 
 #endif //AED_FLIGHT_GRAPH_H
