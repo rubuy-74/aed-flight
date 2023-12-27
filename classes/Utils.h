@@ -7,6 +7,12 @@
 #include <iostream>
 #include "Airport.h"
 
+struct Trip{
+    int stops;
+    pair<Airport*, Airport*> airports;
+    vector<Airport*> path;
+};
+
 class Utils {
 public:
     static void showRaw(std::list<std::vector<std::string>> raw);
@@ -15,6 +21,8 @@ public:
     static void showFile(list<vector<string>> menu);
     static void drawPageAirports(vector<Airport *> airports);
     static void drawBox(vector<string> text);
+    static double computeDistance(Coordinate c1, Coordinate c2);
+    static Trip createTrip(int stops, pair<Airport*, Airport*> airports, vector<Airport*> path);
 };
 
 

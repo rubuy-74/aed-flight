@@ -27,12 +27,8 @@ Airport *Graph::findAirport(string airportAtt,AIRPORT_OPTION airportOption) {
     return nullptr;
 }
 
-bool Graph::addAirport(const Airport airport) {
-    auto it = this->airports.find(airport.getCode());
-    if(it != airports.end()){
-        return false;
-    }
-    this->airports[airport.getCode()] = new Airport(airport);
+bool Graph::addAirport(Airport *airport) {
+    this->airports[airport->getCode()] = airport;
     return true;
 }
 
@@ -123,16 +119,12 @@ vector<Trip> Graph::bfsMaxDepth(Airport *airport) {
                     res.clear();
 
                     // add new trip
-                    Trip toAdd;
-                    toAdd.stops = maxDepth;
-                    toAdd.airports = {airport, dest};
+                    Trip toAdd = Utils::createTrip(maxDepth, {airport, dest}, {});
                     res.push_back(toAdd);
                 }
                 else if(p.second + 1 == maxDepth){
                     // add new trip
-                    Trip toAdd;
-                    toAdd.stops = maxDepth;
-                    toAdd.airports = {airport, dest};
+                    Trip toAdd = Utils::createTrip(maxDepth, {airport, dest}, {});
                     res.push_back(toAdd);
                 }
             }
@@ -274,3 +266,4 @@ void dfs_art(Airport *a,stack<Airport *> &s,unordered_set<Airport *> &res,int pa
     if(parent == -1 && children > 1) res.insert(a);
     s.pop();
 }
+
