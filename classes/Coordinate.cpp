@@ -1,4 +1,5 @@
 #include "Coordinate.h"
+#include <cmath>
 
 Coordinate::Coordinate() {
     this->latitude = 0.0;
