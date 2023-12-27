@@ -1,23 +1,11 @@
 #include "Dataset.h"
 #include "Flight.h"
+#include "Utils.h"
 #include <cmath>
 
 
 Graph Dataset::getNetwork() const {
     return network;
-}
-
-double toRad(double degree){
-    return degree/180 * M_PI;
-}
-
-double computeDistance(Coordinate c1, Coordinate c2){
-    double dist = sin(toRad(c1.getLatitude())) * sin(toRad(c2.getLatitude()))
-                    + cos(toRad(c1.getLatitude())) * cos(toRad(c2.getLatitude()))
-                    * cos(toRad(c1.getLongitude() - c2.getLongitude()));
-    dist = acos(dist);
-    dist *= 6371;
-    return dist;
 }
 
 Dataset::Dataset() {}
@@ -30,7 +18,7 @@ Dataset::Dataset(list<vector<string>> rawFlights, list<vector<string>> rawAirpor
 
 void Dataset::loadAirports(list<vector<string>> rawAirports) {
     for(vector<string> airports : rawAirports){
-        Airport airport = Airport(airports[0], airports[1], airports[2], airports[3], Coordinate(stof(airports[4]), stof(airports[5])));
+        Airport *airport = new Airport(airports[0], airports[1], airports[2], airports[3], Coordinate(stof(airports[4]), stof(airports[5])));
         this->network.addAirport(airport);
         cityAirports[airports[2]].push_back(airport);
     }
@@ -40,7 +28,7 @@ void Dataset::loadFlights(list<vector<string>> rawFlights) {
     for(vector<string> flight : rawFlights){
         Airport* srcAirport = network.findAirport(Airport(flight[0]));
         Airport* destAirport = network.findAirport(Airport(flight[1]));
-        srcAirport->addFlight(new Flight(destAirport, this->airlines[flight[2]], computeDistance(srcAirport->getCoordinates(), destAirport->getCoordinates())));
+        srcAirport->addFlight(new Flight(destAirport, this->airlines[flight[2]], Utils::computeDistance(srcAirport->getCoordinates(), destAirport->getCoordinates())));
     }
 }
 
@@ -50,7 +38,7 @@ void Dataset::loadAirlines(list<vector<string>> rawAirlines) {
     }
 }
 
-unordered_map<string, vector<Airport>> Dataset::getCityAirports() const {
+unordered_map<string, vector<Airport*>> Dataset::getCityAirports() const {
     return this->cityAirports;
 }
 

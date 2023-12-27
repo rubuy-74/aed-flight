@@ -10,7 +10,6 @@ class Coordinate {
         Coordinate(double latitude, double longitude);
         double getLatitude() const;
         double getLongitude() const;
-        static double distanceBetweenTwoCoordinates(Coordinate c1, Coordinate c2);
 };
 
 
