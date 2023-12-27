@@ -337,3 +337,20 @@ vector<Trip> Functions::findMinPathBetweenCoordinatesAndCity(Coordinate c, const
 vector<Trip> Functions::maxTripStops(Airport *airport) {
     return dataset.getNetwork().bfsMaxDepth(airport);
 }
+
+vector<Trip> Functions::maxTripsGraph() {
+    Graph network = dataset.getNetwork();
+    unordered_map<int,vector<Trip>> res;
+    for(auto a: network.getAirports()){
+        auto value = maxTripStops(a.second);
+        if(!value.empty()){
+            for(auto e: value)
+                res[value[0].stops].push_back(e);
+        }
+    }
+    int diameter = 0;
+    for(auto kv: res){
+        diameter = max(diameter,kv.first);
+    }
+    return res[diameter];
+}
