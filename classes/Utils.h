@@ -9,8 +9,9 @@
 
 struct Trip{
     int stops;
-    pair<Airport*, Airport*> airports;
-    vector<Airport*> path;
+    pair<Airport*, Airport*> source_destination;
+    vector<Airport*> airports;
+    vector<Flight*> flights;
 };
 
 class Utils {
@@ -18,7 +19,7 @@ public:
     static void showRaw(std::list<std::vector<std::string>> raw);
     static void showAirport(Airport *airport);
     static double computeDistance(Coordinate c1, Coordinate c2);
-    static Trip createTrip(int stops, pair<Airport*, Airport*> airports, vector<Airport*> path);
+    static Trip createTrip(int stops, pair<Airport*, Airport*> src_dest, vector<Airport*> airports, vector<Flight*> flights);
 };
 
 
