@@ -132,18 +132,6 @@ vector<string> Functions::topKAirports(int k) {
     return res;
 }
 
-
-unordered_map<string, int> Functions::getFlightsPerCity() {
-    unordered_map<string,int> flightsPerCity;
-    for(auto airports: dataset.getNetwork().getAirports()){
-        for(auto flight : airports.second->getFlights()){
-            flightsPerCity[airports.second->getCity()]++;
-            flightsPerCity[flight->getDestination()->getCity()]++;
-        }
-    }
-    return flightsPerCity;
-}
-
 unordered_map<string, int> Functions::getFlightsPerAirline() {
     unordered_map<string,int> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
@@ -177,7 +165,7 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
 
     queue<Trip> q;
 
-    Trip firstTrip = Utils::createTrip(1, make_pair(start, nullptr), {start});
+    Trip firstTrip = Utils::createTrip(1, make_pair(start, nullptr), {start}, {});
 
     q.push(firstTrip);
     start->setVisited(true);
@@ -185,7 +173,7 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
     while (!q.empty()) {
         Trip currentTrip = q.front();
         q.pop();
-        Airport* current = currentTrip.path.back();
+        Airport* current = currentTrip.airports.back();
 
         if(!allMinPaths.empty()) {
             if(currentTrip.stops + 1 > allMinPaths[0].stops) return;
@@ -194,12 +182,14 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
         for (auto neighbor : current->getFlights()) {
             if(neighbor->getDestination() == end){
                 Trip minTrip = Utils::createTrip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
-                                                 mergeVector(currentTrip.path, {neighbor->getDestination()}));
+                                                 mergeVector(currentTrip.airports, {neighbor->getDestination()}),
+                                                 mergeVector(currentTrip.flights, {neighbor}));
                 allMinPaths.push_back(minTrip);
             }
             if (!neighbor->getDestination()->isVisited()) {
                 Trip toAdd = Utils::createTrip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
-                                                 mergeVector(currentTrip.path, {neighbor->getDestination()}));
+                                                 mergeVector(currentTrip.airports, {neighbor->getDestination()}),
+                                               mergeVector(currentTrip.flights, {neighbor}));
                 neighbor->getDestination()->setVisited(true);
 
                 q.push(toAdd);
@@ -208,130 +198,38 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
     }
 }
 
-vector<Trip> Functions::findMinPathByAirportName(const string& s, const string& d) {
-    Airport *start = dataset.getNetwork().findAirport(s, NAME);
-    Airport *destination = dataset.getNetwork().findAirport(d, NAME);
-
-    if(start == nullptr || destination == nullptr){
-        return {};
+vector<Airport*> Functions::serializeInput(const string &i){
+    vector<Airport*> airports;
+    if(!dataset.getCityAirports()[i].empty()){
+        airports = dataset.getCityAirports()[i];
+        return airports;
     }
+    else if(dataset.getNetwork().findAirport(i,CODE) != nullptr) {
+        airports = {dataset.getNetwork().findAirport(i,CODE)};
+        return airports;
+    }
+    else if(dataset.getNetwork().findAirport(i,NAME) != nullptr){
+        airports = {dataset.getNetwork().findAirport(i,NAME)};
+        return airports;
+    }
+    // if it gets here it means that is a coordinate
+    vector<string> coordinates = Parser::splitLine(i, " ");
+    return getAirportsFromCoordinates(Coordinate(stod(coordinates[0]), stod(coordinates[1])));
+}
 
+vector<Trip> Functions::findMinPath(const string &s, const string &d) {
     vector<Trip> minPaths;
-    getAllMinPaths(start, destination, minPaths);
+    vector<Airport *> start = serializeInput(s);
+    vector<Airport *> dest = serializeInput(d);
 
-    return minPaths;
-}
-
-vector<Trip> Functions::findMinPathByAirportCode(const string& s, const string& d){
-    Airport *start = dataset.getNetwork().findAirport(s, CODE);
-    Airport *destination = dataset.getNetwork().findAirport(d, CODE);
-
-    return findMinPathByAirportName(start->getName(), destination->getName());
-}
-
-vector<Trip> Functions::findMinPathByCity(string s, string d){
-    auto mapped = dataset.getCityAirports();
-    vector<Airport *> start = mapped[s];
-    vector<Airport *> destination = mapped[d];
-    vector<Trip> allMinPaths;
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            vector<Trip> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths = mergeVector(allMinPaths, paths);
+    for (Airport *source: start) {
+        for (Airport *destination: dest) {
+            vector<Trip> paths;
+            getAllMinPaths(source, destination, paths);
+            minPaths = mergeVector(minPaths, paths);
         }
     }
-
-    return getMinPathTrips(allMinPaths);
-}
-
-vector<Trip> Functions::findMinPathByCoordinates(Coordinate s,Coordinate d){
-    vector<Airport *> start = getAirportsFromCoordinates(s);
-    vector<Airport *> destination = getAirportsFromCoordinates(d);
-    vector<Trip> allMinPaths;
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            vector<Trip> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths = mergeVector(allMinPaths, paths);
-        }
-    }
-
-    return getMinPathTrips(allMinPaths);
-}
-
-vector<Trip> Functions::findMinPathBetweenCityAndAirport(const string& city, const string& airportCode, MENU_OPTION menuOption){
-    auto mapped = dataset.getCityAirports();
-    vector<Airport *> start;
-    vector<Airport *> destination;
-    vector<Trip> allMinPaths;
-
-    if(menuOption == FROMCITYTOAIRPORT){
-        start = mapped[city];
-        destination.push_back(dataset.getNetwork().findAirport(airportCode,CODE));
-    }
-    else if(menuOption == FROMAIRPORTTOCITY){
-        start.push_back(dataset.getNetwork().findAirport(airportCode,CODE));
-        destination = mapped[city];
-    }
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            vector<Trip> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths = mergeVector(allMinPaths, paths);
-        }
-    }
-
-    return getMinPathTrips(allMinPaths);
-}
-
-vector<Trip> Functions::findMinPathBetweenCoordinatesAndAirport(Coordinate c, const string& airportCode, MENU_OPTION menuOption){
-    vector<Airport *> start;
-    vector<Airport *> destination;
-    vector<Trip> allMinPaths;
-
-    if(menuOption == FROMCOORDINATESTOAIRPORT){
-        start = getAirportsFromCoordinates(c);
-        destination.push_back(dataset.getNetwork().findAirport(airportCode,CODE));
-    }
-    else if(menuOption == FROMAIRPORTTOCOORDINATES){
-        start.push_back(dataset.getNetwork().findAirport(airportCode,CODE));
-        destination = getAirportsFromCoordinates(c);
-    }
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            vector<Trip> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths = mergeVector(allMinPaths, paths);
-        }
-    }
-
-    return getMinPathTrips(allMinPaths);
-}
-
-vector<Trip> Functions::findMinPathBetweenCoordinatesAndCity(Coordinate c, const string& city, MENU_OPTION menuOption){
-    auto mapped = dataset.getCityAirports();
-    vector<Airport *> start;
-    vector<Airport *> destination;
-    vector<Trip> allMinPaths;
-
-    if(menuOption == FROMCOORDINATESTOCITY) {
-        start = getAirportsFromCoordinates(c);
-        destination = mapped[city];
-    }
-    else if(menuOption == FROMCITYTOCOORDINATES){
-        start = mapped[city];
-        destination = getAirportsFromCoordinates(c);
-    }
-
-    for(auto airport_source : start){
-        for(auto airport_destination : destination){
-            vector<Trip> paths = findMinPathByAirportCode(airport_source->getCode(), airport_destination->getCode());
-            allMinPaths = mergeVector(allMinPaths, paths);
-        }
-    }
-
-    return getMinPathTrips(allMinPaths);
+    return getMinPathTrips(minPaths);
 }
 
 vector<Trip> Functions::maxTripStops(Airport *airport) {

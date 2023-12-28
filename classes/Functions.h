@@ -11,7 +11,7 @@
 #include <unordered_map>
 
 enum MENU_OPTION {
-    FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY
+    FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY,NONE
 };
 
 class Functions {
@@ -40,7 +40,7 @@ class Functions {
         vector<string> topKAirports(int k);
 
         // iii
-        unordered_map<string, int> getFlightsPerCity();
+        // use map from dataset to get all airports from city and therefore the flights
         unordered_map<string, int> getFlightsPerAirline();
 
         // vi
@@ -60,15 +60,8 @@ class Functions {
         vector<Airport*> getAirportsFromCoordinates(Coordinate c);
 
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths);
-
-        vector<Trip> findMinPathByAirportCode(const string& s, const string& d);
-        vector<Trip> findMinPathByAirportName(const string& s, const string& d);
-        vector<Trip> findMinPathByCity(string s, string d);
-        vector<Trip> findMinPathByCoordinates(Coordinate s,Coordinate d);
-
-        vector<Trip> findMinPathBetweenCityAndAirport(const string& city, const string& airportCode, MENU_OPTION menuOption);
-        vector<Trip> findMinPathBetweenCoordinatesAndAirport(Coordinate c, const string& airportCode, MENU_OPTION menuOption);
-        vector<Trip> findMinPathBetweenCoordinatesAndCity(Coordinate c, const string& city, MENU_OPTION menuOption);
+        vector<Trip> findMinPath(const string& s, const string& d);
+        vector<Airport*> serializeInput(const string &i);
 };
 
 
