@@ -85,6 +85,7 @@ void Menu::showBestOption() {
     vector<Airport *> dest = inputAirports("Destination");
     vector<Trip> trips = functions.findMinPath(src,dest);
     string option;
+    string second_option;
     while(option != "1" && option != "2" && option != "0"){
         cout << "0 - Continue without filters\n1 - Select Airlines to travel\n2 - Minimize Airlines\n";
         cin >> option;
@@ -98,9 +99,14 @@ void Menu::showBestOption() {
             //minimizeAirlines();
             break;
     }
-    for(auto trip : trips){
-        cout << trip.airports.first->getCode() << " " << trip.airports.second->getCode() << '\n';
+    Utils::drawPageFlights(trips, true);
+    while(second_option != "0" && second_option != "1"){
+        if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
+        cout << "Exit(0) or Retry(1):";
+        cin >> second_option;
     }
+    if(second_option == "1") showBestOption();
+    else showMainMenu();
 }
 
 vector<Airport *> Menu::inputAirports(string element){
@@ -351,7 +357,7 @@ void Menu::showOption9() {
 }
 
 void Menu::showOption10() {
-    Utils::drawPageFlights(functions.maxTripsGraph());
+    Utils::drawPageFlights(functions.maxTripsGraph(), false);
 }
 
 

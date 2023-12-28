@@ -120,20 +120,33 @@ double Utils::computeDistance(Coordinate c1, Coordinate c2){
     return dist;
 }
 
-void drawTrip(Trip trip){
-    cout << "| From " << trip.airports.first->getCode() << " to " << trip.airports.second->getCode() << " |" <<'\n';
+void drawTrip(Trip trip,int offset){
+    int oof = offset - 19;
+    cout << "| From " << trip.airports.first->getCode() << " to " << trip.airports.second->getCode() << string(oof,' ') << " |" <<'\n';
 }
-void Utils::drawPageFlights(vector<Trip> trips) {
-    int sus = 20;
+void drawTripPath(Trip trip,int offset){
+    int oof = offset - 3 - 4*trip.path.size();
+    cout << "| ";
+    for(auto a : trip.path){
+        cout << a->getCode() << " ";
+    }
+    cout << string(oof,' ') << "|\n";
+}
+void Utils::drawPageFlights(vector<Trip> trips, bool isPath) {
+    int sus = 70;
     string decision;
     int pageSize = 10;
     int numPages = trips.size()%pageSize  == 0 ? trips.size()/pageSize : trips.size()/pageSize + 1;
     int page = 0;
     do {
         int numAirports = (pageSize*(page+1)) > trips.size() ? (trips.size()%pageSize) : pageSize;
-        cout << "Max Number of Stops:" << trips[0].stops << '\n';
+        if(!isPath) cout << "Max Number of Stops:" << trips[0].stops << '\n';
         cout << string(sus,'-') << '\n';
-        for(int i = 0; i < numAirports; i++) drawTrip(trips[i+(pageSize*page)]);
+        for(int i = 0; i < numAirports; i++) {
+            Trip current = trips[i + (pageSize * page)];
+            if(!isPath) drawTrip(current,sus);
+            else drawTripPath(current,sus);
+        }
         cout << string(sus,'-') << '\n';
         do {
             cout << "Page " + to_string(page+1) + " of " + to_string(numPages) + " Pages\n";

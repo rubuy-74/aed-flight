@@ -24,7 +24,7 @@ public:
     static double computeDistance(Coordinate c1, Coordinate c2);
     static Trip createTrip(int stops, pair<Airport*, Airport*> airports, vector<Airport*> path);
 
-    static void drawPageFlights(vector<Trip> trips);
+    static void drawPageFlights(vector<Trip> trips,bool isPath);
 
 };
 
