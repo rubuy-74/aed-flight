@@ -68,6 +68,14 @@ class Functions {
         vector<Trip> findMinPathBetweenCityAndAirport(const string& city, const string& airportCode, MENU_OPTION menuOption);
         vector<Trip> findMinPathBetweenCoordinatesAndAirport(Coordinate c, const string& airportCode, MENU_OPTION menuOption);
         vector<Trip> findMinPathBetweenCoordinatesAndCity(Coordinate c, const string& city, MENU_OPTION menuOption);
+
+        vector<Airport *> convertCityToAirports(string s);
+
+        vector<Airport *> convertAirportToAirports(string s);
+
+        vector<Airport *> convertCoordsToAirports(string s);
+
+        vector<Trip> findMinPath(vector<Airport *> src, vector<Airport *> dest);
 };
 
 

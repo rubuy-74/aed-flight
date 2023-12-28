@@ -26,8 +26,11 @@ public:
     void showOption7();
     void showOption8();
     void showOption9();
+    void showOption10();
 
     void showListingOption(string option);
+
+    vector<Airport *> inputAirports(string element);
 };
 
 

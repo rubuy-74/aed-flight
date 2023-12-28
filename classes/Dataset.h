@@ -19,6 +19,8 @@ class Dataset {
 
         Graph getNetwork() const;
         unordered_map<string, vector<Airport*>> getCityAirports() const;
+
+    vector<Airport *> getAirports(string city);
 };
 
 

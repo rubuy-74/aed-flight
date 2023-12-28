@@ -327,6 +327,17 @@ vector<Trip> Functions::findMinPathBetweenCoordinatesAndCity(Coordinate c, const
     return getMinPathTrips(allMinPaths);
 }
 
+vector<Trip> Functions::findMinPath(vector<Airport *> src, vector<Airport *> dest){
+    vector<Trip> allMinPaths;
+    for(auto s : src){
+        for(auto d : dest){
+            vector<Trip> paths = findMinPathByAirportCode(s->getCode(),d->getCode());
+            allMinPaths = mergeVector(allMinPaths,paths);
+        }
+    }
+    return getMinPathTrips(allMinPaths);
+}
+
 vector<Trip> Functions::maxTripStops(Airport *airport) {
     return dataset.getNetwork().bfsMaxDepth(airport);
 }
@@ -346,4 +357,37 @@ vector<Trip> Functions::maxTripsGraph() {
         diameter = max(diameter,kv.first);
     }
     return res[diameter];
+}
+
+long stol_with_check(string s){
+    bool is_valid = true;
+    for(auto c : s) if(!isdigit(c)) is_valid = false;
+    if(is_valid) return stol(s);
+    else return -1;
+}
+
+vector<Airport *> Functions::convertCityToAirports(string s) {
+    vector<Airport *> res;
+    res = dataset.getCityAirports()[s];
+
+    return res;
+}
+vector<Airport *> Functions::convertAirportToAirports(string s) {
+    vector<Airport *> res;
+    if(dataset.getNetwork().findAirport(s, CODE) != nullptr)
+        res.push_back(dataset.getNetwork().findAirport(s, CODE));
+    if(dataset.getNetwork().findAirport(s, NAME) != nullptr)
+        res.push_back(dataset.getNetwork().findAirport(s, NAME));
+    return res;
+}
+vector<Airport *> Functions:: convertCoordsToAirports(string s){
+    vector<Airport *> res;
+    vector<string> bruh = Parser::splitLine(s," ");
+    if(bruh.size() == 2){
+        int lat = stol_with_check(bruh[0]);
+        int log = stol_with_check(bruh[1]);
+        if(lat != -1 && log != -1 )
+            res = getAirportsFromCoordinates(Coordinate(lat,log));
+    }
+    return res;
 }
