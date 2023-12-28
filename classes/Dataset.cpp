@@ -42,5 +42,3 @@ unordered_map<string, vector<Airport*>> Dataset::getCityAirports() const {
     return this->cityAirports;
 }
 
-
-

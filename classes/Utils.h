@@ -37,6 +37,9 @@ public:
     static void showFile(list<vector<string>> menu);
     static void drawPageAirports(vector<Airport *> airports);
     static void drawBox(vector<string> text);
+
+    static void drawPageFlights(vector<Trip> trips);
+
 };
 
 

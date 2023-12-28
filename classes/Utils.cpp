@@ -1,5 +1,6 @@
 #include <unordered_map>
 #include "Utils.h"
+#include "cmath"
 
 void Utils::showRaw(std::list<std::vector<std::string>> raw) {
     for (auto element: raw) {
@@ -30,7 +31,7 @@ double Utils::computeDistance(Coordinate c1, Coordinate c2){
     dist *= 6371;
     return dist;
 }
-«void Utils::clearScreen(){
+void Utils::clearScreen(){
 #if defined(__linux__)
     system("clear");
 #elif __APPLE__
@@ -105,6 +106,31 @@ void Utils::drawPageAirports(vector<Airport *> airports) {
         if(decision == "1") page = max(page-1,0);
 
     } while (decision != "0");
+}
 
+void drawTrip(Trip trip){
+    cout << "| From " << trip.airports.first->getCode() << " to " << trip.airports.second->getCode() << " |" <<'\n';
+}
+void Utils::drawPageFlights(vector<Trip> trips) {
+    int sus = 20;
+    string decision;
+    int pageSize = 10;
+    int numPages = trips.size()%pageSize  == 0 ? trips.size()/pageSize : trips.size()/pageSize + 1;
+    int page = 0;
+    do {
+        int numAirports = (pageSize*(page+1)) > trips.size() ? (trips.size()%pageSize) : pageSize;
+        cout << "Max Number of Stops:" << trips[0].stops << '\n';
+        cout << string(sus,'-') << '\n';
+        for(int i = 0; i < numAirports; i++) drawTrip(trips[i+(pageSize*page)]);
+        cout << string(sus,'-') << '\n';
+        do {
+            cout << "Page " + to_string(page+1) + " of " + to_string(numPages) + " Pages\n";
+            cout << "| 2 - Go to next Page | 1 - Go to last Page | 0- Leave |" <<'\n';
+            cin >> decision;
+        } while(decision != "0" && decision != "1" && decision != "2");
+        if(decision == "2") page = min(page + 1,numPages-1);
+        if(decision == "1") page = max(page-1,0);
+
+    } while (decision != "0");
 }
 
