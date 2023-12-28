@@ -39,6 +39,8 @@ public:
     static void drawBox(vector<string> text);
 
     static void drawPageFlights(vector<Trip> trips);
+    static void drawPageFlights(vector<Trip> trips,bool isPath);
+
 };
 
 
