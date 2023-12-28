@@ -67,6 +67,7 @@ void Menu::showListingFunctionsMenu() {
         showMainMenu();
         return;
     }
+    string second_option;
     showListingOption(option);
     showListingFunctionsMenu();
 }
