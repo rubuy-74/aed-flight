@@ -119,12 +119,12 @@ vector<Trip> Graph::bfsMaxDepth(Airport *airport) {
                     res.clear();
 
                     // add new trip
-                    Trip toAdd = Utils::createTrip(maxDepth, {airport, dest}, {}, {});
+                    Trip toAdd = Trip(maxDepth, {airport, dest}, {}, {});
                     res.push_back(toAdd);
                 }
                 else if(p.second + 1 == maxDepth){
                     // add new trip
-                    Trip toAdd = Utils::createTrip(maxDepth, {airport, dest}, {}, {});
+                    Trip toAdd = Trip(maxDepth, {airport, dest}, {}, {});
                     res.push_back(toAdd);
                 }
             }

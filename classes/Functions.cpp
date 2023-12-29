@@ -159,13 +159,21 @@ int Functions::getReachableDestinationsFromAirport(Airport airport) {
     return dataset.getNetwork().dfs(dataset.getNetwork().findAirport(airport)).size();
 }
 
-void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths){
+bool checkAirlineFilter(Airline airline, vector<Airline> preferredAirlines){
+    return find(preferredAirlines.begin(), preferredAirlines.end(), airline) != preferredAirlines.end();
+}
+
+bool checkAirportFilter(Airport *airport, vector<Airport> preferredAirports){
+    return find(preferredAirports.begin(), preferredAirports.end(), *airport) != preferredAirports.end();
+}
+
+void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter){
 
     setAllAirportsUnvisited();
 
     queue<Trip> q;
 
-    Trip firstTrip = Utils::createTrip(1, make_pair(start, nullptr), {start}, {});
+    Trip firstTrip = Trip(1, make_pair(start, nullptr), {start}, {});
 
     q.push(firstTrip);
     start->setVisited(true);
@@ -180,19 +188,22 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
         }
 
         for (auto neighbor : current->getFlights()) {
-            if(neighbor->getDestination() == end){
-                Trip minTrip = Utils::createTrip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
-                                                 mergeVector(currentTrip.airports, {neighbor->getDestination()}),
-                                                 mergeVector(currentTrip.flights, {neighbor}));
-                allMinPaths.push_back(minTrip);
-            }
-            if (!neighbor->getDestination()->isVisited()) {
-                Trip toAdd = Utils::createTrip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
-                                                 mergeVector(currentTrip.airports, {neighbor->getDestination()}),
-                                               mergeVector(currentTrip.flights, {neighbor}));
-                neighbor->getDestination()->setVisited(true);
+            if((filter.preferredAirlines.empty() || checkAirlineFilter(neighbor->getAirline(), filter.preferredAirlines)) && (filter.preferredAirports.empty() ||
+                    checkAirportFilter(neighbor->getDestination(), filter.preferredAirports))){
+                if(neighbor->getDestination() == end){
+                    Trip minTrip = Trip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
+                                                    mergeVector(currentTrip.airports, {neighbor->getDestination()}),
+                                                    mergeVector(currentTrip.flights, {neighbor}));
+                    allMinPaths.push_back(minTrip);
+                }
+                if (!neighbor->getDestination()->isVisited()) {
+                    Trip toAdd = Trip(currentTrip.stops + 1, make_pair(start, neighbor->getDestination()),
+                                                    mergeVector(currentTrip.airports, {neighbor->getDestination()}),
+                                                mergeVector(currentTrip.flights, {neighbor}));
+                    neighbor->getDestination()->setVisited(true);
 
-                q.push(toAdd);
+                    q.push(toAdd);
+                }
             }
         }
     }
@@ -217,7 +228,7 @@ vector<Airport*> Functions::serializeInput(const string &i){
     return getAirportsFromCoordinates(Coordinate(stod(coordinates[0]), stod(coordinates[1])));
 }
 
-vector<Trip> Functions::findMinPath(const string &s, const string &d) {
+vector<Trip> Functions::findMinPath(const string &s, const string &d, Filters filter) {
     vector<Trip> minPaths;
     vector<Airport *> start = serializeInput(s);
     vector<Airport *> dest = serializeInput(d);
@@ -225,7 +236,7 @@ vector<Trip> Functions::findMinPath(const string &s, const string &d) {
     for (Airport *source: start) {
         for (Airport *destination: dest) {
             vector<Trip> paths;
-            getAllMinPaths(source, destination, paths);
+            getAllMinPaths(source, destination, paths, filter);
             minPaths = mergeVector(minPaths, paths);
         }
     }
