@@ -38,7 +38,7 @@ void Dataset::loadAirlines(list<vector<string>> rawAirlines) {
     }
 }
 
-unordered_map<string, vector<Airport*>> Dataset::getCityAirports() const {
+unordered_map<string, vector<Airport*>, HashFunction> Dataset::getCityAirports() const {
     return this->cityAirports;
 }
 

@@ -7,7 +7,7 @@ Graph::Graph() {
     this->airports = {};
 }
 
-Graph::Graph(unordered_map<string, Airport *> airports) {
+Graph::Graph(unordered_map<string, Airport *, HashFunction> airports) {
     this->airports = airports;
 }
 
@@ -41,7 +41,7 @@ bool Graph::removeAirport(const Airport airport) {
     return false;
 }
 
-unordered_map<string, Airport *> Graph::getAirports() const {
+unordered_map<string, Airport *, HashFunction> Graph::getAirports() const {
     return this->airports;
 }
 
