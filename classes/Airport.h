@@ -50,6 +50,10 @@ class Airport {
 
         int getLow() {return low;}
         void setLow(int low) {this->low = low;}
+
+        bool operator==(const Airport& other) const {
+            return this->code == other.code;
+        }
 };
 
 

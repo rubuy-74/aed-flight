@@ -13,17 +13,6 @@ double toRad(double degree){
     return degree/180 * M_PI;
 }
 
-
-Trip Utils::createTrip(int stops, pair<Airport*, Airport*> src_dest, vector<Airport*> airports, vector<Flight*> flights){
-    Trip trip;
-    trip.stops = stops;
-    trip.source_destination = src_dest;
-    trip.airports = airports;
-    trip.flights = flights;
-    return trip;
-}
-
-
 void Utils::showAirport(Airport *airport) {
     cout << airport->getCode() << '\n';
     cout << "   " << "Name: " << airport->getName() << '\n';

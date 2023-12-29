@@ -59,8 +59,8 @@ class Functions {
 
         vector<Airport*> getAirportsFromCoordinates(Coordinate c);
 
-        void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths);
-        vector<Trip> findMinPath(const string& s, const string& d);
+        void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
+        vector<Trip> findMinPath(const string& s, const string& d, Filters filter);
         vector<Airport*> serializeInput(const string &i);
 };
 
