@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include "algorithm"
 #include "Utils.h"
+#include "set"
 
 Functions::Functions() {
     this->dataset = Dataset();
@@ -15,18 +16,38 @@ Functions::Functions(Dataset dataset) {
     this->dataset = dataset;
 }
 
-vector<Trip> getMinPathTrips(vector<Trip> allPaths){
-    vector<Trip> res;
+int countUniqueAirlines(vector<Flight*> flights) {
+    set<string> uniqueAirlines;
+    for(auto flight : flights) {
+        uniqueAirlines.insert(flight->getAirline().getCode());
+    }
+    return uniqueAirlines.size();
+}
+
+vector<Trip> getMinPathTrips(vector<Trip> allPaths, Filters filter) {
+    vector<Trip> filteredStops;
+    vector<Trip> filteredAirlines;
 
     sort(allPaths.begin(), allPaths.end(), [](Trip t1, Trip t2) {
         return t1.stops < t2.stops;
     });
 
-    for(Trip t : allPaths){
-        if(t.stops == allPaths[0].stops) res.push_back(t);
+    for (Trip t: allPaths) {
+        if (t.stops == allPaths[0].stops) filteredStops.push_back(t);
     }
+    if (filter.minimizeAirlines) {
+        sort(filteredStops.begin(), filteredStops.end(), [](Trip t1, Trip t2) {
+            return countUniqueAirlines(t1.flights) < countUniqueAirlines(t2.flights);
+        });
 
-    return res;
+        for (Trip t: filteredStops) {
+            if (countUniqueAirlines(t.flights) == countUniqueAirlines(filteredStops[0].flights))
+                filteredAirlines.push_back(t);
+        }
+
+        return filteredAirlines;
+    }
+    return filteredStops;
 }
 
 vector<Airport*> Functions::getAirportsFromCoordinates(Coordinate c){
@@ -240,7 +261,7 @@ vector<Trip> Functions::findMinPath(const string &s, const string &d, Filters fi
             minPaths = mergeVector(minPaths, paths);
         }
     }
-    return getMinPathTrips(minPaths);
+    return getMinPathTrips(minPaths, filter);
 }
 
 vector<Trip> Functions::maxTripStops(Airport *airport) {
