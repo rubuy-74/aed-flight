@@ -15,6 +15,15 @@ double toRad(double degree){
     return degree/180 * M_PI;
 }
 
+double Utils::computeDistance(Coordinate c1, Coordinate c2){
+    double dist = sin(toRad(c1.getLatitude())) * sin(toRad(c2.getLatitude()))
+                  + cos(toRad(c1.getLatitude())) * cos(toRad(c2.getLatitude()))
+                    * cos(toRad(c1.getLongitude() - c2.getLongitude()));
+    dist = acos(dist);
+    dist *= 6371;
+    return dist;
+}
+
 void Utils::showAirport(Airport *airport) {
     cout << airport->getCode() << '\n';
     cout << "   " << "Name: " << airport->getName() << '\n';

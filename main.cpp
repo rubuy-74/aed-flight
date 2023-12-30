@@ -17,7 +17,7 @@ int main() {
 
     Dataset dataset = Dataset(rawFlights, rawAirports, rawAirlines);
     Functions functions = Functions(dataset);
-    Menu menu = Menu(dataset.getNetwork(),functions);
+    Menu menu = Menu(dataset,dataset.getNetwork(),functions);
     menu.showMainMenu();
     return 0;
 }
