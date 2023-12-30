@@ -8,8 +8,8 @@ class Dataset {
     private:
         Graph network;
 
-        unordered_map<string, Airline> airlines;
-        unordered_map<string, vector<Airport*>> cityAirports;
+        unordered_map<string, Airline, HashFunction> airlines;
+        unordered_map<string, vector<Airport*>, HashFunction> cityAirports;
     public:
         Dataset();
         Dataset(list<vector<string>> rawFlights, list<vector<string>> rawAirports, list<vector<string>> rawAirlines);
@@ -18,7 +18,8 @@ class Dataset {
         void loadAirlines(list<vector<string>> rawAirlines);
 
         Graph getNetwork() const;
-        unordered_map<string, vector<Airport*>> getCityAirports() const;
+
+        unordered_map<string, vector<Airport*>, HashFunction> getCityAirports() const;
         unordered_map<string,Airline> getAirlines() const {return airlines;};
 };
 

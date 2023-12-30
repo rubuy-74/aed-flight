@@ -158,8 +158,8 @@ unordered_map<string, int> Functions::getFlightsPerCity() {
     return flightsPerCity;
 }
 
-unordered_map<string, int> Functions::getFlightsPerAirline() {
-    unordered_map<string,int> flightsPerAirline;
+unordered_map<string, int, HashFunction> Functions::getFlightsPerAirline() {
+    unordered_map<string,int, HashFunction> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight:airports.second->getFlights()){
             flightsPerAirline[flight->getAirline().getCode()]++;
@@ -255,7 +255,7 @@ vector<Trip> Functions::maxTripStops(Airport *airport) {
 
 vector<Trip> Functions::maxTripsGraph() {
     Graph network = dataset.getNetwork();
-    unordered_map<int,vector<Trip>> res;
+    unordered_map<int,vector<Trip>, HashFunction> res;
     for(auto a: network.getAirports()){
         auto value = maxTripStops(a.second);
         if(!value.empty()){
