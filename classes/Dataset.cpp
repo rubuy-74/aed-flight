@@ -42,5 +42,3 @@ unordered_map<string, vector<Airport*>, HashFunction> Dataset::getCityAirports()
     return this->cityAirports;
 }
 
-
-

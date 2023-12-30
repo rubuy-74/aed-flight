@@ -41,4 +41,6 @@ add_executable(aed_flight main.cpp
         classes/Dataset.h
         classes/Functions.cpp
         classes/Functions.h
+        classes/Menu.h
+        classes/Menu.cpp
 )

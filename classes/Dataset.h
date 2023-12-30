@@ -18,7 +18,9 @@ class Dataset {
         void loadAirlines(list<vector<string>> rawAirlines);
 
         Graph getNetwork() const;
+
         unordered_map<string, vector<Airport*>, HashFunction> getCityAirports() const;
+        unordered_map<string,Airline> getAirlines() const {return airlines;};
 };
 
 

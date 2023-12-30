@@ -7,10 +7,8 @@
 #include "algorithm"
 #include "Utils.h"
 #include "set"
+#include "algorithm"
 
-Functions::Functions() {
-    this->dataset = Dataset();
-}
 
 Functions::Functions(Dataset dataset) {
     this->dataset = dataset;
@@ -89,7 +87,7 @@ int Functions::getNumCitiesAtDistance(Airport airport, int distance) {
     auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
     vector<string> cities;
     for(auto a : destinations){
-        if(find(cities.begin(),cities.end(),a->getCity()) != cities.end())
+        if(find(cities.begin(),cities.end(),a->getCity()) == cities.end())
             cities.push_back(a->getCity());
     }
     return cities.size();
@@ -99,7 +97,7 @@ int Functions::getNumCountriesAtDistance(Airport airport, int distance) {
     auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
     vector<string> countries;
     for(auto a: destinations){
-        if(find(countries.begin(),countries.end(),a->getCountry()) != countries.end())
+        if(find(countries.begin(),countries.end(),a->getCountry()) == countries.end())
             countries.push_back(a->getCountry());
     }
     return countries.size();
@@ -138,8 +136,7 @@ int Functions::getNumDestinationsCountriesOfAnAirport(Airport airport) {
     return getNumCountriesAtDistance(airport, 1);
 }
 
-vector<string> Functions::topKAirports(int k) {
-    vector<string> res;
+Airport *Functions::topKAirports(int k) {
     vector<Airport*> tmp;
     for(auto airport : dataset.getNetwork().getAirports()){
         tmp.push_back(airport.second);
@@ -147,17 +144,25 @@ vector<string> Functions::topKAirports(int k) {
     sort(tmp.begin(),tmp.end(),[](Airport* a1, Airport* a2){
         return a1->getFlights().size() > a2->getFlights().size();
     });
-    for(int i=0; i<k; i++){
-        res.push_back(tmp[i]->getName());
+    return tmp[max(0,k-1)];
+}
+
+unordered_map<string, int> Functions::getFlightsPerCity() {
+    unordered_map<string,int> flightsPerCity;
+    for(auto airports: dataset.getNetwork().getAirports()){
+        for(auto flight : airports.second->getFlights()){
+            flightsPerCity[airports.second->getCity()]++;
+            //flightsPerCity[flight->getDestination()->getCity()]++;
+        }
     }
-    return res;
+    return flightsPerCity;
 }
 
 unordered_map<string, int, HashFunction> Functions::getFlightsPerAirline() {
     unordered_map<string,int, HashFunction> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight:airports.second->getFlights()){
-            flightsPerAirline[flight->getAirline().getName()]++;
+            flightsPerAirline[flight->getAirline().getCode()]++;
         }
     }
     return flightsPerAirline;
@@ -230,29 +235,8 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
     }
 }
 
-vector<Airport*> Functions::serializeInput(const string &i){
-    vector<Airport*> airports;
-    if(!dataset.getCityAirports()[i].empty()){
-        airports = dataset.getCityAirports()[i];
-        return airports;
-    }
-    else if(dataset.getNetwork().findAirport(i,CODE) != nullptr) {
-        airports = {dataset.getNetwork().findAirport(i,CODE)};
-        return airports;
-    }
-    else if(dataset.getNetwork().findAirport(i,NAME) != nullptr){
-        airports = {dataset.getNetwork().findAirport(i,NAME)};
-        return airports;
-    }
-    // if it gets here it means that is a coordinate
-    vector<string> coordinates = Parser::splitLine(i, " ");
-    return getAirportsFromCoordinates(Coordinate(stod(coordinates[0]), stod(coordinates[1])));
-}
-
-vector<Trip> Functions::findMinPath(const string &s, const string &d, Filters filter) {
+vector<Trip> Functions::findMinPath(vector<Airport *> start, vector<Airport *> dest, Filters filter) {
     vector<Trip> minPaths;
-    vector<Airport *> start = serializeInput(s);
-    vector<Airport *> dest = serializeInput(d);
 
     for (Airport *source: start) {
         for (Airport *destination: dest) {
@@ -263,6 +247,7 @@ vector<Trip> Functions::findMinPath(const string &s, const string &d, Filters fi
     }
     return getMinPathTrips(minPaths, filter);
 }
+
 
 vector<Trip> Functions::maxTripStops(Airport *airport) {
     return dataset.getNetwork().bfsMaxDepth(airport);
@@ -283,4 +268,38 @@ vector<Trip> Functions::maxTripsGraph() {
         diameter = max(diameter,kv.first);
     }
     return res[diameter];
+}
+
+double stol_with_check(string s){
+    bool is_valid = true;
+    for(auto c : s) if(!isdigit(c) && c != '.') is_valid = false;
+    if(is_valid) return stod(s);
+    else return -1;
+}
+
+vector<Airport *> Functions::convertCityToAirports(string cityname,string countryName) {
+    vector<Airport *> res;
+    res = dataset.getCityAirports()[cityname];
+
+    return res;
+}
+vector<Airport *> Functions::convertAirportToAirports(string s) {
+    vector<Airport *> res;
+    if(dataset.getNetwork().findAirport(s, CODE) != nullptr)
+        res.push_back(dataset.getNetwork().findAirport(s, CODE));
+    if(dataset.getNetwork().findAirport(s, NAME) != nullptr)
+        res.push_back(dataset.getNetwork().findAirport(s, NAME));
+    return res;
+}
+vector<Airport *> Functions:: convertCoordsToAirports(string s){
+    vector<Airport *> res;
+    vector<string> bruh = Parser::splitLine(s," ");
+    if(bruh.size() == 2){
+        double lat = stol_with_check(bruh[0]);
+        double log = stol_with_check(bruh[1]);
+        cout << lat << " " << log << '\n';
+        if(lat != -1 && log != -1 )
+            res = getAirportsFromCoordinates(Coordinate(lat,log));
+    }
+    return res;
 }
