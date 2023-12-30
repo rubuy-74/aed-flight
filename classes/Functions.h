@@ -24,7 +24,7 @@ class Functions {
         void setAllAirportsUnvisited();
 
         // iv
-        int getNumDestinationsFromCity(string city);
+        int getNumDestinationsFromCity(string city, string country);
         int getReachableDestinationsFromAirport(Airport airport);
 
         // ii
@@ -62,6 +62,7 @@ class Functions {
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
         vector<Trip> findMinPath(const string& s, const string& d, Filters filter);
         vector<Airport*> serializeInput(const string &i);
+
 };
 
 

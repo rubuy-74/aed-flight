@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include "cmath"
 
 void Utils::showRaw(std::list<std::vector<std::string>> raw) {
     for (auto element: raw) {

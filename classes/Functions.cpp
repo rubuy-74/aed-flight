@@ -167,10 +167,10 @@ unordered_set<Airport *> Functions::getArticulationPoints() {
     return dataset.getNetwork().getArticulationPoints();
 }
 
-int Functions::getNumDestinationsFromCity(string city) {
+int Functions::getNumDestinationsFromCity(string city,string country) {
     int res = 0;
     auto mapped = dataset.getCityAirports();
-    for(auto a : mapped[city]){
+    for(auto a : mapped[make_pair(city,country)]){
         res += getNumAirportsAtDistance(a, 1);
     }
     return res;
@@ -232,8 +232,10 @@ void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMi
 
 vector<Airport*> Functions::serializeInput(const string &i){
     vector<Airport*> airports;
-    if(!dataset.getCityAirports()[i].empty()){
-        airports = dataset.getCityAirports()[i];
+    string country = "";
+    auto p = make_pair(i,country);
+    if(!dataset.getCityAirports()[p].empty()){
+        airports = dataset.getCityAirports()[p];
         return airports;
     }
     else if(dataset.getNetwork().findAirport(i,CODE) != nullptr) {
