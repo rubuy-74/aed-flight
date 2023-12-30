@@ -18,10 +18,11 @@ enum AIRPORT_OPTION {
 
 class Graph {
     private:
-        unordered_map<string, Airport *, HashFunction> airports;
+
+    unordered_map<string, Airport *> airports;
     public:
         Graph();
-        Graph(unordered_map<string, Airport *, HashFunction> airports);
+        Graph(unordered_map<string, Airport *> airports);
 
         Airport* findAirport(Airport airport);
         Airport* findAirport(string airportAtt, AIRPORT_OPTION airportOption);
@@ -29,7 +30,7 @@ class Graph {
         bool addAirport(Airport *airport);
         bool removeAirport(const Airport airport);
 
-        unordered_map<string, Airport *, HashFunction> getAirports() const;
+        unordered_map<string, Airport *> getAirports() const;
 
         vector<Airport *> dfs();
         vector<Airport *> dfs(Airport *airport);

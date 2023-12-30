@@ -20,7 +20,7 @@ void Dataset::loadAirports(list<vector<string>> rawAirports) {
     for(vector<string> airports : rawAirports){
         Airport *airport = new Airport(airports[0], airports[1], airports[2], airports[3], Coordinate(stof(airports[4]), stof(airports[5])));
         this->network.addAirport(airport);
-        cityAirports[airports[2]].push_back(airport);
+        cityAirports[make_pair(airports[2],airports[3])].push_back(airport);
     }
 }
 
@@ -38,7 +38,7 @@ void Dataset::loadAirlines(list<vector<string>> rawAirlines) {
     }
 }
 
-unordered_map<string, vector<Airport*>, HashFunction> Dataset::getCityAirports() const {
+hashCityAirport Dataset::getCityAirports() const {
     return this->cityAirports;
 }
 
