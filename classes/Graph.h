@@ -18,7 +18,8 @@ enum AIRPORT_OPTION {
 
 class Graph {
     private:
-        unordered_map<string, Airport *> airports;
+
+    unordered_map<string, Airport *> airports;
     public:
         Graph();
         Graph(unordered_map<string, Airport *> airports);
