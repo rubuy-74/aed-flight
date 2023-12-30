@@ -41,7 +41,7 @@ class Functions {
 
         // iii
         // use map from dataset to get all airports from city and therefore the flights
-        unordered_map<string, int> getFlightsPerAirline();
+        unordered_map<string, int, HashFunction> getFlightsPerAirline();
 
         // vi
         int getNumAirportsAtDistance(Airport *airport, int distance);
