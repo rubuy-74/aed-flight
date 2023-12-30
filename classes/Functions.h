@@ -23,7 +23,7 @@ class Functions {
         void setAllAirportsUnvisited();
 
         // iv
-        int getNumDestinationsFromCity(string city);
+        int getNumDestinationsFromCity(string city, string country);
         int getReachableDestinationsFromAirport(Airport airport);
 
         // ii

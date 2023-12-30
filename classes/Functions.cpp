@@ -172,10 +172,10 @@ unordered_set<Airport *> Functions::getArticulationPoints() {
     return dataset.getNetwork().getArticulationPoints();
 }
 
-int Functions::getNumDestinationsFromCity(string city) {
+int Functions::getNumDestinationsFromCity(string city,string country) {
     int res = 0;
     auto mapped = dataset.getCityAirports();
-    for(auto a : mapped[city]){
+    for(auto a : mapped[make_pair(city,country)]){
         res += getNumAirportsAtDistance(a, 1);
     }
     return res;
