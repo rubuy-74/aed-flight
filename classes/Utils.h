@@ -27,16 +27,6 @@ struct Filters{
         : preferredAirlines(preferredAirlines), minimizeAirlines(minimizeAirlines), preferredAirports(preferredAirports) {}
 };
 
-struct HashFunction {
-    size_t operator()(const string& s) const {
-        size_t hash_value = 0;
-        for (char c : s) {
-            hash_value *= 31 + c;
-        }
-        return hash_value;
-    }
-};
-
 class Utils {
 public:
     static void showRaw(std::list<std::vector<std::string>> raw);

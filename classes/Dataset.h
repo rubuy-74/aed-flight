@@ -6,12 +6,14 @@
 #include <boost/functional/hash.hpp>
 
 
+
+
 typedef unordered_map<pair<string,string>,vector<Airport*>,boost::hash<pair<string,string>>> hashCityAirport;
 class Dataset {
     private:
         Graph network;
 
-        unordered_map<string, Airline, HashFunction> airlines;
+        unordered_map<string, Airline> airlines;
         hashCityAirport cityAirports;
     public:
         Dataset();
@@ -21,7 +23,7 @@ class Dataset {
         void loadAirlines(list<vector<string>> rawAirlines);
 
         Graph getNetwork() const;
-        unordered_map<string,Airline,HashFunction> getAirlines() const {return airlines;};
+        unordered_map<string,Airline> getAirlines() const {return airlines;};
         hashCityAirport getCityAirports() const;
 };
 

@@ -14,6 +14,7 @@ enum MENU_OPTION {
     FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY,NONE
 };
 
+typedef unordered_map<pair<string,string>,int,boost::hash<pair<string,string>>> hashFlightsCity;
 class Functions {
     private:
         Dataset dataset;
@@ -40,7 +41,7 @@ class Functions {
 
         // iii
         // use map from dataset to get all airports from city and therefore the flights
-        unordered_map<string, int, HashFunction> getFlightsPerAirline();
+        unordered_map<string, int> getFlightsPerAirline();
 
         // vi
         int getNumAirportsAtDistance(Airport *airport, int distance);
@@ -61,13 +62,12 @@ class Functions {
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
         vector<Trip> findMinPath(vector<Airport *> start, vector<Airport *> dest, Filters filter);
 
-    unordered_map<string, int> getFlightsPerCity();
+    unordered_map<pair<string, string>, int, boost::hash<pair<string, string>>> getFlightsPerCity();
 
-    vector<Airport *> convertCityToAirports(string s);
     vector<Airport *> convertAirportToAirports(string s);
     vector<Airport *> convertCoordsToAirports(string s);
 
-    vector<Airport *> convertCityToAirports(string cityname, string countryName);
+    vector<Airport *> convertCityToAirports(string cityName, string countryName);
 };
 
 

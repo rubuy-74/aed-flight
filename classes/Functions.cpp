@@ -7,7 +7,6 @@
 #include "algorithm"
 #include "Utils.h"
 #include "set"
-#include "algorithm"
 
 
 Functions::Functions(Dataset dataset) {
@@ -147,19 +146,18 @@ Airport *Functions::topKAirports(int k) {
     return tmp[max(0,k-1)];
 }
 
-unordered_map<string, int> Functions::getFlightsPerCity() {
-    unordered_map<string,int> flightsPerCity;
+hashFlightsCity Functions::getFlightsPerCity() {
+    hashFlightsCity flightsPerCity;
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight : airports.second->getFlights()){
-            flightsPerCity[airports.second->getCity()]++;
-            //flightsPerCity[flight->getDestination()->getCity()]++;
+            flightsPerCity[make_pair(airports.second->getCity(),airports.second->getCountry())]++;
         }
     }
     return flightsPerCity;
 }
 
-unordered_map<string, int, HashFunction> Functions::getFlightsPerAirline() {
-    unordered_map<string,int, HashFunction> flightsPerAirline;
+unordered_map<string, int> Functions::getFlightsPerAirline() {
+    unordered_map<string,int> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
         for(auto flight:airports.second->getFlights()){
             flightsPerAirline[flight->getAirline().getCode()]++;
@@ -255,7 +253,7 @@ vector<Trip> Functions::maxTripStops(Airport *airport) {
 
 vector<Trip> Functions::maxTripsGraph() {
     Graph network = dataset.getNetwork();
-    unordered_map<int,vector<Trip>, HashFunction> res;
+    unordered_map<int,vector<Trip>> res;
     for(auto a: network.getAirports()){
         auto value = maxTripStops(a.second);
         if(!value.empty()){
@@ -277,9 +275,9 @@ double stol_with_check(string s){
     else return -1;
 }
 
-vector<Airport *> Functions::convertCityToAirports(string cityname,string countryName) {
+vector<Airport *> Functions::convertCityToAirports(string cityName,string countryName) {
     vector<Airport *> res;
-    res = dataset.getCityAirports()[cityname];
+    res = dataset.getCityAirports()[make_pair(cityName,countryName)];
 
     return res;
 }

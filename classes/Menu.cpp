@@ -109,6 +109,9 @@ void Menu::showBestOption() {
     for(auto a : src) cout << a->getCode() << ' ';
     cout << '\n';
     vector<Airport *> dest = inputAirports("Destination");
+    cout << "Destination:";
+    for(auto a : dest) cout << a->getCode() << ' ';
+    cout << '\n';
     if(dest.empty()) {showMainMenu(); return;};
     string option;
     string second_option;
@@ -308,14 +311,16 @@ void Menu::showOption3() {
     }
     string text = "Number of flights: ";
     if(option == "1") {
-        unordered_map<string,int> flightsPerCity = functions.getFlightsPerCity();
+        hashFlightsCity flightsPerCity = functions.getFlightsPerCity();
         string city;
-        string s;
         cout << "City: ";
         cin.ignore();
         getline(cin,city);
-        if(flightsPerCity[city] == 0) {text = "CITY NOT FOUND";}
-        else {text += to_string(flightsPerCity[city]);}
+        string country;
+        cout << "Country: ";
+        getline(cin,country);
+        if(flightsPerCity[make_pair(city,country)] == 0) {text = "CITY NOT FOUND";}
+        else {text += to_string(flightsPerCity[make_pair(city,country)]);}
     }
     if(option == "2") {
         unordered_map<string,int> flightsPerAirline = functions.getFlightsPerAirline();
@@ -340,7 +345,11 @@ void Menu::showOption4() {
         string city;
         cout << "City: ";
         cin.ignore(); getline(cin,city);
-        text += to_string(functions.getNumDestinationsFromCity(city));
+        string country;
+        cout << "Country: ";
+        getline(cin,country);
+        text += "City: "+city + ", Country: " + country;
+        text += to_string(functions.getNumDestinationsFromCity(city,country));
     }
     if(option == "2") {
         string airport;
