@@ -437,14 +437,16 @@ void Menu::showOption7() {
 
 void Menu::showOption8() {
     string input;
-    vector<string> text;
+    vector<Airport*> text;
     cout << "K: ";
     cin >> input;
     if(!std::all_of(input.begin(),input.end(), ::isdigit)){
         cout << "NOT VALID NUMBER" << '\n'; return;
     }
-    text.push_back(functions.topKAirports(stoi(input))->getName());
-    Utils::drawBox(text);
+    for(Airport * a : functions.topKAirports(stoi(input))){
+        text.push_back(a);
+    }
+    Utils::drawPageAirports(text);
 }
 
 void Menu::showOption9() {

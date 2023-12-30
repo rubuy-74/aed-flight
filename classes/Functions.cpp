@@ -135,15 +135,19 @@ int Functions::getNumDestinationsCountriesOfAnAirport(Airport airport) {
     return getNumCountriesAtDistance(airport, 1);
 }
 
-Airport *Functions::topKAirports(int k) {
+vector<Airport *> Functions::topKAirports(int k) {
     vector<Airport*> tmp;
+    vector<Airport*> res;
     for(auto airport : dataset.getNetwork().getAirports()){
         tmp.push_back(airport.second);
     }
     sort(tmp.begin(),tmp.end(),[](Airport* a1, Airport* a2){
         return a1->getFlights().size() > a2->getFlights().size();
     });
-    return tmp[max(0,k-1)];
+    for(int i=0; i<k; i++){
+        res.push_back(tmp[i]);
+    }
+    return res;
 }
 
 hashFlightsCity Functions::getFlightsPerCity() {
