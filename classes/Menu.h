@@ -8,16 +8,18 @@
 #include "Functions.h"
 
 class Menu {
+    Dataset dataset;
     Graph graph;
     Parser parser;
     Utils utils;
     Functions functions;
 public:
-    Menu(Graph graph,Functions functions) : functions(functions),graph(graph) { };
+    Menu(Dataset dataset,Graph graph,Functions functions) : functions(functions),graph(graph),dataset(dataset) { };
     void showMainMenu();
     void showListingFunctionsMenu();
     void showBestOption();
 
+    void showOption1();
     void showOption2();
     void showOption3();
     void showOption4();
@@ -32,6 +34,9 @@ public:
 
     vector<Airport *> inputAirports(string element);
 
+    vector<Airline> getAirlines();
+
+    vector<Airport> getAirport();
 };
 
 

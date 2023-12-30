@@ -72,34 +72,85 @@ void Menu::showListingFunctionsMenu() {
     showListingFunctionsMenu();
 }
 
-vector<string> getAirlines(){
+vector<Airline> Menu::getAirlines(){
     string input;
     cout << "Set of airlines separated by ' ': ";
     cin.ignore();
     getline(cin,input);
-    return Parser::splitLine(input," ");
+    vector<string> rawAirlines = Parser::splitLine(input," ");
+    vector<Airline> res;
+    for(auto s : rawAirlines){
+        res.push_back(dataset.getAirlines()[s]);
+    }
+    return res;
+}
+
+vector<Airport> Menu::getAirport(){
+    string input;
+    cout << "Set of airportCodes separated by ' ': ";
+    cin.ignore();
+    getline(cin,input);
+    vector<string> rawAirports = Parser::splitLine(input," ");
+    vector<Airport> res;
+    for(auto s : rawAirports){
+        res.push_back(*graph.findAirport(s,CODE));
+    }
+    return res;
 }
 
 void Menu::showBestOption() {
+    Utils::clearScreen();
     vector<Airport *> src = inputAirports("Source");
+    if(src.empty()) {showMainMenu(); return;}
+    Utils::clearScreen();
+    cout << "Source:";
+    for(auto a : src) cout << a->getCode() << ' ';
+    cout << '\n';
     vector<Airport *> dest = inputAirports("Destination");
-    vector<Trip> trips = functions.findMinPath(src,dest);
+    if(dest.empty()) {showMainMenu(); return;};
     string option;
     string second_option;
-    while(option != "1" && option != "2" && option != "0"){
-        cout << "0 - Continue without filters\n1 - Select Airlines to travel\n2 - Minimize Airlines\n";
+    Utils::clearScreen();
+    while(option != "1" && option != "2" && option != "3" && option != "0"){
+        cout<<"--- Filters ---\n";
+        cout << "0 - Continue without filters\n1 - Select Airlines to travel\n2 - Minimize Airlines\n3 - Select Airports to travel\nOption:";
         cin >> option;
     }
-    vector<string> res;
+    vector<Trip> trips;
+    vector<Airline> prefAirlines;
+    vector<Airport> prefAirports;
     switch (stoi(option)) {
         case 1:
-            res = getAirlines();
+            prefAirlines = getAirlines();
+            trips = functions.findMinPath(src,dest,Filters(prefAirlines,false,{}));
             break;
         case 2:
-            //minimizeAirlines();
+            trips = functions.findMinPath(src,dest,Filters({},true,{}));
+            break;
+        case 3:
+            prefAirports = getAirport();
+            trips = functions.findMinPath(src,dest,Filters({},false,prefAirports));
+            break;
+        default:
+            trips = functions.findMinPath(src,dest,Filters({}, false,{}));
             break;
     }
-    Utils::drawPageFlights(trips, true);
+    Utils::clearScreen();
+    if(trips.empty()){
+        cout << "--- NO FLIGHTS AVAILABLE ---" << '\n';
+    }
+    else{
+        cout << "--- AVAILABLE FLIGHTS ---" << '\n';
+        for(int i = 0; i < trips.size(); i++) {
+            Trip current = trips[i];
+            cout << string(3,' ') + current.airports[0]->getCode();
+            for(auto t : current.flights){
+                cout <<" -> " << t->getDestination()->getCode() << "(" << t->getAirline().getCode() << ")";
+            }
+            cout << '\n';
+        }
+    }
+
     while(second_option != "0" && second_option != "1"){
         if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
         cout << "Exit(0) or Retry(1):";
@@ -111,33 +162,39 @@ void Menu::showBestOption() {
 
 vector<Airport *> Menu::inputAirports(string element){
     string option;
-    while(option != "1" && option != "2" && option != "3"){
-        cout << element << "\n";
-        cout << "1 - Airport\n2 - City\n3 - Coordinates\n";
+    while(option != "1" && option != "2" && option != "3" && option != "0"){
+        cout <<"--- "<< element<<" ---" << "\n";
+        cout << "1 - Airport\n2 - City\n3 - Coordinates\n0 - Cancel\nOption:";
         cin >> option;
     }
-    vector<Airport *> srcAirport;
-    while(srcAirport.empty()){
+    if(option == "0") return {};
+    vector<Airport *> airport;
+    int count = 0;
+    while(airport.empty()){
         string src;
         cout << element <<": ";
-        cin.ignore();
+        if(count == 0) cin.ignore();
         getline(cin,src);
         switch (stoi(option)){
             case 1: {
-                srcAirport = functions.convertAirportToAirports(src);
+                airport.clear();
+                airport = functions.convertAirportToAirports(src);
                 break;
             }
             case 2: {
-                srcAirport = functions.convertCityToAirports(src);
+                airport.clear();
+                airport = functions.convertCityToAirports(src);
                 break;
             }
             case 3: {
-                srcAirport = functions.convertCoordsToAirports(src);
+                airport.clear();
+                airport = functions.convertCoordsToAirports(src);
                 break;
             }
         }
+        count++;
     }
-    return srcAirport;
+    return airport;
 }
 
 void Menu::showListingOption(string option) {
@@ -147,6 +204,7 @@ void Menu::showListingOption(string option) {
         Utils::clearScreen();
         switch (stoi(option)) { // IT IS A VALID OPTION
             case 1:
+                showOption1();
                 break;
             case 2:
                 // See number of flights out of an aiport and from how many airlines
@@ -196,6 +254,14 @@ void Menu::showListingOption(string option) {
             cin >> second_option;
         }
     }
+}
+void Menu::showOption1() {
+    vector<string> text;
+    text.emplace_back("Number of airports: " + to_string(dataset.getNetwork().getAirports().size()));
+    int numTotalFlights = 0;
+    for(auto f : graph.getAirports()) numTotalFlights += f.second->getFlights().size();
+    text.emplace_back("Number of flights: " + to_string(numTotalFlights));
+    Utils::drawBox(text);
 }
 
 void Menu::showOption2() {
@@ -303,8 +369,12 @@ void Menu::showOption6() {
     cout << "Number of Stops: ";
     cin >> distance;
     auto ptrAirport = graph.findAirport(airportCode,CODE);
-    if(ptrAirport == nullptr || !std::all_of(distance.begin(),distance.end(), ::isdigit)) {
+    if(ptrAirport == nullptr) {
         cout << "AIRPORT NOT FOUND" << '\n';
+        return;
+    }
+    if(!std::all_of(distance.begin(),distance.end(), ::isdigit)){
+        cout << "NUMBER NOT VALID" <<'\n';
         return;
     }
     int d = stoi(distance);
@@ -333,7 +403,7 @@ void Menu::showOption7() {
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Max number of trips: " + to_string(maxTrips[0].stops));
     for(auto i : maxTrips){
-        text.push_back(i.airports.first->getCode() + " -> " + i.airports.second->getCode());
+        text.push_back(i.source_destination.first->getCode() + " -> " + i.source_destination.second->getCode());
     }
     Utils::drawBox(text);
 }
@@ -364,4 +434,5 @@ void Menu::showOption9() {
 void Menu::showOption10() {
     Utils::drawPageFlights(functions.maxTripsGraph(), false);
 }
+
 

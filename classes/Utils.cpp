@@ -94,6 +94,8 @@ void Utils::drawPageAirports(vector<Airport *> airports) {
     int numPages = airports.size()%pageSize  == 0 ? airports.size()/pageSize : airports.size()/pageSize + 1;
     int page = 0;
     do {
+        clearScreen();
+        cout << "NUMBER OF ARTICULATIONS POINTS: " << airports.size() << '\n';
         int numAirports = (pageSize*(page+1)) > airports.size() ? (airports.size()%pageSize) : pageSize;
         cout << string(sus,'-') << '\n';
         for(int i = 0; i < numAirports; i++) drawLine(airports[i+(pageSize*page)],attSize);
@@ -111,16 +113,17 @@ void Utils::drawPageAirports(vector<Airport *> airports) {
 
 void drawTrip(Trip trip,int offset){
     int oof = offset - 19;
-    cout << "| From " << trip.airports.first->getCode() << " to " << trip.airports.second->getCode() << string(oof,' ') << " |" <<'\n';
+    cout << "| From " << trip.source_destination.first->getCode() << " to "
+        << trip.source_destination.second->getCode() << string(oof,' ') << " |" <<'\n';
 }
+
 void drawTripPath(Trip trip,int offset){
-    int oof = offset - 3 - 4*trip.path.size();
+    int oof = offset - 3 - 4*trip.flights.size();
     cout << "| ";
-    for(auto a : trip.path){
-        cout << a->getCode() << " ";
-    }
+    cout << trip.airports[0]->getCode();
     cout << string(oof,' ') << "|\n";
 }
+
 void Utils::drawPageFlights(vector<Trip> trips, bool isPath) {
     int sus = 70;
     string decision;
@@ -128,13 +131,23 @@ void Utils::drawPageFlights(vector<Trip> trips, bool isPath) {
     int numPages = trips.size()%pageSize  == 0 ? trips.size()/pageSize : trips.size()/pageSize + 1;
     int page = 0;
     do {
+        clearScreen();
         int numAirports = (pageSize*(page+1)) > trips.size() ? (trips.size()%pageSize) : pageSize;
         if(!isPath) cout << "Max Number of Stops:" << trips[0].stops << '\n';
         cout << string(sus,'-') << '\n';
         for(int i = 0; i < numAirports; i++) {
             Trip current = trips[i + (pageSize * page)];
-            if(!isPath) drawTrip(current,sus);
-            else drawTripPath(current,sus);
+            if(!isPath) {
+                int oof = sus - 19;
+                cout << "| From " << current.source_destination.first->getCode() << " to "
+                     << current.source_destination.second->getCode() << string(oof,' ') << " |" <<'\n';
+            }
+            else {
+                        int oof = sus - 3 - 4*current.flights.size();
+                        cout << "| ";
+                        cout << current.airports[0]->getCode();
+                        cout << string(oof,' ') << "|\n";
+            }
         }
         cout << string(sus,'-') << '\n';
         do {

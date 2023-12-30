@@ -38,9 +38,9 @@ public:
     static void drawPageAirports(vector<Airport *> airports);
     static void drawBox(vector<string> text);
 
-    static void drawPageFlights(vector<Trip> trips);
     static void drawPageFlights(vector<Trip> trips,bool isPath);
 
+    static void drawTripPath(Trip trip, int offset);
 };
 
 
