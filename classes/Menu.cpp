@@ -150,7 +150,6 @@ void Menu::showBestOption() {
             cout << '\n';
         }
     }
-
     while(second_option != "0" && second_option != "1"){
         if(second_option != "0" && second_option != "") cout << "INVALID OPTION. TRY AGAIN\n";
         cout << "Exit(0) or Retry(1):";

@@ -67,7 +67,6 @@ class Functions {
     vector<Airport *> convertAirportToAirports(string s);
     vector<Airport *> convertCoordsToAirports(string s);
 
-
 };
 
 

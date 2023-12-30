@@ -23,15 +23,6 @@ void Utils::showAirport(Airport *airport) {
     cout << "   " << "Coordinates: " <<airport->getCoordinates().getLatitude() << " " <<airport->getCoordinates().getLongitude() << '\n';
 }
 
-double Utils::computeDistance(Coordinate c1, Coordinate c2){
-    double dist = sin(toRad(c1.getLatitude())) * sin(toRad(c2.getLatitude()))
-                    + cos(toRad(c1.getLatitude())) * cos(toRad(c2.getLatitude()))
-                    * cos(toRad(c1.getLongitude() - c2.getLongitude()));
-    dist = acos(dist);
-    dist *= 6371;
-    return dist;
-}
-
 void Utils::clearScreen(){
 #if defined(__linux__)
     system("clear");
@@ -159,6 +150,4 @@ void Utils::drawPageFlights(vector<Trip> trips, bool isPath) {
         if(decision == "1") page = max(page-1,0);
 
     } while (decision != "0");
-
 }
-
