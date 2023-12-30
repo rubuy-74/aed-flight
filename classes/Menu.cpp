@@ -74,6 +74,7 @@ void Menu::showListingFunctionsMenu() {
 
 vector<Airline> Menu::getAirlines(){
     string input;
+    cout << "0 - Cancel" << '\n';
     cout << "Set of airlines separated by ' ': ";
     cin.ignore();
     getline(cin,input);
@@ -93,7 +94,8 @@ vector<Airport> Menu::getAirport(){
     vector<string> rawAirports = Parser::splitLine(input," ");
     vector<Airport> res;
     for(auto s : rawAirports){
-        res.push_back(*graph.findAirport(s,CODE));
+        if(graph.findAirport(s,CODE) != nullptr)
+            res.push_back(*graph.findAirport(s,CODE));
     }
     return res;
 }
@@ -111,31 +113,37 @@ void Menu::showBestOption() {
     string option;
     string second_option;
     Utils::clearScreen();
-    while(option != "1" && option != "2" && option != "3" && option != "0"){
-        cout<<"--- Filters ---\n";
-        cout << "0 - Continue without filters\n1 - Select Airlines to travel\n2 - Minimize Airlines\n3 - Select Airports to travel\nOption:";
-        cin >> option;
-    }
     vector<Trip> trips;
     vector<Airline> prefAirlines;
+    bool minimizeFlights = false;
     vector<Airport> prefAirports;
-    switch (stoi(option)) {
-        case 1:
-            prefAirlines = getAirlines();
-            trips = functions.findMinPath(src,dest,Filters(prefAirlines,false,{}));
-            break;
-        case 2:
-            trips = functions.findMinPath(src,dest,Filters({},true,{}));
-            break;
-        case 3:
-            prefAirports = getAirport();
-            trips = functions.findMinPath(src,dest,Filters({},false,prefAirports));
-            break;
-        default:
-            trips = functions.findMinPath(src,dest,Filters({}, false,{}));
-            break;
+    while(option != "0"){
+        cout<<"--- Filters ---\n";
+        cout << "1 - Select Airlines to travel\n2 - Minimize Airlines\n3 - Select Airports to travel\n0 - Continue\nOption:";
+        cin >> option;
+
+        if(std::all_of(option.begin(),option.end(), ::isdigit)){
+            switch (stoi(option)) {
+                case 1:
+                    prefAirlines = getAirlines();
+                    break;
+                case 2:
+                    minimizeFlights = true;
+                    break;
+                case 3:
+                    prefAirports = getAirport();
+                    break;
+            }
+        }
     }
+    trips = functions.findMinPath(src,dest,Filters(prefAirlines,minimizeFlights,prefAirports));
     Utils::clearScreen();
+    cout << "--- Current filters ---\n";
+    cout << "Preferred Airlines: "; for(auto a : prefAirlines) cout << a.getCode() << " ";
+    cout <<'\n';
+    cout << "Minimize Airlines: "; cout << (minimizeFlights ? "true" : "false") << '\n';
+    cout << "Preferred Airports: "; for(auto a: prefAirports) cout << a.getCode() << " ";
+    cout <<'\n';
     if(trips.empty()){
         cout << "--- NO FLIGHTS AVAILABLE ---" << '\n';
     }
@@ -170,24 +178,35 @@ vector<Airport *> Menu::inputAirports(string element){
     vector<Airport *> airport;
     int count = 0;
     while(airport.empty()){
-        string src;
-        cout << element <<": ";
-        if(count == 0) cin.ignore();
-        getline(cin,src);
         switch (stoi(option)){
             case 1: {
                 airport.clear();
-                airport = functions.convertAirportToAirports(src);
+                string airportName;
+                cout << "Airport:";
+                if(count == 0) cin.ignore();
+                getline(cin,airportName);
+                airport = functions.convertAirportToAirports(airportName);
                 break;
             }
             case 2: {
                 airport.clear();
-                airport = functions.convertCityToAirports(src);
+                string cityName;
+                string countryName;
+                cout << "City Name:";
+                if(count == 0) cin.ignore();
+                getline(cin,cityName);
+                cout << "Country Name:";
+                getline(cin,countryName);
+                airport = functions.convertCityToAirports(cityName,countryName);
                 break;
             }
             case 3: {
                 airport.clear();
-                airport = functions.convertCoordsToAirports(src);
+                string coords;
+                cout << "Coordinates:";
+                if(count == 0) cin.ignore();
+                getline(cin,coords);
+                airport = functions.convertCoordsToAirports(coords);
                 break;
             }
         }

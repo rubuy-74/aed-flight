@@ -270,16 +270,16 @@ vector<Trip> Functions::maxTripsGraph() {
     return res[diameter];
 }
 
-long stol_with_check(string s){
+double stol_with_check(string s){
     bool is_valid = true;
-    for(auto c : s) if(!isdigit(c)) is_valid = false;
-    if(is_valid) return stol(s);
+    for(auto c : s) if(!isdigit(c) && c != '.') is_valid = false;
+    if(is_valid) return stod(s);
     else return -1;
 }
 
-vector<Airport *> Functions::convertCityToAirports(string s) {
+vector<Airport *> Functions::convertCityToAirports(string cityname,string countryName) {
     vector<Airport *> res;
-    res = dataset.getCityAirports()[s];
+    res = dataset.getCityAirports()[cityname];
 
     return res;
 }
@@ -295,8 +295,9 @@ vector<Airport *> Functions:: convertCoordsToAirports(string s){
     vector<Airport *> res;
     vector<string> bruh = Parser::splitLine(s," ");
     if(bruh.size() == 2){
-        long lat = stol_with_check(bruh[0]);
-        long log = stol_with_check(bruh[1]);
+        double lat = stol_with_check(bruh[0]);
+        double log = stol_with_check(bruh[1]);
+        cout << lat << " " << log << '\n';
         if(lat != -1 && log != -1 )
             res = getAirportsFromCoordinates(Coordinate(lat,log));
     }
