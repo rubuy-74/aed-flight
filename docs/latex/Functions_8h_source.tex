@@ -1,0 +1,80 @@
+\doxysection{Functions.\+h}
+\hypertarget{Functions_8h_source}{}\label{Functions_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Functions.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Functions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_FUNCTIONS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_FUNCTIONS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Airport.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}vector"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Dataset.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Parser.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Utils.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum}\ MENU\_OPTION\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY,NONE}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ unordered\_map<pair<string,string>,int,\mbox{\hyperlink{structpairHashFunction}{pairHashFunction}}>\ hashFlightsCity;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFunctions}{Functions}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDataset}{Dataset}}\ dataset;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFunctions}{Functions}}(\mbox{\hyperlink{classDataset}{Dataset}}\ dataset);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setAllAirportsUnvisited();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ iv}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumDestinationsFromCity(\textcolor{keywordtype}{string}\ city,\ \textcolor{keywordtype}{string}\ country);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getReachableDestinationsFromAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ii}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ getNumFlightsOutOfAnAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumAirlinesOfAnAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ v}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumDestinationsAirportsOfAnAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumDestinationsCitiesOfAnAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumDestinationsCountriesOfAnAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ viii}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport}{Airport}}\ *topKAirports(\textcolor{keywordtype}{int}\ k);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ iii}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ use\ map\ from\ dataset\ to\ get\ all\ airports\ from\ city\ and\ therefore\ the\ flights}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ unordered\_map<string,\ int>\ getFlightsPerAirline();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vi}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumAirportsAtDistance(\mbox{\hyperlink{classAirport}{Airport}}\ *airport,\ \textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumCitiesAtDistance(\mbox{\hyperlink{classAirport}{Airport}}\ airport,\ \textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ getNumCountriesAtDistance(\mbox{\hyperlink{classAirport}{Airport}}\ airport,\textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vii}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ vector<Trip>\ maxTripStops(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ vector<Trip>\ \ maxTripsGraph();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ix}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ unordered\_set<Airport\ *>\ getArticulationPoints();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ findInVector(\textcolor{keyword}{const}\ vector<string>\&\ v,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ code);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ vector<Airport*>\ getAirportsFromCoordinates(\mbox{\hyperlink{classCoordinate}{Coordinate}}\ c);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ getAllMinPaths(\mbox{\hyperlink{classAirport}{Airport}}*\ start,\ \mbox{\hyperlink{classAirport}{Airport}}*\ end,\ vector<Trip>\&\ allMinPaths,\ \mbox{\hyperlink{structFilters}{Filters}}\ filter);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ vector<Trip>\ findMinPath(vector<Airport\ *>\ start,\ vector<Airport\ *>\ dest,\ \mbox{\hyperlink{structFilters}{Filters}}\ filter);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ unordered\_map<pair<string,\ string>,\ int,\ \mbox{\hyperlink{structpairHashFunction}{pairHashFunction}}>\ getFlightsPerCity();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ vector<Airport\ *>\ convertAirportToAirports(\textcolor{keywordtype}{string}\ s);}
+\DoxyCodeLine{00068\ \ \ \ \ vector<Airport\ *>\ convertCoordsToAirports(\textcolor{keywordtype}{string}\ s);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ vector<Airport\ *>\ convertCityToAirports(\textcolor{keywordtype}{string}\ cityName,\ \textcolor{keywordtype}{string}\ countryName);}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_FUNCTIONS\_H}}
+
+\end{DoxyCode}

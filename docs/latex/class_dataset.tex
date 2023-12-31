@@ -1,0 +1,100 @@
+\doxysection{Dataset Class Reference}
+\hypertarget{class_dataset}{}\label{class_dataset}\index{Dataset@{Dataset}}
+
+
+{\ttfamily \#include $<$Dataset.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_dataset_a2ef0a4a688a218d55ef061c6df659a4a}{Dataset}} ()
+\item 
+\mbox{\hyperlink{class_dataset_affc2cc57f560350008264f75f77037dd}{Dataset}} (list$<$ vector$<$ string $>$ $>$ raw\+Flights, list$<$ vector$<$ string $>$ $>$ raw\+Airports, list$<$ vector$<$ string $>$ $>$ raw\+Airlines)
+\item 
+void \mbox{\hyperlink{class_dataset_ab9e90c1cfc8b24b92d7d75db0295171a}{load\+Airports}} (list$<$ vector$<$ string $>$ $>$ raw\+Airports)
+\item 
+void \mbox{\hyperlink{class_dataset_a56f231006a744e93bd67326cb6cd254f}{load\+Flights}} (list$<$ vector$<$ string $>$ $>$ raw\+Flights)
+\item 
+void \mbox{\hyperlink{class_dataset_ac8b710ae5065b47935b56254f2bdd4a1}{load\+Airlines}} (list$<$ vector$<$ string $>$ $>$ raw\+Airlines)
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_dataset_a4b93a1d1e5a9c9dc606587671349508b}{get\+Network}} () const
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airline}{Airline}} $>$ \mbox{\hyperlink{class_dataset_a6f1eee9c9186fd94e5302b70a3db8d1d}{get\+Airlines}} () const
+\item 
+\mbox{\hyperlink{_dataset_8h_a7e7bc6646463381629f5c2c822d558eb}{hash\+City\+Airport}} \mbox{\hyperlink{class_dataset_a7afe92713542d9dd64bce0a2b310d4f1}{get\+City\+Airports}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_dataset_a2ef0a4a688a218d55ef061c6df659a4a}\label{class_dataset_a2ef0a4a688a218d55ef061c6df659a4a} 
+\index{Dataset@{Dataset}!Dataset@{Dataset}}
+\index{Dataset@{Dataset}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{Dataset()}{Dataset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Dataset\+::\+Dataset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_dataset_affc2cc57f560350008264f75f77037dd}\label{class_dataset_affc2cc57f560350008264f75f77037dd} 
+\index{Dataset@{Dataset}!Dataset@{Dataset}}
+\index{Dataset@{Dataset}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{Dataset()}{Dataset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Dataset\+::\+Dataset (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Flights,  }\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Airports,  }\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Airlines }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_dataset_a6f1eee9c9186fd94e5302b70a3db8d1d}\label{class_dataset_a6f1eee9c9186fd94e5302b70a3db8d1d} 
+\index{Dataset@{Dataset}!getAirlines@{getAirlines}}
+\index{getAirlines@{getAirlines}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{getAirlines()}{getAirlines()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airline}{Airline}} $>$ Dataset\+::get\+Airlines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_dataset_a7afe92713542d9dd64bce0a2b310d4f1}\label{class_dataset_a7afe92713542d9dd64bce0a2b310d4f1} 
+\index{Dataset@{Dataset}!getCityAirports@{getCityAirports}}
+\index{getCityAirports@{getCityAirports}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{getCityAirports()}{getCityAirports()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_dataset_8h_a7e7bc6646463381629f5c2c822d558eb}{hash\+City\+Airport}} Dataset\+::get\+City\+Airports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_dataset_a4b93a1d1e5a9c9dc606587671349508b}\label{class_dataset_a4b93a1d1e5a9c9dc606587671349508b} 
+\index{Dataset@{Dataset}!getNetwork@{getNetwork}}
+\index{getNetwork@{getNetwork}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{getNetwork()}{getNetwork()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Dataset\+::get\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_dataset_ac8b710ae5065b47935b56254f2bdd4a1}\label{class_dataset_ac8b710ae5065b47935b56254f2bdd4a1} 
+\index{Dataset@{Dataset}!loadAirlines@{loadAirlines}}
+\index{loadAirlines@{loadAirlines}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{loadAirlines()}{loadAirlines()}}
+{\footnotesize\ttfamily void Dataset\+::load\+Airlines (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Airlines }\end{DoxyParamCaption})}
+
+Populates the airlines hashmap 
+\begin{DoxyParams}{Parameters}
+{\em raw\+Airlines} & vector with all airlines \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_dataset_ab9e90c1cfc8b24b92d7d75db0295171a}\label{class_dataset_ab9e90c1cfc8b24b92d7d75db0295171a} 
+\index{Dataset@{Dataset}!loadAirports@{loadAirports}}
+\index{loadAirports@{loadAirports}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{loadAirports()}{loadAirports()}}
+{\footnotesize\ttfamily void Dataset\+::load\+Airports (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Airports }\end{DoxyParamCaption})}
+
+Populates the graph nodes (airports) and also maps the (city, country) pair to all airports in it 
+\begin{DoxyParams}{Parameters}
+{\em raw\+Airports} & vector with all airports \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_dataset_a56f231006a744e93bd67326cb6cd254f}\label{class_dataset_a56f231006a744e93bd67326cb6cd254f} 
+\index{Dataset@{Dataset}!loadFlights@{loadFlights}}
+\index{loadFlights@{loadFlights}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{loadFlights()}{loadFlights()}}
+{\footnotesize\ttfamily void Dataset\+::load\+Flights (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Flights }\end{DoxyParamCaption})}
+
+Populates the graph edges (flights) 
+\begin{DoxyParams}{Parameters}
+{\em raw\+Flights} & vector with all flights \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_dataset_8h}{Dataset.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_dataset_8cpp}{Dataset.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,86 @@
+\doxysection{Functions Class Reference}
+\hypertarget{classFunctions}{}\label{classFunctions}\index{Functions@{Functions}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFunctions_a473f003cf5ee85fd9f74fab695374727}\label{classFunctions_a473f003cf5ee85fd9f74fab695374727} 
+{\bfseries Functions} (\mbox{\hyperlink{classDataset}{Dataset}} dataset)
+\item 
+\Hypertarget{classFunctions_a40d1bc14692fa064f88c43824197efb6}\label{classFunctions_a40d1bc14692fa064f88c43824197efb6} 
+void {\bfseries set\+All\+Airports\+Unvisited} ()
+\item 
+\Hypertarget{classFunctions_acc64117cab224c9eb00ec40474e7657f}\label{classFunctions_acc64117cab224c9eb00ec40474e7657f} 
+int {\bfseries get\+Num\+Destinations\+From\+City} (string city, string country)
+\item 
+\Hypertarget{classFunctions_abbbf17ce9d30d627223e80bcb82dcc55}\label{classFunctions_abbbf17ce9d30d627223e80bcb82dcc55} 
+int {\bfseries get\+Reachable\+Destinations\+From\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_ada3c4629a91fc7b318fd8f2ce6887214}\label{classFunctions_ada3c4629a91fc7b318fd8f2ce6887214} 
+unsigned int {\bfseries get\+Num\+Flights\+Out\+Of\+An\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_a4b4fbe4d60f77cb62462f36d0dbc381e}\label{classFunctions_a4b4fbe4d60f77cb62462f36d0dbc381e} 
+int {\bfseries get\+Num\+Airlines\+Of\+An\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_ac26d511ada5d999befac99e9e71234f8}\label{classFunctions_ac26d511ada5d999befac99e9e71234f8} 
+int {\bfseries get\+Num\+Destinations\+Airports\+Of\+An\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_a0e7da68b50898b8a8755d470831d9adb}\label{classFunctions_a0e7da68b50898b8a8755d470831d9adb} 
+int {\bfseries get\+Num\+Destinations\+Cities\+Of\+An\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_ac0cdcc31d85c57d77f6ee41b6db9803a}\label{classFunctions_ac0cdcc31d85c57d77f6ee41b6db9803a} 
+int {\bfseries get\+Num\+Destinations\+Countries\+Of\+An\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classFunctions_a439d3e3758bfc8f19f788a6482fc50bb}\label{classFunctions_a439d3e3758bfc8f19f788a6482fc50bb} 
+\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} {\bfseries top\+KAirports} (int k)
+\item 
+\Hypertarget{classFunctions_a34ff35e22b45e58b5e75e2b83b2f25f3}\label{classFunctions_a34ff35e22b45e58b5e75e2b83b2f25f3} 
+unordered\+\_\+map$<$ string, int $>$ {\bfseries get\+Flights\+Per\+Airline} ()
+\item 
+\Hypertarget{classFunctions_a25bd38e9e754558a81e5fdb1c7d888ca}\label{classFunctions_a25bd38e9e754558a81e5fdb1c7d888ca} 
+int {\bfseries get\+Num\+Airports\+At\+Distance} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+\Hypertarget{classFunctions_a3caf8814f507c3931384e2667a994938}\label{classFunctions_a3caf8814f507c3931384e2667a994938} 
+int {\bfseries get\+Num\+Cities\+At\+Distance} (\mbox{\hyperlink{classAirport}{Airport}} airport, int distance)
+\item 
+\Hypertarget{classFunctions_a2aa763472906e2c9c0446e9ab2c47b8c}\label{classFunctions_a2aa763472906e2c9c0446e9ab2c47b8c} 
+int {\bfseries get\+Num\+Countries\+At\+Distance} (\mbox{\hyperlink{classAirport}{Airport}} airport, int distance)
+\item 
+\Hypertarget{classFunctions_a609001cff459576d382086c5b35de721}\label{classFunctions_a609001cff459576d382086c5b35de721} 
+vector$<$ \mbox{\hyperlink{structTrip}{Trip}} $>$ {\bfseries max\+Trip\+Stops} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\Hypertarget{classFunctions_ac323701fdcfcb9150eab1fe9565dacaa}\label{classFunctions_ac323701fdcfcb9150eab1fe9565dacaa} 
+vector$<$ \mbox{\hyperlink{structTrip}{Trip}} $>$ {\bfseries max\+Trips\+Graph} ()
+\item 
+\Hypertarget{classFunctions_a6e68ff7a952c46ab31b1fb9f417e2806}\label{classFunctions_a6e68ff7a952c46ab31b1fb9f417e2806} 
+unordered\+\_\+set$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Articulation\+Points} ()
+\item 
+\Hypertarget{classFunctions_a054f2a73a699ab780570042b0b058a58}\label{classFunctions_a054f2a73a699ab780570042b0b058a58} 
+bool {\bfseries find\+In\+Vector} (const vector$<$ string $>$ \&v, const string \&code)
+\item 
+\Hypertarget{classFunctions_ad279a03280535b0ec68107ce63ba07f7}\label{classFunctions_ad279a03280535b0ec68107ce63ba07f7} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Airports\+From\+Coordinates} (\mbox{\hyperlink{classCoordinate}{Coordinate}} c)
+\item 
+\Hypertarget{classFunctions_a4e236cecb8268d60b0a9aa657597d5af}\label{classFunctions_a4e236cecb8268d60b0a9aa657597d5af} 
+void {\bfseries get\+All\+Min\+Paths} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}start, \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}end, vector$<$ \mbox{\hyperlink{structTrip}{Trip}} $>$ \&all\+Min\+Paths, \mbox{\hyperlink{structFilters}{Filters}} filter)
+\item 
+\Hypertarget{classFunctions_a9ac2da7b5ca03a4807e0a60d46fe1786}\label{classFunctions_a9ac2da7b5ca03a4807e0a60d46fe1786} 
+vector$<$ \mbox{\hyperlink{structTrip}{Trip}} $>$ {\bfseries find\+Min\+Path} (vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ start, vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ dest, \mbox{\hyperlink{structFilters}{Filters}} filter)
+\item 
+\Hypertarget{classFunctions_a146da4aaa1af92abd7b37fafc5fc14ad}\label{classFunctions_a146da4aaa1af92abd7b37fafc5fc14ad} 
+unordered\+\_\+map$<$ pair$<$ string, string $>$, int, \mbox{\hyperlink{structpairHashFunction}{pair\+Hash\+Function}} $>$ {\bfseries get\+Flights\+Per\+City} ()
+\item 
+\Hypertarget{classFunctions_a7016c34721687be1fce45c7d86a70148}\label{classFunctions_a7016c34721687be1fce45c7d86a70148} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries convert\+Airport\+To\+Airports} (string s)
+\item 
+\Hypertarget{classFunctions_ac304f2505727253a1050024301cfe888}\label{classFunctions_ac304f2505727253a1050024301cfe888} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries convert\+Coords\+To\+Airports} (string s)
+\item 
+\Hypertarget{classFunctions_a6ddeb4fc5b0a42495280657d5828e03e}\label{classFunctions_a6ddeb4fc5b0a42495280657d5828e03e} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries convert\+City\+To\+Airports} (string city\+Name, string country\+Name)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Functions.\+h\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Functions.\+cpp\end{DoxyCompactItemize}

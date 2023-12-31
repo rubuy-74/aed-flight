@@ -14,8 +14,14 @@ Graph::Graph(unordered_map<string, Airport *> airports) {
 Airport* Graph::findAirport(Airport airport) {
     return airports[airport.getCode()];
 }
-
-Airport *Graph::findAirport(string airportAtt,AIRPORT_OPTION airportOption) {
+/**
+ * Finds an airport by code or name in the graph
+ * Time Complexity: O(1)
+ * @param airportAtt
+ * @param airportOption code or name
+ * @returns the airport
+ */
+Airport *Graph::findAirport(string airportAtt, AIRPORT_OPTION airportOption) {
     if(airportOption == CODE)
         return airports[airportAtt];
     if(airportOption == NAME){
@@ -44,7 +50,11 @@ bool Graph::removeAirport(const Airport airport) {
 unordered_map<string, Airport *> Graph::getAirports() const {
     return this->airports;
 }
-
+/**
+ * Traverses the graph by depth starting on all nodes
+ * Time Complexity: O(V+E)
+ * @returns a vector with all the nodes
+ */
 vector<Airport *> Graph::dfs(){
     vector<Airport *> res;
     for(pair<string, Airport*> p : getAirports()){
@@ -55,7 +65,12 @@ vector<Airport *> Graph::dfs(){
     }
     return res;
 }
-
+/**
+ * Traverses the graph by depth starting on a specific node
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @returns a vector with all the nodes by depth
+ */
 vector<Airport *> Graph::dfs(Airport *airport) {
     vector<Airport *> res;
     if(airport == nullptr) return res;
@@ -74,7 +89,12 @@ void Graph::dfsVisit(Airport *a, vector<Airport *> &res){
         }
     }
 }
-
+/**
+ * Traverses the graph by breadth starting on a specific node
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @returns a vector with all the nodes by breadth
+ */
 vector<Airport *> Graph::bfs(Airport *airport) {
     vector<Airport *> res;
     if(airport == nullptr) return res;
@@ -95,7 +115,12 @@ vector<Airport *> Graph::bfs(Airport *airport) {
     }
     return res;
 }
-
+/**
+ * Gets the trips to the last level airports starting on a specific one
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @returns a trip vector
+ */
 vector<Trip> Graph::bfsMaxDepth(Airport *airport) {
     vector<Trip> res;
     queue<pair<Airport *, int>> q;
@@ -134,6 +159,11 @@ vector<Trip> Graph::bfsMaxDepth(Airport *airport) {
 }
 
 bool dfsIsDAG(Airport *airport);
+/**
+ * Check if the graph is acyclic
+ * Time Complexity: O(V+E)
+ * @returns a boolean value
+ */
 bool Graph::isDAG() {
     for(auto a: getAirports()){
         a.second->setVisited(false);
@@ -150,6 +180,13 @@ bool Graph::isDAG() {
 }
 
 void dfsAtDistanceVisit(Airport *airport, int distance, vector<Airport *> &res);
+/**
+ * Traverses the graph by depth until a specific distance
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @param distance
+ * @returns a vector containing all the nodes from the given one at distance
+ */
 vector<Airport *> Graph::dfsAtDistance(Airport *airport, int distance) {
     vector<Airport *> res;
     if(airport == nullptr) return res;
@@ -171,7 +208,13 @@ void dfsAtDistanceVisit(Airport *airport, int distance, vector<Airport *> &res){
             dfsAtDistanceVisit(w,distance-1,res);
     }
 }
-
+/**
+ * Traverses the graph by breadth until a specific distance
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @param distance
+ * @returns a vector containing all the nodes from the given one at distance
+ */
 vector<Airport *> Graph::bfsAtDistance(Airport *airport, int distance) {
     vector<Airport *> res;
     if(airport == nullptr) return res;
@@ -211,7 +254,11 @@ bool dfsIsDAG(Airport *airport){
     airport->setProcessing(false);
     return true;
 }
-
+/**
+ * Gets the number of connected components of the graph
+ * Time Complexity: O(V+E)
+ * @returns the number of connected components
+ */
 int Graph::numConnectedComponents() {
     for(auto a : getAirports()) a.second->setVisited(false);
     vector<Airport *> res;
@@ -227,6 +274,11 @@ int Graph::numConnectedComponents() {
 }
 
 void dfs_art(Airport *a,stack<Airport *> &s,unordered_set<Airport *> &res,int parent, int &i);
+/**
+ * Gets the number of articulation points of the graph
+ * Time Complexity: O(V+E)
+ * @returns the number of articulation points
+ */
 unordered_set<Airport *> Graph::getArticulationPoints() {
     unordered_set<Airport *> res;
     stack<Airport *> s;

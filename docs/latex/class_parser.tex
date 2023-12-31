@@ -1,0 +1,45 @@
+\doxysection{Parser Class Reference}
+\hypertarget{class_parser}{}\label{class_parser}\index{Parser@{Parser}}
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::list$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_parser_abdb9a2841828af713ebf2bf3a6d07a94}{read\+File}} (const std\+::string \&file)
+\item 
+static std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_parser_a3acd070757cf13cb985e8c0a7e76962e}{split\+Line}} (std\+::string line, const std\+::string \&delimiter)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The parser class is responsible for reading the given CSV files and creating the corresponding objects. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_parser_abdb9a2841828af713ebf2bf3a6d07a94}\label{class_parser_abdb9a2841828af713ebf2bf3a6d07a94} 
+\index{Parser@{Parser}!readFile@{readFile}}
+\index{readFile@{readFile}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily std\+::list$<$ std\+::vector$<$ std\+::string $>$ $>$ Parser\+::read\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Reads a given file. Time Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a list of vector of the attributes of the objects to be created 
+\end{DoxyReturn}
+\Hypertarget{class_parser_a3acd070757cf13cb985e8c0a7e76962e}\label{class_parser_a3acd070757cf13cb985e8c0a7e76962e} 
+\index{Parser@{Parser}!splitLine@{splitLine}}
+\index{splitLine@{splitLine}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{splitLine()}{splitLine()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Parser\+::split\+Line (\begin{DoxyParamCaption}\item[{std\+::string}]{line,  }\item[{const std\+::string \&}]{delimiter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_parser_8h}{Parser.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_parser_8cpp}{Parser.\+cpp}}\end{DoxyCompactItemize}

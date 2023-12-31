@@ -6,7 +6,9 @@
 #include "Parser.h"
 #include "Utils.h"
 #include "Functions.h"
-
+/**
+ * This class is responsible for all display functions, interaction with the user and making requests to the database
+ */
 class Menu {
     Dataset dataset;
     Graph graph;

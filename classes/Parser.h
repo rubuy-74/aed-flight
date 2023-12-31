@@ -9,7 +9,9 @@
 #include <list>
 #include <vector>
 #include <fstream>
-
+/**
+ * The parser class is responsible for reading the given CSV files and creating the corresponding objects.
+ */
 class Parser {
 public:
     static std::list<std::vector<std::string>> readFile(const std::string &file);

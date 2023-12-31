@@ -1,0 +1,45 @@
+\doxysection{Dataset Class Reference}
+\hypertarget{classDataset}{}\label{classDataset}\index{Dataset@{Dataset}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classDataset_affc2cc57f560350008264f75f77037dd}\label{classDataset_affc2cc57f560350008264f75f77037dd} 
+{\bfseries Dataset} (list$<$ vector$<$ string $>$ $>$ raw\+Flights, list$<$ vector$<$ string $>$ $>$ raw\+Airports, list$<$ vector$<$ string $>$ $>$ raw\+Airlines)
+\item 
+void \mbox{\hyperlink{classDataset_ab9e90c1cfc8b24b92d7d75db0295171a}{load\+Airports}} (list$<$ vector$<$ string $>$ $>$ raw\+Airports)
+\item 
+\Hypertarget{classDataset_a56f231006a744e93bd67326cb6cd254f}\label{classDataset_a56f231006a744e93bd67326cb6cd254f} 
+void {\bfseries load\+Flights} (list$<$ vector$<$ string $>$ $>$ raw\+Flights)
+\item 
+\Hypertarget{classDataset_ac8b710ae5065b47935b56254f2bdd4a1}\label{classDataset_ac8b710ae5065b47935b56254f2bdd4a1} 
+void {\bfseries load\+Airlines} (list$<$ vector$<$ string $>$ $>$ raw\+Airlines)
+\item 
+\Hypertarget{classDataset_a4b93a1d1e5a9c9dc606587671349508b}\label{classDataset_a4b93a1d1e5a9c9dc606587671349508b} 
+\mbox{\hyperlink{classGraph}{Graph}} {\bfseries get\+Network} () const
+\item 
+\Hypertarget{classDataset_a6f1eee9c9186fd94e5302b70a3db8d1d}\label{classDataset_a6f1eee9c9186fd94e5302b70a3db8d1d} 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{classAirline}{Airline}} $>$ {\bfseries get\+Airlines} () const
+\item 
+\Hypertarget{classDataset_a7afe92713542d9dd64bce0a2b310d4f1}\label{classDataset_a7afe92713542d9dd64bce0a2b310d4f1} 
+hash\+City\+Airport {\bfseries get\+City\+Airports} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDataset_ab9e90c1cfc8b24b92d7d75db0295171a}\label{classDataset_ab9e90c1cfc8b24b92d7d75db0295171a} 
+\index{Dataset@{Dataset}!loadAirports@{loadAirports}}
+\index{loadAirports@{loadAirports}!Dataset@{Dataset}}
+\doxysubsubsection{\texorpdfstring{loadAirports()}{loadAirports()}}
+{\footnotesize\ttfamily void Dataset\+::load\+Airports (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{raw\+Airports }\end{DoxyParamCaption})}
+
+Populates the graph with all the nodes (airports) and also maps the (city, country) pair to all airports in it 
+\begin{DoxyParams}{Parameters}
+{\em raw\+Airports} & vector of all the airports \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Dataset.\+h\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Dataset.\+cpp\end{DoxyCompactItemize}

@@ -14,7 +14,12 @@ void Utils::showRaw(std::list<std::vector<std::string>> raw) {
 double toRad(double degree){
     return degree/180 * M_PI;
 }
-
+/**
+ * Calculates the distance between two coordinates using Haversine Formula
+ * @param c1
+ * @param c2
+ * @returns the distance between the coordinates
+ */
 double Utils::computeDistance(Coordinate c1, Coordinate c2){
     double dist = sin(toRad(c1.getLatitude())) * sin(toRad(c2.getLatitude()))
                   + cos(toRad(c1.getLatitude())) * cos(toRad(c2.getLatitude()))
@@ -31,7 +36,9 @@ void Utils::showAirport(Airport *airport) {
     cout << "   " << "Country: " <<airport->getCountry() << '\n';
     cout << "   " << "Coordinates: " <<airport->getCoordinates().getLatitude() << " " <<airport->getCoordinates().getLongitude() << '\n';
 }
-
+/**
+ * Clears the terminal screen after input
+ */
 void Utils::clearScreen(){
 #if defined(__linux__)
     system("clear");

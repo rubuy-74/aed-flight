@@ -7,7 +7,9 @@
 #include <iostream>
 #include "Airport.h"
 #include "Airline.h"
-
+/**
+ * This structure is responsible for defining a full trip
+ */
 struct Trip{
     int stops;
     pair<Airport*, Airport*> source_destination;
@@ -17,7 +19,9 @@ struct Trip{
     Trip(int stops, pair<Airport*, Airport*> src_dest, vector<Airport*> airports, vector<Flight*> flights)
         : stops(stops), source_destination(src_dest), airports(airports), flights(flights) {}
 };
-
+/**
+ * This structure is responsible for defining user's restrictions for a trip
+ */
 struct Filters{
     vector<Airline> preferredAirlines;
     bool minimizeAirlines;
@@ -26,7 +30,9 @@ struct Filters{
     Filters(vector<Airline> preferredAirlines, bool minimizeAirlines, vector<Airport> preferredAirports)
         : preferredAirlines(preferredAirlines), minimizeAirlines(minimizeAirlines), preferredAirports(preferredAirports) {}
 };
-
+/**
+ * This class contains some useful functions to use along the project
+ */
 class Utils {
 public:
     static void showRaw(std::list<std::vector<std::string>> raw);

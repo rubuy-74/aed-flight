@@ -1,0 +1,182 @@
+\doxysection{Menu Class Reference}
+\hypertarget{class_menu}{}\label{class_menu}\index{Menu@{Menu}}
+
+
+{\ttfamily \#include $<$Menu.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_menu_ac4fc7ccf7c78e352c9dde46020db1550}{Menu}} (\mbox{\hyperlink{class_dataset}{Dataset}} dataset, \mbox{\hyperlink{class_graph}{Graph}} graph, \mbox{\hyperlink{class_functions}{Functions}} functions)
+\item 
+void \mbox{\hyperlink{class_menu_a00fb77e5e7d27c559e7674bbb26b672c}{show\+Main\+Menu}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a85ef2e0f671a7d7be36c4fe8ebafb8f5}{show\+Listing\+Functions\+Menu}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a9bd56218a1f0f9417b148bb0ed831c46}{show\+Best\+Option}} ()
+\item 
+void \mbox{\hyperlink{class_menu_af90ccc63b8bd7ea49b874a1791ab1fc3}{show\+Option1}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a5e8e82f95ac1ad807c08a97198fcccfd}{show\+Option2}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a39740a6de3eeb6070b44e1a1bd94bbd7}{show\+Option3}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a0c6d800658ff018dcee1a38f77e42fcf}{show\+Option4}} ()
+\item 
+void \mbox{\hyperlink{class_menu_a842b62e491531755ce2a39a0c2af2561}{show\+Option5}} ()
+\item 
+void \mbox{\hyperlink{class_menu_ae3dead22073865b28752e98489499a1d}{show\+Option6}} ()
+\item 
+void \mbox{\hyperlink{class_menu_ac63a3d79f3a7b58c611b32df4748114a}{show\+Option7}} ()
+\item 
+void \mbox{\hyperlink{class_menu_aa1cb367a46c2bb5b3f6d2d1d34cc6c90}{show\+Option8}} ()
+\item 
+void \mbox{\hyperlink{class_menu_aed1e246a7dd30475201d00c55af1c910}{show\+Option9}} ()
+\item 
+void \mbox{\hyperlink{class_menu_aa8984efba0981bc09c000a633a66b820}{show\+Option10}} ()
+\item 
+void \mbox{\hyperlink{class_menu_ac1e464095e1acaa5546bf022ade208b6}{show\+Listing\+Option}} (string option)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_menu_a9a57877876abd3282e6665eaafe891e0}{input\+Airports}} (string element)
+\item 
+vector$<$ \mbox{\hyperlink{class_airline}{Airline}} $>$ \mbox{\hyperlink{class_menu_a144b7519c6dbb18e625d1ec8083f8f76}{get\+Airlines}} ()
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} $>$ \mbox{\hyperlink{class_menu_a4cd530c58f91cc48467ae2eb107fb075}{get\+Airport}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is responsible for all display functions, interaction with the user and making requests to the database 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_menu_ac4fc7ccf7c78e352c9dde46020db1550}\label{class_menu_ac4fc7ccf7c78e352c9dde46020db1550} 
+\index{Menu@{Menu}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{Menu()}{Menu()}}
+{\footnotesize\ttfamily Menu\+::\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dataset}{Dataset}}}]{dataset,  }\item[{\mbox{\hyperlink{class_graph}{Graph}}}]{graph,  }\item[{\mbox{\hyperlink{class_functions}{Functions}}}]{functions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_a144b7519c6dbb18e625d1ec8083f8f76}\label{class_menu_a144b7519c6dbb18e625d1ec8083f8f76} 
+\index{Menu@{Menu}!getAirlines@{getAirlines}}
+\index{getAirlines@{getAirlines}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getAirlines()}{getAirlines()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airline}{Airline}} $>$ Menu\+::get\+Airlines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Serializes the user\textquotesingle{}s airlines input \begin{DoxyReturn}{Returns}
+a vector with all the airlines chosen by user 
+\end{DoxyReturn}
+\Hypertarget{class_menu_a4cd530c58f91cc48467ae2eb107fb075}\label{class_menu_a4cd530c58f91cc48467ae2eb107fb075} 
+\index{Menu@{Menu}!getAirport@{getAirport}}
+\index{getAirport@{getAirport}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getAirport()}{getAirport()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} $>$ Menu\+::get\+Airport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Serializes the user\textquotesingle{}s airports input \begin{DoxyReturn}{Returns}
+a vector with all the airports chosen by user 
+\end{DoxyReturn}
+\Hypertarget{class_menu_a9a57877876abd3282e6665eaafe891e0}\label{class_menu_a9a57877876abd3282e6665eaafe891e0} 
+\index{Menu@{Menu}!inputAirports@{inputAirports}}
+\index{inputAirports@{inputAirports}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{inputAirports()}{inputAirports()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Menu\+::input\+Airports (\begin{DoxyParamCaption}\item[{string}]{element }\end{DoxyParamCaption})}
+
+Prompt the user to choose the source/destination airport(s) 
+\begin{DoxyParams}{Parameters}
+{\em element} & source/destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of airports corresponding to the serialized location 
+\end{DoxyReturn}
+\Hypertarget{class_menu_a9bd56218a1f0f9417b148bb0ed831c46}\label{class_menu_a9bd56218a1f0f9417b148bb0ed831c46} 
+\index{Menu@{Menu}!showBestOption@{showBestOption}}
+\index{showBestOption@{showBestOption}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showBestOption()}{showBestOption()}}
+{\footnotesize\ttfamily void Menu\+::show\+Best\+Option (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Displays the best flight option between two locations \Hypertarget{class_menu_a85ef2e0f671a7d7be36c4fe8ebafb8f5}\label{class_menu_a85ef2e0f671a7d7be36c4fe8ebafb8f5} 
+\index{Menu@{Menu}!showListingFunctionsMenu@{showListingFunctionsMenu}}
+\index{showListingFunctionsMenu@{showListingFunctionsMenu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showListingFunctionsMenu()}{showListingFunctionsMenu()}}
+{\footnotesize\ttfamily void Menu\+::show\+Listing\+Functions\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Displays the listing functions menu \Hypertarget{class_menu_ac1e464095e1acaa5546bf022ade208b6}\label{class_menu_ac1e464095e1acaa5546bf022ade208b6} 
+\index{Menu@{Menu}!showListingOption@{showListingOption}}
+\index{showListingOption@{showListingOption}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showListingOption()}{showListingOption()}}
+{\footnotesize\ttfamily void Menu\+::show\+Listing\+Option (\begin{DoxyParamCaption}\item[{string}]{option }\end{DoxyParamCaption})}
+
+Displays the result of all listing functions \Hypertarget{class_menu_a00fb77e5e7d27c559e7674bbb26b672c}\label{class_menu_a00fb77e5e7d27c559e7674bbb26b672c} 
+\index{Menu@{Menu}!showMainMenu@{showMainMenu}}
+\index{showMainMenu@{showMainMenu}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showMainMenu()}{showMainMenu()}}
+{\footnotesize\ttfamily void Menu\+::show\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Displays the main menu \Hypertarget{class_menu_af90ccc63b8bd7ea49b874a1791ab1fc3}\label{class_menu_af90ccc63b8bd7ea49b874a1791ab1fc3} 
+\index{Menu@{Menu}!showOption1@{showOption1}}
+\index{showOption1@{showOption1}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption1()}{showOption1()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_aa8984efba0981bc09c000a633a66b820}\label{class_menu_aa8984efba0981bc09c000a633a66b820} 
+\index{Menu@{Menu}!showOption10@{showOption10}}
+\index{showOption10@{showOption10}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption10()}{showOption10()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option10 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_a5e8e82f95ac1ad807c08a97198fcccfd}\label{class_menu_a5e8e82f95ac1ad807c08a97198fcccfd} 
+\index{Menu@{Menu}!showOption2@{showOption2}}
+\index{showOption2@{showOption2}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption2()}{showOption2()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_a39740a6de3eeb6070b44e1a1bd94bbd7}\label{class_menu_a39740a6de3eeb6070b44e1a1bd94bbd7} 
+\index{Menu@{Menu}!showOption3@{showOption3}}
+\index{showOption3@{showOption3}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption3()}{showOption3()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_a0c6d800658ff018dcee1a38f77e42fcf}\label{class_menu_a0c6d800658ff018dcee1a38f77e42fcf} 
+\index{Menu@{Menu}!showOption4@{showOption4}}
+\index{showOption4@{showOption4}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption4()}{showOption4()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_a842b62e491531755ce2a39a0c2af2561}\label{class_menu_a842b62e491531755ce2a39a0c2af2561} 
+\index{Menu@{Menu}!showOption5@{showOption5}}
+\index{showOption5@{showOption5}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption5()}{showOption5()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option5 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_ae3dead22073865b28752e98489499a1d}\label{class_menu_ae3dead22073865b28752e98489499a1d} 
+\index{Menu@{Menu}!showOption6@{showOption6}}
+\index{showOption6@{showOption6}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption6()}{showOption6()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option6 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_ac63a3d79f3a7b58c611b32df4748114a}\label{class_menu_ac63a3d79f3a7b58c611b32df4748114a} 
+\index{Menu@{Menu}!showOption7@{showOption7}}
+\index{showOption7@{showOption7}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption7()}{showOption7()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option7 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_aa1cb367a46c2bb5b3f6d2d1d34cc6c90}\label{class_menu_aa1cb367a46c2bb5b3f6d2d1d34cc6c90} 
+\index{Menu@{Menu}!showOption8@{showOption8}}
+\index{showOption8@{showOption8}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption8()}{showOption8()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option8 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_menu_aed1e246a7dd30475201d00c55af1c910}\label{class_menu_aed1e246a7dd30475201d00c55af1c910} 
+\index{Menu@{Menu}!showOption9@{showOption9}}
+\index{showOption9@{showOption9}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{showOption9()}{showOption9()}}
+{\footnotesize\ttfamily void Menu\+::show\+Option9 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_menu_8h}{Menu.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_menu_8cpp}{Menu.\+cpp}}\end{DoxyCompactItemize}

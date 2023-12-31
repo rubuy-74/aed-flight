@@ -9,11 +9,9 @@
 #include "Utils.h"
 #include <unordered_set>
 #include <unordered_map>
-
-enum MENU_OPTION {
-    FROMCITYTOCOORDINATES,FROMCOORDINATESTOCITY,FROMCOORDINATESTOAIRPORT,FROMAIRPORTTOCOORDINATES,FROMCITYTOAIRPORT,FROMAIRPORTTOCITY,NONE
-};
-
+/**
+ * This class contains all functions needed to interact with the database
+ */
 typedef unordered_map<pair<string,string>,int,pairHashFunction> hashFlightsCity;
 class Functions {
     private:
@@ -25,16 +23,16 @@ class Functions {
 
         // iv
         int getNumDestinationsFromCity(string city, string country);
-        int getReachableDestinationsFromAirport(Airport airport);
+        int getReachableDestinationsFromAirport(Airport *airport);
 
         // ii
-        unsigned int getNumFlightsOutOfAnAirport(Airport airport);
-        int getNumAirlinesOfAnAirport(Airport airport);
+        unsigned int getNumFlightsOutOfAnAirport(Airport *airport);
+        int getNumAirlinesOfAnAirport(Airport *airport);
 
         // v
-        int getNumDestinationsAirportsOfAnAirport(Airport airport);
-        int getNumDestinationsCitiesOfAnAirport(Airport airport);
-        int getNumDestinationsCountriesOfAnAirport(Airport airport);
+        int getNumDestinationsAirportsOfAnAirport(Airport *airport);
+        int getNumDestinationsCitiesOfAnAirport(Airport *airport);
+        int getNumDestinationsCountriesOfAnAirport(Airport *airport);
 
         // viii
         Airport *topKAirports(int k);
@@ -45,8 +43,8 @@ class Functions {
 
         // vi
         int getNumAirportsAtDistance(Airport *airport, int distance);
-        int getNumCitiesAtDistance(Airport airport, int distance);
-        int getNumCountriesAtDistance(Airport airport,int distance);
+        int getNumCitiesAtDistance(Airport *airport, int distance);
+        int getNumCountriesAtDistance(Airport *airport,int distance);
 
         // vii
         vector<Trip> maxTripStops(Airport *airport);
@@ -62,12 +60,11 @@ class Functions {
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
         vector<Trip> findMinPath(vector<Airport *> start, vector<Airport *> dest, Filters filter);
 
-    unordered_map<pair<string, string>, int, pairHashFunction> getFlightsPerCity();
+        hashFlightsCity getFlightsPerCity();
 
-    vector<Airport *> convertAirportToAirports(string s);
-    vector<Airport *> convertCoordsToAirports(string s);
-
-    vector<Airport *> convertCityToAirports(string cityName, string countryName);
+        vector<Airport *> convertAirportToAirports(string s);
+        vector<Airport *> convertCoordsToAirports(string s);
+        vector<Airport *> convertCityToAirports(string cityName, string countryName);
 };
 
 

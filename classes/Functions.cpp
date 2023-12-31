@@ -20,7 +20,13 @@ int countUniqueAirlines(vector<Flight*> flights) {
     }
     return uniqueAirlines.size();
 }
-
+/**
+ * Gets the fewest stop trips and also the ones with the fewest airlines (if filtered)
+ * \n Time Complexity: O(n log(n))
+ * @param allPaths vector with all minimum trips between two locations
+ * @param filter that contains user's restrictions
+ * @returns the fewest stop trips pleasing user's restrictions
+ */
 vector<Trip> getMinPathTrips(vector<Trip> allPaths, Filters filter) {
     vector<Trip> filteredStops;
     vector<Trip> filteredAirlines;
@@ -46,7 +52,12 @@ vector<Trip> getMinPathTrips(vector<Trip> allPaths, Filters filter) {
     }
     return filteredStops;
 }
-
+/**
+ * Gets all airports near a specific coordinate
+ * Time Complexity: O(n)
+ * @param c coordinate
+ * @returns all the airports near the coordinate
+ */
 vector<Airport*> Functions::getAirportsFromCoordinates(Coordinate c){
 
     double minDistanceSource = numeric_limits<double>::max();
@@ -77,13 +88,25 @@ void Functions::setAllAirportsUnvisited(){
         airport.second->setVisited(false);
     }
 }
-
+/**
+ * Gets the number of airports at a specific distance from another
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @param distance
+ * @returns the number of airports at distance
+ */
 int Functions::getNumAirportsAtDistance(Airport *airport, int distance) {
     return dataset.getNetwork().bfsAtDistance(airport,distance).size();
 }
-
-int Functions::getNumCitiesAtDistance(Airport airport, int distance) {
-    auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
+/**
+ * Gets the number of cities at a specific distance from an airport
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @param distance
+ * @returns the number of cities at distance
+ */
+int Functions::getNumCitiesAtDistance(Airport *airport, int distance) {
+    auto destinations = dataset.getNetwork().bfsAtDistance(airport,distance);
     vector<string> cities;
     for(auto a : destinations){
         if(find(cities.begin(),cities.end(),a->getCity()) == cities.end())
@@ -91,9 +114,15 @@ int Functions::getNumCitiesAtDistance(Airport airport, int distance) {
     }
     return cities.size();
 }
-
-int Functions::getNumCountriesAtDistance(Airport airport, int distance) {
-    auto destinations = dataset.getNetwork().bfsAtDistance(dataset.getNetwork().findAirport(airport),distance);
+/**
+ * Gets the number of countries at a specific distance from an airport
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @param distance
+ * @returns the number of countries at distance
+ */
+int Functions::getNumCountriesAtDistance(Airport *airport, int distance) {
+    auto destinations = dataset.getNetwork().bfsAtDistance(airport,distance);
     vector<string> countries;
     for(auto a: destinations){
         if(find(countries.begin(),countries.end(),a->getCountry()) == countries.end())
@@ -101,9 +130,14 @@ int Functions::getNumCountriesAtDistance(Airport airport, int distance) {
     }
     return countries.size();
 }
-
-unsigned int Functions::getNumFlightsOutOfAnAirport(Airport airport) {
-    return dataset.getNetwork().findAirport(airport)->getFlights().size();
+/**
+ * Gets the number of outgoing flights of an airport
+ * Time Complexity: O(1)
+ * @param airport
+ * @returns the number of outgoing flights
+ */
+unsigned int Functions::getNumFlightsOutOfAnAirport(Airport *airport) {
+    return airport->getFlights().size();
 }
 
 bool Functions::findInVector(const vector<string>& v, const string& x){
@@ -112,10 +146,15 @@ bool Functions::findInVector(const vector<string>& v, const string& x){
     }
     return false;
 }
-
-int Functions::getNumAirlinesOfAnAirport(Airport airport) {
+/**
+ * Gets the number of outgoing airlines of an airport
+ * Time Complexity: O(n^2)
+ * @param airport
+ * @returns the number of outgoing airlines
+ */
+int Functions::getNumAirlinesOfAnAirport(Airport *airport) {
     vector<string> v;
-    for(auto flight : dataset.getNetwork().findAirport(airport)->getFlights()){
+    for(auto flight : airport->getFlights()){
         if(!findInVector(v, flight->getAirline().getCode())){
             v.push_back(flight->getAirline().getCode());
         }
@@ -123,18 +162,23 @@ int Functions::getNumAirlinesOfAnAirport(Airport airport) {
     return v.size();
 }
 
-int Functions::getNumDestinationsAirportsOfAnAirport(Airport airport) {
-    return getNumAirportsAtDistance(dataset.getNetwork().findAirport(airport), 1);
+int Functions::getNumDestinationsAirportsOfAnAirport(Airport *airport) {
+    return getNumAirportsAtDistance(airport, 1);
 }
 
-int Functions::getNumDestinationsCitiesOfAnAirport(Airport airport) {
+int Functions::getNumDestinationsCitiesOfAnAirport(Airport *airport) {
     return getNumCitiesAtDistance(airport, 1);
 }
 
-int Functions::getNumDestinationsCountriesOfAnAirport(Airport airport) {
+int Functions::getNumDestinationsCountriesOfAnAirport(Airport *airport) {
     return getNumCountriesAtDistance(airport, 1);
 }
-
+/**
+ * Gets the top K airports from the database
+ * Time Complexity: O(n log(n))
+ * @param k
+ * @returns top K airports
+ */
 Airport *Functions::topKAirports(int k) {
     vector<Airport*> tmp;
     for(auto airport : dataset.getNetwork().getAirports()){
@@ -145,7 +189,11 @@ Airport *Functions::topKAirports(int k) {
     });
     return tmp[max(0,k-1)];
 }
-
+/**
+ * Gets an hashmap that maps a (city, pair) pair to all the flights in it
+ * Time Complexity: O(n^2)
+ * @returns an hashmap that maps a (city, pair) pair to all the flights in it
+ */
 hashFlightsCity Functions::getFlightsPerCity() {
     hashFlightsCity flightsPerCity;
     for(auto airports: dataset.getNetwork().getAirports()){
@@ -155,7 +203,11 @@ hashFlightsCity Functions::getFlightsPerCity() {
     }
     return flightsPerCity;
 }
-
+/**
+ * Gets an hashmap that maps an airline to all the flights of it
+ * Time Complexity: O(n^2)
+ * @returns an hashmap that maps an airline to all the flights of it
+ */
 unordered_map<string, int> Functions::getFlightsPerAirline() {
     unordered_map<string,int> flightsPerAirline;
     for(auto airports: dataset.getNetwork().getAirports()){
@@ -178,9 +230,13 @@ int Functions::getNumDestinationsFromCity(string city,string country) {
     }
     return res;
 }
-
-int Functions::getReachableDestinationsFromAirport(Airport airport) {
-    return dataset.getNetwork().dfs(dataset.getNetwork().findAirport(airport)).size();
+/**
+ * Gets the number of all reachable destinations from an airport
+ * Time Complexity: O(V+E)
+ * @returns the number of all reachable destinations from an airport
+ */
+int Functions::getReachableDestinationsFromAirport(Airport *airport) {
+    return dataset.getNetwork().dfs(airport).size();
 }
 
 bool checkAirlineFilter(Airline airline, vector<Airline> preferredAirlines){
@@ -190,7 +246,14 @@ bool checkAirlineFilter(Airline airline, vector<Airline> preferredAirlines){
 bool checkAirportFilter(Airport *airport, vector<Airport> preferredAirports){
     return find(preferredAirports.begin(), preferredAirports.end(), *airport) != preferredAirports.end();
 }
-
+/**
+ * Gets all minimum paths possible between two locations, respecting user's filters
+ * Time Complexity: O(n^2)
+ * @param start airport location
+ * @param end airport location
+ * @param allMinPaths vector to store minimum stops trips
+ * @param filter containing user's restrictions
+ */
 void Functions::getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter){
 
     setAllAirportsUnvisited();
@@ -246,11 +309,21 @@ vector<Trip> Functions::findMinPath(vector<Airport *> start, vector<Airport *> d
     return getMinPathTrips(minPaths, filter);
 }
 
-
+/**
+ * Gets all maximum stops trips from a specific airport
+ * Time Complexity: O(V+E)
+ * @param airport
+ * @returns a vector with most stops trips
+ */
 vector<Trip> Functions::maxTripStops(Airport *airport) {
     return dataset.getNetwork().bfsMaxDepth(airport);
 }
 
+/**
+ * Gets the maximum stops trips from all the database
+ * Time Complexity: O(n^2)
+ * @returns a vector with most stops trips
+ */
 vector<Trip> Functions::maxTripsGraph() {
     Graph network = dataset.getNetwork();
     unordered_map<int,vector<Trip>> res;
@@ -274,13 +347,25 @@ double stol_with_check(string s){
     if(is_valid) return stod(s);
     else return -1;
 }
-
+/**
+ * Serialize a city to all airports in it
+ * Time Complexity: O(n)
+ * @param cityName
+ * @param countryName
+ * @returns a vector with all city airports
+ */
 vector<Airport *> Functions::convertCityToAirports(string cityName,string countryName) {
     vector<Airport *> res;
     res = dataset.getCityAirports()[make_pair(cityName,countryName)];
 
     return res;
 }
+/**
+ * Serialize an airport to a vector
+ * Time Complexity: O(1)
+ * @param s code
+ * @returns a vector with the airport
+ */
 vector<Airport *> Functions::convertAirportToAirports(string s) {
     vector<Airport *> res;
     if(dataset.getNetwork().findAirport(s, CODE) != nullptr)
@@ -289,6 +374,12 @@ vector<Airport *> Functions::convertAirportToAirports(string s) {
         res.push_back(dataset.getNetwork().findAirport(s, NAME));
     return res;
 }
+/**
+ * Serialize a coordinate to all airports near it
+ * Time Complexity: O(n)
+ * @param s coordinate
+ * @returns a vector with all near airports
+ */
 vector<Airport *> Functions:: convertCoordsToAirports(string s){
     vector<Airport *> res;
     vector<string> bruh = Parser::splitLine(s," ");

@@ -3,7 +3,9 @@
 
 #include "Graph.h"
 #include <list>
-
+/**
+ * This structure is responsible for defining an hash function for a more optimal lookup
+ */
 struct pairHashFunction{
     size_t operator()(const pair<string,string> p) const {
         string new_s = p.first + p.second;
@@ -12,7 +14,14 @@ struct pairHashFunction{
         return hash_value;
     }
 };
-
+/**
+ * This class is responsible for storing the program's data. It contains:
+ * <ul>
+ *  <li> A Graph
+ *  <li> An hashmap that maps airline codes to it's correspondent object
+ *  <li> An hashmap that maps a (city, country) pair to all the airports in it
+ * <ul>
+ */
 typedef unordered_map<pair<string,string>,vector<Airport*>,pairHashFunction> hashCityAirport;
 class Dataset {
     private:

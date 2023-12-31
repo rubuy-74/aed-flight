@@ -1,0 +1,95 @@
+\doxysection{Utils Class Reference}
+\hypertarget{class_utils}{}\label{class_utils}\index{Utils@{Utils}}
+
+
+{\ttfamily \#include $<$Utils.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_utils_a4db874b9ee77f5a0cace0b6379bd9eba}{show\+Raw}} (std\+::list$<$ std\+::vector$<$ std\+::string $>$ $>$ raw)
+\item 
+static void \mbox{\hyperlink{class_utils_ae77e278f03b0f741115afe2ac2513896}{show\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+static void \mbox{\hyperlink{class_utils_ab3b63ffe48ba359b239918d7b31bffbb}{clear\+Screen}} ()
+\item 
+static void \mbox{\hyperlink{class_utils_a83a469145aeba78fc6621579b1adc27f}{show\+File}} (list$<$ vector$<$ string $>$ $>$ menu)
+\item 
+static void \mbox{\hyperlink{class_utils_a36b9b7f83403288be9558807e4283b37}{draw\+Page\+Airports}} (vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ airports)
+\item 
+static void \mbox{\hyperlink{class_utils_a191f81b154b016a74de4ce2171f5cb08}{draw\+Box}} (vector$<$ string $>$ text)
+\item 
+static double \mbox{\hyperlink{class_utils_aa18d1e8172f9532ad027476d7cb96158}{compute\+Distance}} (\mbox{\hyperlink{class_coordinate}{Coordinate}} c1, \mbox{\hyperlink{class_coordinate}{Coordinate}} c2)
+\item 
+static void \mbox{\hyperlink{class_utils_ad03f97bffa9c5c13009f92f88ffb34af}{draw\+Page\+Flights}} (vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ trips, bool is\+Path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class contains some useful functions to use along the project 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_utils_ab3b63ffe48ba359b239918d7b31bffbb}\label{class_utils_ab3b63ffe48ba359b239918d7b31bffbb} 
+\index{Utils@{Utils}!clearScreen@{clearScreen}}
+\index{clearScreen@{clearScreen}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{clearScreen()}{clearScreen()}}
+{\footnotesize\ttfamily void Utils\+::clear\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Clears the terminal screen after input \Hypertarget{class_utils_aa18d1e8172f9532ad027476d7cb96158}\label{class_utils_aa18d1e8172f9532ad027476d7cb96158} 
+\index{Utils@{Utils}!computeDistance@{computeDistance}}
+\index{computeDistance@{computeDistance}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{computeDistance()}{computeDistance()}}
+{\footnotesize\ttfamily double Utils\+::compute\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_coordinate}{Coordinate}}}]{c1,  }\item[{\mbox{\hyperlink{class_coordinate}{Coordinate}}}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculates the distance between two coordinates using Haversine Formula 
+\begin{DoxyParams}{Parameters}
+{\em c1} & \\
+\hline
+{\em c2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance between the coordinates 
+\end{DoxyReturn}
+\Hypertarget{class_utils_a191f81b154b016a74de4ce2171f5cb08}\label{class_utils_a191f81b154b016a74de4ce2171f5cb08} 
+\index{Utils@{Utils}!drawBox@{drawBox}}
+\index{drawBox@{drawBox}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{drawBox()}{drawBox()}}
+{\footnotesize\ttfamily void Utils\+::draw\+Box (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_utils_a36b9b7f83403288be9558807e4283b37}\label{class_utils_a36b9b7f83403288be9558807e4283b37} 
+\index{Utils@{Utils}!drawPageAirports@{drawPageAirports}}
+\index{drawPageAirports@{drawPageAirports}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{drawPageAirports()}{drawPageAirports()}}
+{\footnotesize\ttfamily void Utils\+::draw\+Page\+Airports (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$}]{airports }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_utils_ad03f97bffa9c5c13009f92f88ffb34af}\label{class_utils_ad03f97bffa9c5c13009f92f88ffb34af} 
+\index{Utils@{Utils}!drawPageFlights@{drawPageFlights}}
+\index{drawPageFlights@{drawPageFlights}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{drawPageFlights()}{drawPageFlights()}}
+{\footnotesize\ttfamily void Utils\+::draw\+Page\+Flights (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$}]{trips,  }\item[{bool}]{is\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_utils_ae77e278f03b0f741115afe2ac2513896}\label{class_utils_ae77e278f03b0f741115afe2ac2513896} 
+\index{Utils@{Utils}!showAirport@{showAirport}}
+\index{showAirport@{showAirport}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{showAirport()}{showAirport()}}
+{\footnotesize\ttfamily void Utils\+::show\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_utils_a83a469145aeba78fc6621579b1adc27f}\label{class_utils_a83a469145aeba78fc6621579b1adc27f} 
+\index{Utils@{Utils}!showFile@{showFile}}
+\index{showFile@{showFile}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{showFile()}{showFile()}}
+{\footnotesize\ttfamily void Utils\+::show\+File (\begin{DoxyParamCaption}\item[{list$<$ vector$<$ string $>$ $>$}]{menu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_utils_a4db874b9ee77f5a0cace0b6379bd9eba}\label{class_utils_a4db874b9ee77f5a0cace0b6379bd9eba} 
+\index{Utils@{Utils}!showRaw@{showRaw}}
+\index{showRaw@{showRaw}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{showRaw()}{showRaw()}}
+{\footnotesize\ttfamily void Utils\+::show\+Raw (\begin{DoxyParamCaption}\item[{std\+::list$<$ std\+::vector$<$ std\+::string $>$ $>$}]{raw }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_utils_8h}{Utils.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_utils_8cpp}{Utils.\+cpp}}\end{DoxyCompactItemize}

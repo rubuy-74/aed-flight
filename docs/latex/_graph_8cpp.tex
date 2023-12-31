@@ -1,0 +1,36 @@
+\doxysection{/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\+Graph.cpp File Reference}
+\hypertarget{_graph_8cpp}{}\label{_graph_8cpp}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.cpp@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.cpp}}
+{\ttfamily \#include $<$stack$>$}\newline
+{\ttfamily \#include "{}Graph.\+h"{}}\newline
+{\ttfamily \#include "{}Utils.\+h"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_graph_8cpp_a753c624f6a8d03a363f8ed3c9e2ed1fa}{dfs\+Is\+DAG}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+void \mbox{\hyperlink{_graph_8cpp_a12968a30a05d0a95f2c9ec63b596700e}{dfs\+At\+Distance\+Visit}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance, vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&res)
+\item 
+void \mbox{\hyperlink{_graph_8cpp_a574e40357fb071632c3060437695e9a8}{dfs\+\_\+art}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}a, stack$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&s, unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&res, int parent, int \&i)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_graph_8cpp_a574e40357fb071632c3060437695e9a8}\label{_graph_8cpp_a574e40357fb071632c3060437695e9a8} 
+\index{Graph.cpp@{Graph.cpp}!dfs\_art@{dfs\_art}}
+\index{dfs\_art@{dfs\_art}!Graph.cpp@{Graph.cpp}}
+\doxysubsubsection{\texorpdfstring{dfs\_art()}{dfs\_art()}}
+{\footnotesize\ttfamily void dfs\+\_\+art (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{a,  }\item[{stack$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&}]{s,  }\item[{unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&}]{res,  }\item[{int}]{parent,  }\item[{int \&}]{i }\end{DoxyParamCaption})}
+
+\Hypertarget{_graph_8cpp_a12968a30a05d0a95f2c9ec63b596700e}\label{_graph_8cpp_a12968a30a05d0a95f2c9ec63b596700e} 
+\index{Graph.cpp@{Graph.cpp}!dfsAtDistanceVisit@{dfsAtDistanceVisit}}
+\index{dfsAtDistanceVisit@{dfsAtDistanceVisit}!Graph.cpp@{Graph.cpp}}
+\doxysubsubsection{\texorpdfstring{dfsAtDistanceVisit()}{dfsAtDistanceVisit()}}
+{\footnotesize\ttfamily void dfs\+At\+Distance\+Visit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance,  }\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&}]{res }\end{DoxyParamCaption})}
+
+\Hypertarget{_graph_8cpp_a753c624f6a8d03a363f8ed3c9e2ed1fa}\label{_graph_8cpp_a753c624f6a8d03a363f8ed3c9e2ed1fa} 
+\index{Graph.cpp@{Graph.cpp}!dfsIsDAG@{dfsIsDAG}}
+\index{dfsIsDAG@{dfsIsDAG}!Graph.cpp@{Graph.cpp}}
+\doxysubsubsection{\texorpdfstring{dfsIsDAG()}{dfsIsDAG()}}
+{\footnotesize\ttfamily bool dfs\+Is\+DAG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
