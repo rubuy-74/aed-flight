@@ -3,12 +3,17 @@
 
 #include "Graph.h"
 #include <list>
-#include <boost/functional/hash.hpp>
 
+struct pairHashFunction{
+    size_t operator()(const pair<string,string> p) const {
+        string new_s = p.first + p.second;
+        int hash_value = 0;
+        for(char c : new_s) hash_value = 282943 * (toupper(c) - 'A');
+        return hash_value;
+    }
+};
 
-
-
-typedef unordered_map<pair<string,string>,vector<Airport*>,boost::hash<pair<string,string>>> hashCityAirport;
+typedef unordered_map<pair<string,string>,vector<Airport*>,pairHashFunction> hashCityAirport;
 class Dataset {
     private:
         Graph network;
