@@ -446,7 +446,7 @@ void Menu::showOption8() {
     for(Airport * a : functions.topKAirports(stoi(input))){
         text.push_back(a);
     }
-    Utils::drawPageAirports(text);
+    Utils::drawPageTopKAirports(text);
 }
 
 void Menu::showOption9() {
