@@ -21,7 +21,7 @@ Project is created with:
 
 To build this project:
 - Use Clion IDE to build the project **or**
-- Manually build project into cmake-build-release folder:
+- Manually build project into build folder:
 ```bash
 cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
 cmake --build build/
