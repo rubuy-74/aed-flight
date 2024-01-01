@@ -33,7 +33,12 @@ To run this project:
 
 - Go to release-build directory and execute the program:
 ```bash
+# via clion
 cd cmake-build-release
+./aed_flight
+
+# build manually
+cd build
 ./aed_flight
 ```
 
