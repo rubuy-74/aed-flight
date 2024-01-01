@@ -111,6 +111,31 @@ void Utils::drawPageAirports(vector<Airport *> airports) {
     } while (decision != "0");
 }
 
+void Utils::drawPageTopKAirports(vector<Airport *> airports) {
+    unordered_map<string,int> attSize = getAttSize(airports);
+    int sus = attSize["code"] + attSize["name"] + attSize["country"] + attSize["city"] + 8 + 5;
+    string decision;
+    int pageSize = 10;
+    int numPages = airports.size()%pageSize  == 0 ? airports.size()/pageSize : airports.size()/pageSize + 1;
+    int page = 0;
+    do {
+        clearScreen();
+        cout << "TOP-" << airports.size() << " AIRPORTS: "<< '\n';
+        int numAirports = (pageSize*(page+1)) > airports.size() ? (airports.size()%pageSize) : pageSize;
+        cout << string(sus,'-') << '\n';
+        for(int i = 0; i < numAirports; i++) drawLine(airports[i+(pageSize*page)],attSize);
+        cout << string(sus,'-') << '\n';
+        do {
+            cout << "Page " + to_string(page+1) + " of " + to_string(numPages) + " Pages\n";
+            cout << "| 2 - Go to next Page | 1 - Go to last Page | 0- Leave |" <<'\n';
+            cin >> decision;
+        } while(decision != "0" && decision != "1" && decision != "2");
+        if(decision == "2") page = min(page + 1,numPages-1);
+        if(decision == "1") page = max(page-1,0);
+
+    } while (decision != "0");
+}
+
 void drawTrip(Trip trip,int offset){
     int oof = offset - 19;
     cout << "| From " << trip.source_destination.first->getCode() << " to "

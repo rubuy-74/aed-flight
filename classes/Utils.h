@@ -34,6 +34,7 @@ public:
     static void clearScreen();
     static void showFile(list<vector<string>> menu);
     static void drawPageAirports(vector<Airport *> airports);
+    static void drawPageTopKAirports(vector<Airport *> airports);
     static void drawBox(vector<string> text);
     static double computeDistance(Coordinate c1, Coordinate c2);
 
