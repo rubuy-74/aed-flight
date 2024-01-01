@@ -35,7 +35,7 @@ class Functions {
         int getNumDestinationsCountriesOfAnAirport(Airport *airport);
 
         // viii
-        Airport *topKAirports(int k);
+        vector<Airport *> topKAirports(int k);
 
         // iii
         // use map from dataset to get all airports from city and therefore the flights
@@ -60,10 +60,11 @@ class Functions {
         void getAllMinPaths(Airport* start, Airport* end, vector<Trip>& allMinPaths, Filters filter);
         vector<Trip> findMinPath(vector<Airport *> start, vector<Airport *> dest, Filters filter);
 
-        hashFlightsCity getFlightsPerCity();
+        unordered_map<pair<string, string>, int, pairHashFunction> getFlightsPerCity();
 
         vector<Airport *> convertAirportToAirports(string s);
         vector<Airport *> convertCoordsToAirports(string s);
+
         vector<Airport *> convertCityToAirports(string cityName, string countryName);
 };
 
