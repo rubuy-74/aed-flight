@@ -57,9 +57,10 @@ void Menu::showListingFunctionsMenu() {
         cout << "2 - See number of flights out of an airport and from how many airlines" << '\n';
         cout << "3 - See number of flights per city/airline"<<'\n';
         cout << "4 - See number of different countries that a given airport/city flies to" <<'\n';
-        cout << "5 - See number of destinations (airports, cities or countries) available for a\n given airport" << "\n";
-        cout << "6 - See number of reachable destinations (airports, cities or countries) from a\n given airport in a"
-                "maximum number of X stops" << "\n";
+        cout << "5 - See number of destinations (airports, cities or countries) available for a\n "
+                "    given airport" << "\n";
+        cout << "6 - See number of reachable destinations (airports, cities or countries) from a\n "
+                "    given airport in a maximum number of X stops" << "\n";
         cout << "7 - See trip(s) with the greatest number of stops from an airport" << "\n";
         cout << "8 - See the top-k airport with the greatest air traffic capacity" << "\n";
         cout << "9 - See the articulation points of the network" << "\n";
@@ -136,8 +137,12 @@ void Menu::showBestOption() {
     bool minimizeFlights = false;
     vector<Airport> prefAirports;
     while(option != "0"){
+        Utils::clearScreen();
         cout<<"--- Filters ---\n";
-        cout << "1 - Select Airlines to travel\n2 - Minimize Airlines\n3 - Select Airports to travel\n0 - Continue\nOption:";
+        cout << "1 - Select Preferred Airlines  " << (!prefAirlines.empty() ? "SELECTED" : "NOT SELECTED") << '\n';
+        cout << "2 - Minimize Airlines          " << (minimizeFlights ? "SELECTED" : "NOT SELECTED") << '\n';
+        cout << "3 - Select Preferred Airports  " << (!prefAirports.empty() ? "SELECTED" : "NOT SELECTED") << '\n';
+        cout << "0 - Continue\nOption:";
         cin >> option;
 
         if(std::all_of(option.begin(),option.end(), ::isdigit)){
@@ -482,6 +487,7 @@ void Menu::showOption9() {
 }
 
 void Menu::showOption10() {
+    cout << "Calculating max stop flights..." << '\n';
     Utils::drawPageFlights(functions.maxTripsGraph(), false);
 }
 
