@@ -1,0 +1,232 @@
+\doxysection{Graph Class Reference}
+\hypertarget{class_graph}{}\label{class_graph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}} ()
+\item 
+\mbox{\hyperlink{class_graph_acc1471e160d81cf21e6c0f9a7dce17a2}{Graph}} (unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ airports)
+\item 
+\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_graph_a104baa3ba6c76f19fad9e26167e1d0fb}{find\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} airport)
+\item 
+\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_graph_a0845be875def0183dd1a0856fcb9f6cf}{find\+Airport}} (string airport\+Att, \mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95}{AIRPORT\+\_\+\+OPTION}} airport\+Option)
+\item 
+bool \mbox{\hyperlink{class_graph_aef110c70d3cff095d58b4d7a1b911a97}{add\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+bool \mbox{\hyperlink{class_graph_a0d5c73e0dbbb8040ef1215b0c2575435}{remove\+Airport}} (const \mbox{\hyperlink{class_airport}{Airport}} airport)
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a30a26154aa44656276641f177f6f55a4}{get\+Airports}} () const
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a2ac6f14c9b92593226619af72680fb2a}{dfs}} ()
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_ac54cd19f4f611ba4e24df73aa2e7572b}{dfs}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_ae1578ce160843fc51d9aabf5e9d1f0ea}{dfs\+At\+Distance}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+void \mbox{\hyperlink{class_graph_a7306cd70a6b0552f5bc41a1d31411267}{dfs\+Visit}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}a, vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&res)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_ac32d5a09e1ec1a06d6d89f42085a5afc}{bfs}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_aaee3211c8a753050c44c4551b9f98ea0}{bfs\+At\+Distance}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \mbox{\hyperlink{class_graph_a6e93edc02c69c28320063f2852b74d9c}{bfs\+Max\+Depth}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+bool \mbox{\hyperlink{class_graph_a265442030bf4618c7b89f84f7f96d5fe}{is\+DAG}} ()
+\item 
+int \mbox{\hyperlink{class_graph_ae87f0a941112f8bb285662b7b4ba04d0}{num\+Connected\+Components}} ()
+\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_graph_a4cc148e20f236ac920c95935fbac7486}{get\+Articulation\+Points}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is responsible for storing the program\textquotesingle{}s main graph. It contains\+: 
+\begin{DoxyItemize}
+\item an hashmap that maps the airport code to it\textquotesingle{}s object (node) 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_graph_acc1471e160d81cf21e6c0f9a7dce17a2}\label{class_graph_acc1471e160d81cf21e6c0f9a7dce17a2} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$}]{airports }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_graph_aef110c70d3cff095d58b4d7a1b911a97}\label{class_graph_aef110c70d3cff095d58b4d7a1b911a97} 
+\index{Graph@{Graph}!addAirport@{addAirport}}
+\index{addAirport@{addAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addAirport()}{addAirport()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+\Hypertarget{class_graph_ac32d5a09e1ec1a06d6d89f42085a5afc}\label{class_graph_ac32d5a09e1ec1a06d6d89f42085a5afc} 
+\index{Graph@{Graph}!bfs@{bfs}}
+\index{bfs@{bfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfs()}{bfs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::bfs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Traverses the graph by breadth starting on a specific node Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with all the nodes by breadth 
+\end{DoxyReturn}
+\Hypertarget{class_graph_aaee3211c8a753050c44c4551b9f98ea0}\label{class_graph_aaee3211c8a753050c44c4551b9f98ea0} 
+\index{Graph@{Graph}!bfsAtDistance@{bfsAtDistance}}
+\index{bfsAtDistance@{bfsAtDistance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfsAtDistance()}{bfsAtDistance()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::bfs\+At\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance }\end{DoxyParamCaption})}
+
+Traverses the graph by breadth until a specific distance Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+{\em distance} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector containing all the nodes from the given one at distance 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a6e93edc02c69c28320063f2852b74d9c}\label{class_graph_a6e93edc02c69c28320063f2852b74d9c} 
+\index{Graph@{Graph}!bfsMaxDepth@{bfsMaxDepth}}
+\index{bfsMaxDepth@{bfsMaxDepth}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfsMaxDepth()}{bfsMaxDepth()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ Graph\+::bfs\+Max\+Depth (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Gets the trips to the last level airports starting on a specific one Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a trip vector 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a2ac6f14c9b92593226619af72680fb2a}\label{class_graph_a2ac6f14c9b92593226619af72680fb2a} 
+\index{Graph@{Graph}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::dfs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Traverses the graph by depth starting on all nodes Time Complexity\+: O(V+E) \begin{DoxyReturn}{Returns}
+a vector with all the nodes 
+\end{DoxyReturn}
+\Hypertarget{class_graph_ac54cd19f4f611ba4e24df73aa2e7572b}\label{class_graph_ac54cd19f4f611ba4e24df73aa2e7572b} 
+\index{Graph@{Graph}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::dfs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Traverses the graph by depth starting on a specific node Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with all the nodes by depth 
+\end{DoxyReturn}
+\Hypertarget{class_graph_ae1578ce160843fc51d9aabf5e9d1f0ea}\label{class_graph_ae1578ce160843fc51d9aabf5e9d1f0ea} 
+\index{Graph@{Graph}!dfsAtDistance@{dfsAtDistance}}
+\index{dfsAtDistance@{dfsAtDistance}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfsAtDistance()}{dfsAtDistance()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::dfs\+At\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance }\end{DoxyParamCaption})}
+
+Traverses the graph by depth until a specific distance Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+{\em distance} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector containing all the nodes from the given one at distance 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a7306cd70a6b0552f5bc41a1d31411267}\label{class_graph_a7306cd70a6b0552f5bc41a1d31411267} 
+\index{Graph@{Graph}!dfsVisit@{dfsVisit}}
+\index{dfsVisit@{dfsVisit}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfsVisit()}{dfsVisit()}}
+{\footnotesize\ttfamily void Graph\+::dfs\+Visit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{a,  }\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&}]{res }\end{DoxyParamCaption})}
+
+\Hypertarget{class_graph_a104baa3ba6c76f19fad9e26167e1d0fb}\label{class_graph_a104baa3ba6c76f19fad9e26167e1d0fb} 
+\index{Graph@{Graph}!findAirport@{findAirport}}
+\index{findAirport@{findAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findAirport()}{findAirport()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} Graph\+::find\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}}}]{airport }\end{DoxyParamCaption})}
+
+\Hypertarget{class_graph_a0845be875def0183dd1a0856fcb9f6cf}\label{class_graph_a0845be875def0183dd1a0856fcb9f6cf} 
+\index{Graph@{Graph}!findAirport@{findAirport}}
+\index{findAirport@{findAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findAirport()}{findAirport()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} Graph\+::find\+Airport (\begin{DoxyParamCaption}\item[{string}]{airport\+Att,  }\item[{\mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95}{AIRPORT\+\_\+\+OPTION}}}]{airport\+Option }\end{DoxyParamCaption})}
+
+Finds an airport by code or name in the graph Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em airport\+Att} & \\
+\hline
+{\em airport\+Option} & code or name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the airport 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a30a26154aa44656276641f177f6f55a4}\label{class_graph_a30a26154aa44656276641f177f6f55a4} 
+\index{Graph@{Graph}!getAirports@{getAirports}}
+\index{getAirports@{getAirports}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getAirports()}{getAirports()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ string, \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::get\+Airports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_graph_a4cc148e20f236ac920c95935fbac7486}\label{class_graph_a4cc148e20f236ac920c95935fbac7486} 
+\index{Graph@{Graph}!getArticulationPoints@{getArticulationPoints}}
+\index{getArticulationPoints@{getArticulationPoints}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getArticulationPoints()}{getArticulationPoints()}}
+{\footnotesize\ttfamily unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Graph\+::get\+Articulation\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the number of articulation points of the graph Time Complexity\+: O(V+E) \begin{DoxyReturn}{Returns}
+the number of articulation points 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a265442030bf4618c7b89f84f7f96d5fe}\label{class_graph_a265442030bf4618c7b89f84f7f96d5fe} 
+\index{Graph@{Graph}!isDAG@{isDAG}}
+\index{isDAG@{isDAG}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{isDAG()}{isDAG()}}
+{\footnotesize\ttfamily bool Graph\+::is\+DAG (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check if the graph is acyclic Time Complexity\+: O(V+E) \begin{DoxyReturn}{Returns}
+a boolean value 
+\end{DoxyReturn}
+\Hypertarget{class_graph_ae87f0a941112f8bb285662b7b4ba04d0}\label{class_graph_ae87f0a941112f8bb285662b7b4ba04d0} 
+\index{Graph@{Graph}!numConnectedComponents@{numConnectedComponents}}
+\index{numConnectedComponents@{numConnectedComponents}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{numConnectedComponents()}{numConnectedComponents()}}
+{\footnotesize\ttfamily int Graph\+::num\+Connected\+Components (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the number of connected components of the graph Time Complexity\+: O(V+E) \begin{DoxyReturn}{Returns}
+the number of connected components 
+\end{DoxyReturn}
+\Hypertarget{class_graph_a0d5c73e0dbbb8040ef1215b0c2575435}\label{class_graph_a0d5c73e0dbbb8040ef1215b0c2575435} 
+\index{Graph@{Graph}!removeAirport@{removeAirport}}
+\index{removeAirport@{removeAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeAirport()}{removeAirport()}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Airport (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_airport}{Airport}}}]{airport }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

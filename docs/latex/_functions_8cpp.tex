@@ -1,0 +1,77 @@
+\doxysection{/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\+Functions.cpp File Reference}
+\hypertarget{_functions_8cpp}{}\label{_functions_8cpp}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Functions.cpp@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Functions.cpp}}
+{\ttfamily \#include "{}Functions.\+h"{}}\newline
+{\ttfamily \#include "{}Graph.\+h"{}}\newline
+{\ttfamily \#include "{}vector"{}}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include "{}algorithm"{}}\newline
+{\ttfamily \#include "{}Utils.\+h"{}}\newline
+{\ttfamily \#include "{}set"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_functions_8cpp_a4bab78db79f587a68db606724b6cf879}{count\+Unique\+Airlines}} (vector$<$ \mbox{\hyperlink{class_flight}{Flight}} \texorpdfstring{$\ast$}{*} $>$ flights)
+\item 
+vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \mbox{\hyperlink{_functions_8cpp_a399e2b9b656dba9ba311ba4f175d8af1}{get\+Min\+Path\+Trips}} (vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ all\+Paths, \mbox{\hyperlink{struct_filters}{Filters}} filter)
+\item 
+{\footnotesize template$<$typename T $>$ }\\vector$<$ T $>$ \mbox{\hyperlink{_functions_8cpp_afeeb2d26525808e4e2fe9daf61c18c4b}{merge\+Vector}} (vector$<$ T $>$ t1, vector$<$ T $>$ t2)
+\item 
+bool \mbox{\hyperlink{_functions_8cpp_a1493e0800c2c1151d0cddc3556c7febb}{check\+Airline\+Filter}} (\mbox{\hyperlink{class_airline}{Airline}} airline, vector$<$ \mbox{\hyperlink{class_airline}{Airline}} $>$ preferred\+Airlines)
+\item 
+bool \mbox{\hyperlink{_functions_8cpp_ab08e264e59286f15bdaa19b9f548fb89}{check\+Airport\+Filter}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, vector$<$ \mbox{\hyperlink{class_airport}{Airport}} $>$ preferred\+Airports)
+\item 
+double \mbox{\hyperlink{_functions_8cpp_a66d012e1dcb198bb6bbca6820d2b707c}{stol\+\_\+with\+\_\+check}} (string s)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_functions_8cpp_a1493e0800c2c1151d0cddc3556c7febb}\label{_functions_8cpp_a1493e0800c2c1151d0cddc3556c7febb} 
+\index{Functions.cpp@{Functions.cpp}!checkAirlineFilter@{checkAirlineFilter}}
+\index{checkAirlineFilter@{checkAirlineFilter}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{checkAirlineFilter()}{checkAirlineFilter()}}
+{\footnotesize\ttfamily bool check\+Airline\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airline}{Airline}}}]{airline,  }\item[{vector$<$ \mbox{\hyperlink{class_airline}{Airline}} $>$}]{preferred\+Airlines }\end{DoxyParamCaption})}
+
+\Hypertarget{_functions_8cpp_ab08e264e59286f15bdaa19b9f548fb89}\label{_functions_8cpp_ab08e264e59286f15bdaa19b9f548fb89} 
+\index{Functions.cpp@{Functions.cpp}!checkAirportFilter@{checkAirportFilter}}
+\index{checkAirportFilter@{checkAirportFilter}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{checkAirportFilter()}{checkAirportFilter()}}
+{\footnotesize\ttfamily bool check\+Airport\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} $>$}]{preferred\+Airports }\end{DoxyParamCaption})}
+
+\Hypertarget{_functions_8cpp_a4bab78db79f587a68db606724b6cf879}\label{_functions_8cpp_a4bab78db79f587a68db606724b6cf879} 
+\index{Functions.cpp@{Functions.cpp}!countUniqueAirlines@{countUniqueAirlines}}
+\index{countUniqueAirlines@{countUniqueAirlines}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{countUniqueAirlines()}{countUniqueAirlines()}}
+{\footnotesize\ttfamily int count\+Unique\+Airlines (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_flight}{Flight}} \texorpdfstring{$\ast$}{*} $>$}]{flights }\end{DoxyParamCaption})}
+
+\Hypertarget{_functions_8cpp_a399e2b9b656dba9ba311ba4f175d8af1}\label{_functions_8cpp_a399e2b9b656dba9ba311ba4f175d8af1} 
+\index{Functions.cpp@{Functions.cpp}!getMinPathTrips@{getMinPathTrips}}
+\index{getMinPathTrips@{getMinPathTrips}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{getMinPathTrips()}{getMinPathTrips()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ get\+Min\+Path\+Trips (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$}]{all\+Paths,  }\item[{\mbox{\hyperlink{struct_filters}{Filters}}}]{filter }\end{DoxyParamCaption})}
+
+Gets the fewest stop trips and also the ones with the fewest airlines (if filtered) ~\newline
+ Time Complexity\+: O(n log(n)) 
+\begin{DoxyParams}{Parameters}
+{\em all\+Paths} & vector with all minimum trips between two locations \\
+\hline
+{\em filter} & that contains user\textquotesingle{}s restrictions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the fewest stop trips pleasing user\textquotesingle{}s restrictions 
+\end{DoxyReturn}
+\Hypertarget{_functions_8cpp_afeeb2d26525808e4e2fe9daf61c18c4b}\label{_functions_8cpp_afeeb2d26525808e4e2fe9daf61c18c4b} 
+\index{Functions.cpp@{Functions.cpp}!mergeVector@{mergeVector}}
+\index{mergeVector@{mergeVector}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{mergeVector()}{mergeVector()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+vector$<$ T $>$ merge\+Vector (\begin{DoxyParamCaption}\item[{vector$<$ T $>$}]{t1,  }\item[{vector$<$ T $>$}]{t2 }\end{DoxyParamCaption})}
+
+\Hypertarget{_functions_8cpp_a66d012e1dcb198bb6bbca6820d2b707c}\label{_functions_8cpp_a66d012e1dcb198bb6bbca6820d2b707c} 
+\index{Functions.cpp@{Functions.cpp}!stol\_with\_check@{stol\_with\_check}}
+\index{stol\_with\_check@{stol\_with\_check}!Functions.cpp@{Functions.cpp}}
+\doxysubsubsection{\texorpdfstring{stol\_with\_check()}{stol\_with\_check()}}
+{\footnotesize\ttfamily double stol\+\_\+with\+\_\+check (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+

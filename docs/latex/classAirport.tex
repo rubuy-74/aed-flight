@@ -1,0 +1,89 @@
+\doxysection{Airport Class Reference}
+\hypertarget{classAirport}{}\label{classAirport}\index{Airport@{Airport}}
+
+
+{\ttfamily \#include $<$Airport.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAirport_a9dc03c05fab46118ee2c40cd77f63356}\label{classAirport_a9dc03c05fab46118ee2c40cd77f63356} 
+{\bfseries Airport} (\mbox{\hyperlink{classAirport}{Airport}} const \&airport)
+\item 
+\Hypertarget{classAirport_a757348fc0aa92cab3c3b2c4654f10580}\label{classAirport_a757348fc0aa92cab3c3b2c4654f10580} 
+{\bfseries Airport} (string code)
+\item 
+\Hypertarget{classAirport_aa3f7d7db51b0bd0777535b33a214da47}\label{classAirport_aa3f7d7db51b0bd0777535b33a214da47} 
+{\bfseries Airport} (string code, string name, string city, string country, \mbox{\hyperlink{classCoordinate}{Coordinate}} coordinates)
+\item 
+\Hypertarget{classAirport_ad1369e1d47c87e205f1718b853a66d54}\label{classAirport_ad1369e1d47c87e205f1718b853a66d54} 
+string {\bfseries get\+Code} () const
+\item 
+\Hypertarget{classAirport_a93efcd09328d24469d97a81e8048b776}\label{classAirport_a93efcd09328d24469d97a81e8048b776} 
+string {\bfseries get\+Name} () const
+\item 
+\Hypertarget{classAirport_adff088d0536ead7d1c060c385da03f32}\label{classAirport_adff088d0536ead7d1c060c385da03f32} 
+string {\bfseries get\+City} () const
+\item 
+\Hypertarget{classAirport_ac0ce4ad3ce71653f13b96e5d40648588}\label{classAirport_ac0ce4ad3ce71653f13b96e5d40648588} 
+string {\bfseries get\+Country} () const
+\item 
+\Hypertarget{classAirport_a422d6c6c8d0fd9f9eb84e209aba2e5db}\label{classAirport_a422d6c6c8d0fd9f9eb84e209aba2e5db} 
+\mbox{\hyperlink{classCoordinate}{Coordinate}} {\bfseries get\+Coordinates} () const
+\item 
+\Hypertarget{classAirport_a2964e85c4f9745cb630bcaa50b40b193}\label{classAirport_a2964e85c4f9745cb630bcaa50b40b193} 
+vector$<$ \mbox{\hyperlink{classFlight}{Flight}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Flights} () const
+\item 
+\Hypertarget{classAirport_a0734657dbec66b041270a9ccb5384e38}\label{classAirport_a0734657dbec66b041270a9ccb5384e38} 
+void {\bfseries set\+Flights} (const vector$<$ \mbox{\hyperlink{classFlight}{Flight}} \texorpdfstring{$\ast$}{*} $>$)
+\item 
+\Hypertarget{classAirport_a1a6496725ad600cf9e2a7c43dd8710f1}\label{classAirport_a1a6496725ad600cf9e2a7c43dd8710f1} 
+void {\bfseries add\+Flight} (\mbox{\hyperlink{classFlight}{Flight}} \texorpdfstring{$\ast$}{*}flight)
+\item 
+\Hypertarget{classAirport_a6ae6c85ac3bd251d104d546d10317c53}\label{classAirport_a6ae6c85ac3bd251d104d546d10317c53} 
+bool {\bfseries remove\+Flight} (\mbox{\hyperlink{classFlight}{Flight}} \texorpdfstring{$\ast$}{*}flight)
+\item 
+\Hypertarget{classAirport_aa379911da40b8e85a9be74457d53c2eb}\label{classAirport_aa379911da40b8e85a9be74457d53c2eb} 
+bool {\bfseries is\+Visited} ()
+\item 
+\Hypertarget{classAirport_a2591edd043bf0153e36ebbb8975e93cb}\label{classAirport_a2591edd043bf0153e36ebbb8975e93cb} 
+void {\bfseries set\+Visited} (bool b)
+\item 
+\Hypertarget{classAirport_a0e532b82bf27fe949f67b9cfe09a992b}\label{classAirport_a0e532b82bf27fe949f67b9cfe09a992b} 
+bool {\bfseries is\+Processing} ()
+\item 
+\Hypertarget{classAirport_a3e1e7fef9c2ab08968543a4a2d92c1ee}\label{classAirport_a3e1e7fef9c2ab08968543a4a2d92c1ee} 
+void {\bfseries set\+Processing} (bool b)
+\item 
+\Hypertarget{classAirport_a09febddd5ddaf0fd8af0735cb3577a5c}\label{classAirport_a09febddd5ddaf0fd8af0735cb3577a5c} 
+int {\bfseries get\+Num} ()
+\item 
+\Hypertarget{classAirport_abea2db0d54b4f276e0687adc16c4a5ff}\label{classAirport_abea2db0d54b4f276e0687adc16c4a5ff} 
+void {\bfseries set\+Num} (int num)
+\item 
+\Hypertarget{classAirport_a958ea92a271a0922095af526144f66dd}\label{classAirport_a958ea92a271a0922095af526144f66dd} 
+int {\bfseries get\+Low} ()
+\item 
+\Hypertarget{classAirport_ac190d9243e40fbcc3200dbbbdf22217f}\label{classAirport_ac190d9243e40fbcc3200dbbbdf22217f} 
+void {\bfseries set\+Low} (int low)
+\item 
+\Hypertarget{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c}\label{classAirport_a2d93e2cadbdb3ed9114aff48aa0bac5c} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classAirport}{Airport}} \&other) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class creates \doxylink{classAirport}{Airport} objects with the following attributes\+: 
+\begin{DoxyItemize}
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s code 
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s name 
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s city 
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s country 
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s coordinates 
+\item \doxylink{classAirport}{Airport}\textquotesingle{}s outgoing flights 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Airport.\+h\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Airport.\+cpp\end{DoxyCompactItemize}

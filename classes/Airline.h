@@ -4,7 +4,14 @@
 #include <string>
 
 using namespace std;
-
+/**
+ * This class creates Airline objects with the following attributes:
+ * <ul>
+ *  <li> Airline's code
+ *  <li> Airline's name
+ *  <li> Airline's call sign
+ *  <li> Airline's country
+ */
 class Airline {
     private:
         string code;

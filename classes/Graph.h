@@ -15,7 +15,12 @@
 enum AIRPORT_OPTION {
     CODE,NAME
 };
-
+/**
+ * This class is responsible for storing the program's main graph. It contains:
+ * <ul>
+ *  <li> an hashmap that maps the airport code to it's object (node)
+ * <ul>
+ */
 class Graph {
     private:
 

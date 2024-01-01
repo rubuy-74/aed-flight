@@ -1,0 +1,340 @@
+\doxysection{Functions Class Reference}
+\hypertarget{class_functions}{}\label{class_functions}\index{Functions@{Functions}}
+
+
+{\ttfamily \#include $<$Functions.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_functions_a473f003cf5ee85fd9f74fab695374727}{Functions}} (\mbox{\hyperlink{class_dataset}{Dataset}} dataset)
+\item 
+void \mbox{\hyperlink{class_functions_a40d1bc14692fa064f88c43824197efb6}{set\+All\+Airports\+Unvisited}} ()
+\item 
+int \mbox{\hyperlink{class_functions_acc64117cab224c9eb00ec40474e7657f}{get\+Num\+Destinations\+From\+City}} (string city, string country)
+\item 
+int \mbox{\hyperlink{class_functions_af490f0e5b3547af626b74d930f2c6d99}{get\+Reachable\+Destinations\+From\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+unsigned int \mbox{\hyperlink{class_functions_ae177b41a216fa1da3c0731b0b107a4ff}{get\+Num\+Flights\+Out\+Of\+An\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+int \mbox{\hyperlink{class_functions_a28f7efe14e4d14a8a7085a2048ee4e78}{get\+Num\+Airlines\+Of\+An\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+int \mbox{\hyperlink{class_functions_a589fe9419f7487ec5ff552305394c6ae}{get\+Num\+Destinations\+Airports\+Of\+An\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+int \mbox{\hyperlink{class_functions_a7391bdd85d1d40d248bb65654e2e3d6c}{get\+Num\+Destinations\+Cities\+Of\+An\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+int \mbox{\hyperlink{class_functions_a44b1eaa2d853e8f8ece8ef3671f8713e}{get\+Num\+Destinations\+Countries\+Of\+An\+Airport}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_functions_a439d3e3758bfc8f19f788a6482fc50bb}{top\+KAirports}} (int k)
+\item 
+unordered\+\_\+map$<$ string, int $>$ \mbox{\hyperlink{class_functions_a34ff35e22b45e58b5e75e2b83b2f25f3}{get\+Flights\+Per\+Airline}} ()
+\item 
+int \mbox{\hyperlink{class_functions_a25bd38e9e754558a81e5fdb1c7d888ca}{get\+Num\+Airports\+At\+Distance}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+int \mbox{\hyperlink{class_functions_a1790148074d41e5e67f36e99f13ba5d7}{get\+Num\+Cities\+At\+Distance}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+int \mbox{\hyperlink{class_functions_ad6219de517d29a63be8662f049fc140f}{get\+Num\+Countries\+At\+Distance}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \mbox{\hyperlink{class_functions_a609001cff459576d382086c5b35de721}{max\+Trip\+Stops}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \mbox{\hyperlink{class_functions_ac323701fdcfcb9150eab1fe9565dacaa}{max\+Trips\+Graph}} ()
+\item 
+unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_functions_a6e68ff7a952c46ab31b1fb9f417e2806}{get\+Articulation\+Points}} ()
+\item 
+bool \mbox{\hyperlink{class_functions_a054f2a73a699ab780570042b0b058a58}{find\+In\+Vector}} (const vector$<$ string $>$ \&v, const string \&code)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_functions_ad279a03280535b0ec68107ce63ba07f7}{get\+Airports\+From\+Coordinates}} (\mbox{\hyperlink{class_coordinate}{Coordinate}} c)
+\item 
+void \mbox{\hyperlink{class_functions_a4e236cecb8268d60b0a9aa657597d5af}{get\+All\+Min\+Paths}} (\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}start, \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}end, vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \&all\+Min\+Paths, \mbox{\hyperlink{struct_filters}{Filters}} filter)
+\item 
+vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \mbox{\hyperlink{class_functions_a9ac2da7b5ca03a4807e0a60d46fe1786}{find\+Min\+Path}} (vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ start, vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ dest, \mbox{\hyperlink{struct_filters}{Filters}} filter)
+\item 
+\mbox{\hyperlink{_functions_8h_afb4fbaae812f6189c83b2e6acda00bfa}{hash\+Flights\+City}} \mbox{\hyperlink{class_functions_a146da4aaa1af92abd7b37fafc5fc14ad}{get\+Flights\+Per\+City}} ()
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_functions_a7016c34721687be1fce45c7d86a70148}{convert\+Airport\+To\+Airports}} (string s)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_functions_ac304f2505727253a1050024301cfe888}{convert\+Coords\+To\+Airports}} (string s)
+\item 
+vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{class_functions_a6ddeb4fc5b0a42495280657d5828e03e}{convert\+City\+To\+Airports}} (string city\+Name, string country\+Name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_functions_a473f003cf5ee85fd9f74fab695374727}\label{class_functions_a473f003cf5ee85fd9f74fab695374727} 
+\index{Functions@{Functions}!Functions@{Functions}}
+\index{Functions@{Functions}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{Functions()}{Functions()}}
+{\footnotesize\ttfamily Functions\+::\+Functions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_dataset}{Dataset}}}]{dataset }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_functions_a7016c34721687be1fce45c7d86a70148}\label{class_functions_a7016c34721687be1fce45c7d86a70148} 
+\index{Functions@{Functions}!convertAirportToAirports@{convertAirportToAirports}}
+\index{convertAirportToAirports@{convertAirportToAirports}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{convertAirportToAirports()}{convertAirportToAirports()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Functions\+::convert\+Airport\+To\+Airports (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+Serialize an airport to a vector Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em s} & code \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with the airport 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a6ddeb4fc5b0a42495280657d5828e03e}\label{class_functions_a6ddeb4fc5b0a42495280657d5828e03e} 
+\index{Functions@{Functions}!convertCityToAirports@{convertCityToAirports}}
+\index{convertCityToAirports@{convertCityToAirports}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{convertCityToAirports()}{convertCityToAirports()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Functions\+::convert\+City\+To\+Airports (\begin{DoxyParamCaption}\item[{string}]{city\+Name,  }\item[{string}]{country\+Name }\end{DoxyParamCaption})}
+
+Serialize a city to all airports in it Time Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em city\+Name} & \\
+\hline
+{\em country\+Name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with all city airports 
+\end{DoxyReturn}
+\Hypertarget{class_functions_ac304f2505727253a1050024301cfe888}\label{class_functions_ac304f2505727253a1050024301cfe888} 
+\index{Functions@{Functions}!convertCoordsToAirports@{convertCoordsToAirports}}
+\index{convertCoordsToAirports@{convertCoordsToAirports}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{convertCoordsToAirports()}{convertCoordsToAirports()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Functions\+::convert\+Coords\+To\+Airports (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+Serialize a coordinate to all airports near it Time Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em s} & coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with all near airports 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a054f2a73a699ab780570042b0b058a58}\label{class_functions_a054f2a73a699ab780570042b0b058a58} 
+\index{Functions@{Functions}!findInVector@{findInVector}}
+\index{findInVector@{findInVector}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{findInVector()}{findInVector()}}
+{\footnotesize\ttfamily bool Functions\+::find\+In\+Vector (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{v,  }\item[{const string \&}]{code }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_a9ac2da7b5ca03a4807e0a60d46fe1786}\label{class_functions_a9ac2da7b5ca03a4807e0a60d46fe1786} 
+\index{Functions@{Functions}!findMinPath@{findMinPath}}
+\index{findMinPath@{findMinPath}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{findMinPath()}{findMinPath()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ Functions\+::find\+Min\+Path (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$}]{start,  }\item[{vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$}]{dest,  }\item[{\mbox{\hyperlink{struct_filters}{Filters}}}]{filter }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_ad279a03280535b0ec68107ce63ba07f7}\label{class_functions_ad279a03280535b0ec68107ce63ba07f7} 
+\index{Functions@{Functions}!getAirportsFromCoordinates@{getAirportsFromCoordinates}}
+\index{getAirportsFromCoordinates@{getAirportsFromCoordinates}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getAirportsFromCoordinates()}{getAirportsFromCoordinates()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Functions\+::get\+Airports\+From\+Coordinates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_coordinate}{Coordinate}}}]{c }\end{DoxyParamCaption})}
+
+Gets all airports near a specific coordinate Time Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em c} & coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+all the airports near the coordinate 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a4e236cecb8268d60b0a9aa657597d5af}\label{class_functions_a4e236cecb8268d60b0a9aa657597d5af} 
+\index{Functions@{Functions}!getAllMinPaths@{getAllMinPaths}}
+\index{getAllMinPaths@{getAllMinPaths}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getAllMinPaths()}{getAllMinPaths()}}
+{\footnotesize\ttfamily void Functions\+::get\+All\+Min\+Paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{start,  }\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{end,  }\item[{vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ \&}]{all\+Min\+Paths,  }\item[{\mbox{\hyperlink{struct_filters}{Filters}}}]{filter }\end{DoxyParamCaption})}
+
+Gets all minimum paths possible between two locations, respecting user\textquotesingle{}s filters Time Complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) 
+\begin{DoxyParams}{Parameters}
+{\em start} & airport location \\
+\hline
+{\em end} & airport location \\
+\hline
+{\em all\+Min\+Paths} & vector to store minimum stops trips \\
+\hline
+{\em filter} & containing user\textquotesingle{}s restrictions \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_functions_a6e68ff7a952c46ab31b1fb9f417e2806}\label{class_functions_a6e68ff7a952c46ab31b1fb9f417e2806} 
+\index{Functions@{Functions}!getArticulationPoints@{getArticulationPoints}}
+\index{getArticulationPoints@{getArticulationPoints}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getArticulationPoints()}{getArticulationPoints()}}
+{\footnotesize\ttfamily unordered\+\_\+set$<$ \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ Functions\+::get\+Articulation\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_a34ff35e22b45e58b5e75e2b83b2f25f3}\label{class_functions_a34ff35e22b45e58b5e75e2b83b2f25f3} 
+\index{Functions@{Functions}!getFlightsPerAirline@{getFlightsPerAirline}}
+\index{getFlightsPerAirline@{getFlightsPerAirline}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getFlightsPerAirline()}{getFlightsPerAirline()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ string, int $>$ Functions\+::get\+Flights\+Per\+Airline (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets an hashmap that maps an airline to all the flights of it Time Complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) \begin{DoxyReturn}{Returns}
+an hashmap that maps an airline to all the flights of it 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a146da4aaa1af92abd7b37fafc5fc14ad}\label{class_functions_a146da4aaa1af92abd7b37fafc5fc14ad} 
+\index{Functions@{Functions}!getFlightsPerCity@{getFlightsPerCity}}
+\index{getFlightsPerCity@{getFlightsPerCity}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getFlightsPerCity()}{getFlightsPerCity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_functions_8h_afb4fbaae812f6189c83b2e6acda00bfa}{hash\+Flights\+City}} Functions\+::get\+Flights\+Per\+City (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets an hashmap that maps a (city, pair) pair to all the flights in it Time Complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) \begin{DoxyReturn}{Returns}
+an hashmap that maps a (city, pair) pair to all the flights in it 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a28f7efe14e4d14a8a7085a2048ee4e78}\label{class_functions_a28f7efe14e4d14a8a7085a2048ee4e78} 
+\index{Functions@{Functions}!getNumAirlinesOfAnAirport@{getNumAirlinesOfAnAirport}}
+\index{getNumAirlinesOfAnAirport@{getNumAirlinesOfAnAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumAirlinesOfAnAirport()}{getNumAirlinesOfAnAirport()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Airlines\+Of\+An\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Gets the number of outgoing airlines of an airport Time Complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of outgoing airlines 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a25bd38e9e754558a81e5fdb1c7d888ca}\label{class_functions_a25bd38e9e754558a81e5fdb1c7d888ca} 
+\index{Functions@{Functions}!getNumAirportsAtDistance@{getNumAirportsAtDistance}}
+\index{getNumAirportsAtDistance@{getNumAirportsAtDistance}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumAirportsAtDistance()}{getNumAirportsAtDistance()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Airports\+At\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance }\end{DoxyParamCaption})}
+
+Gets the number of airports at a specific distance from another Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+{\em distance} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of airports at distance 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a1790148074d41e5e67f36e99f13ba5d7}\label{class_functions_a1790148074d41e5e67f36e99f13ba5d7} 
+\index{Functions@{Functions}!getNumCitiesAtDistance@{getNumCitiesAtDistance}}
+\index{getNumCitiesAtDistance@{getNumCitiesAtDistance}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumCitiesAtDistance()}{getNumCitiesAtDistance()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Cities\+At\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance }\end{DoxyParamCaption})}
+
+Gets the number of cities at a specific distance from an airport Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+{\em distance} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of cities at distance 
+\end{DoxyReturn}
+\Hypertarget{class_functions_ad6219de517d29a63be8662f049fc140f}\label{class_functions_ad6219de517d29a63be8662f049fc140f} 
+\index{Functions@{Functions}!getNumCountriesAtDistance@{getNumCountriesAtDistance}}
+\index{getNumCountriesAtDistance@{getNumCountriesAtDistance}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumCountriesAtDistance()}{getNumCountriesAtDistance()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Countries\+At\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport,  }\item[{int}]{distance }\end{DoxyParamCaption})}
+
+Gets the number of countries at a specific distance from an airport Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+{\em distance} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of countries at distance 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a589fe9419f7487ec5ff552305394c6ae}\label{class_functions_a589fe9419f7487ec5ff552305394c6ae} 
+\index{Functions@{Functions}!getNumDestinationsAirportsOfAnAirport@{getNumDestinationsAirportsOfAnAirport}}
+\index{getNumDestinationsAirportsOfAnAirport@{getNumDestinationsAirportsOfAnAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumDestinationsAirportsOfAnAirport()}{getNumDestinationsAirportsOfAnAirport()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Destinations\+Airports\+Of\+An\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_a7391bdd85d1d40d248bb65654e2e3d6c}\label{class_functions_a7391bdd85d1d40d248bb65654e2e3d6c} 
+\index{Functions@{Functions}!getNumDestinationsCitiesOfAnAirport@{getNumDestinationsCitiesOfAnAirport}}
+\index{getNumDestinationsCitiesOfAnAirport@{getNumDestinationsCitiesOfAnAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumDestinationsCitiesOfAnAirport()}{getNumDestinationsCitiesOfAnAirport()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Destinations\+Cities\+Of\+An\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_a44b1eaa2d853e8f8ece8ef3671f8713e}\label{class_functions_a44b1eaa2d853e8f8ece8ef3671f8713e} 
+\index{Functions@{Functions}!getNumDestinationsCountriesOfAnAirport@{getNumDestinationsCountriesOfAnAirport}}
+\index{getNumDestinationsCountriesOfAnAirport@{getNumDestinationsCountriesOfAnAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumDestinationsCountriesOfAnAirport()}{getNumDestinationsCountriesOfAnAirport()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Destinations\+Countries\+Of\+An\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_acc64117cab224c9eb00ec40474e7657f}\label{class_functions_acc64117cab224c9eb00ec40474e7657f} 
+\index{Functions@{Functions}!getNumDestinationsFromCity@{getNumDestinationsFromCity}}
+\index{getNumDestinationsFromCity@{getNumDestinationsFromCity}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumDestinationsFromCity()}{getNumDestinationsFromCity()}}
+{\footnotesize\ttfamily int Functions\+::get\+Num\+Destinations\+From\+City (\begin{DoxyParamCaption}\item[{string}]{city,  }\item[{string}]{country }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_ae177b41a216fa1da3c0731b0b107a4ff}\label{class_functions_ae177b41a216fa1da3c0731b0b107a4ff} 
+\index{Functions@{Functions}!getNumFlightsOutOfAnAirport@{getNumFlightsOutOfAnAirport}}
+\index{getNumFlightsOutOfAnAirport@{getNumFlightsOutOfAnAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getNumFlightsOutOfAnAirport()}{getNumFlightsOutOfAnAirport()}}
+{\footnotesize\ttfamily unsigned int Functions\+::get\+Num\+Flights\+Out\+Of\+An\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Gets the number of outgoing flights of an airport Time Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of outgoing flights 
+\end{DoxyReturn}
+\Hypertarget{class_functions_af490f0e5b3547af626b74d930f2c6d99}\label{class_functions_af490f0e5b3547af626b74d930f2c6d99} 
+\index{Functions@{Functions}!getReachableDestinationsFromAirport@{getReachableDestinationsFromAirport}}
+\index{getReachableDestinationsFromAirport@{getReachableDestinationsFromAirport}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{getReachableDestinationsFromAirport()}{getReachableDestinationsFromAirport()}}
+{\footnotesize\ttfamily int Functions\+::get\+Reachable\+Destinations\+From\+Airport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Gets the number of all reachable destinations from an airport Time Complexity\+: O(V+E) \begin{DoxyReturn}{Returns}
+the number of all reachable destinations from an airport 
+\end{DoxyReturn}
+\Hypertarget{class_functions_ac323701fdcfcb9150eab1fe9565dacaa}\label{class_functions_ac323701fdcfcb9150eab1fe9565dacaa} 
+\index{Functions@{Functions}!maxTripsGraph@{maxTripsGraph}}
+\index{maxTripsGraph@{maxTripsGraph}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{maxTripsGraph()}{maxTripsGraph()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ Functions\+::max\+Trips\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the maximum stops trips from all the database Time Complexity\+: O(n\texorpdfstring{$^\wedge$}{\string^}2) \begin{DoxyReturn}{Returns}
+a vector with most stops trips 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a609001cff459576d382086c5b35de721}\label{class_functions_a609001cff459576d382086c5b35de721} 
+\index{Functions@{Functions}!maxTripStops@{maxTripStops}}
+\index{maxTripStops@{maxTripStops}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{maxTripStops()}{maxTripStops()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_trip}{Trip}} $>$ Functions\+::max\+Trip\+Stops (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*}}]{airport }\end{DoxyParamCaption})}
+
+Gets all maximum stops trips from a specific airport Time Complexity\+: O(V+E) 
+\begin{DoxyParams}{Parameters}
+{\em airport} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector with most stops trips 
+\end{DoxyReturn}
+\Hypertarget{class_functions_a40d1bc14692fa064f88c43824197efb6}\label{class_functions_a40d1bc14692fa064f88c43824197efb6} 
+\index{Functions@{Functions}!setAllAirportsUnvisited@{setAllAirportsUnvisited}}
+\index{setAllAirportsUnvisited@{setAllAirportsUnvisited}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{setAllAirportsUnvisited()}{setAllAirportsUnvisited()}}
+{\footnotesize\ttfamily void Functions\+::set\+All\+Airports\+Unvisited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{class_functions_a439d3e3758bfc8f19f788a6482fc50bb}\label{class_functions_a439d3e3758bfc8f19f788a6482fc50bb} 
+\index{Functions@{Functions}!topKAirports@{topKAirports}}
+\index{topKAirports@{topKAirports}!Functions@{Functions}}
+\doxysubsubsection{\texorpdfstring{topKAirports()}{topKAirports()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_airport}{Airport}} \texorpdfstring{$\ast$}{*} Functions\+::top\+KAirports (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+Gets the top K airports from the database Time Complexity\+: O(n log(n)) 
+\begin{DoxyParams}{Parameters}
+{\em k} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+top K airports 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_functions_8h}{Functions.\+h}}\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/\mbox{\hyperlink{_functions_8cpp}{Functions.\+cpp}}\end{DoxyCompactItemize}

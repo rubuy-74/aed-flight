@@ -7,7 +7,13 @@
 #include "Graph.h"
 
 using namespace std;
-
+/**
+ * This class creates Flight objects (graph edges) with the following attributes:
+ * <ul>
+ *  <li> Flight's destination
+ *  <li> Flight's airline
+ *  <li> Flight's distance
+ */
 class Flight {
     private:
         Airport* dest;

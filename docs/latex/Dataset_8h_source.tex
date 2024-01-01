@@ -1,0 +1,41 @@
+\doxysection{Dataset.\+h}
+\hypertarget{Dataset_8h_source}{}\label{Dataset_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Dataset.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Dataset.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_DATASET\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_DATASET\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Graph.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpairHashFunction}{pairHashFunction}}\{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ operator()(\textcolor{keyword}{const}\ pair<string,string>\ p)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ new\_s\ =\ p.first\ +\ p.second;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hash\_value\ =\ 0;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\ c\ :\ new\_s)\ hash\_value\ =\ 282943\ *\ (toupper(c)\ -\/\ \textcolor{charliteral}{'A'});}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hash\_value;}
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ unordered\_map<pair<string,string>,vector<Airport*>,\mbox{\hyperlink{structpairHashFunction}{pairHashFunction}}>\ hashCityAirport;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDataset}{Dataset}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph}}\ network;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ unordered\_map<string,\ Airline>\ airlines;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ hashCityAirport\ cityAirports;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDataset}{Dataset}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classDataset}{Dataset}}(list<vector<string>>\ rawFlights,\ list<vector<string>>\ rawAirports,\ list<vector<string>>\ rawAirlines);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDataset_ab9e90c1cfc8b24b92d7d75db0295171a}{loadAirports}}(list<vector<string>>\ rawAirports);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ loadFlights(list<vector<string>>\ rawFlights);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ loadAirlines(list<vector<string>>\ rawAirlines);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph}}\ getNetwork()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ unordered\_map<string,Airline>\ getAirlines()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ airlines;\};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ hashCityAirport\ getCityAirports()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_DATASET\_H}}
+
+\end{DoxyCode}

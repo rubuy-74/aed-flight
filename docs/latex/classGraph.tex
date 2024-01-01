@@ -1,0 +1,59 @@
+\doxysection{Graph Class Reference}
+\hypertarget{classGraph}{}\label{classGraph}\index{Graph@{Graph}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGraph_acc1471e160d81cf21e6c0f9a7dce17a2}\label{classGraph_acc1471e160d81cf21e6c0f9a7dce17a2} 
+{\bfseries Graph} (unordered\+\_\+map$<$ string, \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ airports)
+\item 
+\Hypertarget{classGraph_a104baa3ba6c76f19fad9e26167e1d0fb}\label{classGraph_a104baa3ba6c76f19fad9e26167e1d0fb} 
+\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} {\bfseries find\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classGraph_a0845be875def0183dd1a0856fcb9f6cf}\label{classGraph_a0845be875def0183dd1a0856fcb9f6cf} 
+\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} {\bfseries find\+Airport} (string airport\+Att, AIRPORT\+\_\+\+OPTION airport\+Option)
+\item 
+\Hypertarget{classGraph_aef110c70d3cff095d58b4d7a1b911a97}\label{classGraph_aef110c70d3cff095d58b4d7a1b911a97} 
+bool {\bfseries add\+Airport} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\Hypertarget{classGraph_a0d5c73e0dbbb8040ef1215b0c2575435}\label{classGraph_a0d5c73e0dbbb8040ef1215b0c2575435} 
+bool {\bfseries remove\+Airport} (const \mbox{\hyperlink{classAirport}{Airport}} airport)
+\item 
+\Hypertarget{classGraph_a30a26154aa44656276641f177f6f55a4}\label{classGraph_a30a26154aa44656276641f177f6f55a4} 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Airports} () const
+\item 
+\Hypertarget{classGraph_a2ac6f14c9b92593226619af72680fb2a}\label{classGraph_a2ac6f14c9b92593226619af72680fb2a} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries dfs} ()
+\item 
+\Hypertarget{classGraph_ac54cd19f4f611ba4e24df73aa2e7572b}\label{classGraph_ac54cd19f4f611ba4e24df73aa2e7572b} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries dfs} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\Hypertarget{classGraph_ae1578ce160843fc51d9aabf5e9d1f0ea}\label{classGraph_ae1578ce160843fc51d9aabf5e9d1f0ea} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries dfs\+At\+Distance} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+\Hypertarget{classGraph_a7306cd70a6b0552f5bc41a1d31411267}\label{classGraph_a7306cd70a6b0552f5bc41a1d31411267} 
+void {\bfseries dfs\+Visit} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}a, vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ \&res)
+\item 
+\Hypertarget{classGraph_ac32d5a09e1ec1a06d6d89f42085a5afc}\label{classGraph_ac32d5a09e1ec1a06d6d89f42085a5afc} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries bfs} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\Hypertarget{classGraph_aaee3211c8a753050c44c4551b9f98ea0}\label{classGraph_aaee3211c8a753050c44c4551b9f98ea0} 
+vector$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries bfs\+At\+Distance} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport, int distance)
+\item 
+\Hypertarget{classGraph_a6e93edc02c69c28320063f2852b74d9c}\label{classGraph_a6e93edc02c69c28320063f2852b74d9c} 
+vector$<$ \mbox{\hyperlink{structTrip}{Trip}} $>$ {\bfseries bfs\+Max\+Depth} (\mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*}airport)
+\item 
+\Hypertarget{classGraph_a265442030bf4618c7b89f84f7f96d5fe}\label{classGraph_a265442030bf4618c7b89f84f7f96d5fe} 
+bool {\bfseries is\+DAG} ()
+\item 
+\Hypertarget{classGraph_ae87f0a941112f8bb285662b7b4ba04d0}\label{classGraph_ae87f0a941112f8bb285662b7b4ba04d0} 
+int {\bfseries num\+Connected\+Components} ()
+\item 
+\Hypertarget{classGraph_a4cc148e20f236ac920c95935fbac7486}\label{classGraph_a4cc148e20f236ac920c95935fbac7486} 
+unordered\+\_\+set$<$ \mbox{\hyperlink{classAirport}{Airport}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries get\+Articulation\+Points} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Graph.\+h\item 
+/\+Users/goiana/\+Desktop/\+Faculdade/2º\+ANO/1º\+SEM/aed/aed-\/flight/classes/Graph.\+cpp\end{DoxyCompactItemize}

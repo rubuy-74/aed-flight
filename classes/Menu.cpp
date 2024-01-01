@@ -3,7 +3,9 @@
 #include <iostream>
 #include <algorithm>
 
-
+/**
+ * Displays the main menu
+ */
 void Menu::showMainMenu() {
     string option = ""; // TO AVOID INVALID OPTION LINE
     list<vector<string>> mainMenu = parser.readFile("../docs/mainMenu");
@@ -27,7 +29,12 @@ void Menu::showMainMenu() {
             break;
     }
 }
-
+/**
+ * Check if the user's input is valid
+ * @param option chosen
+ * @param numOptions available
+ * @returns a boolean value
+ */
 bool isValidOption(string option,int numOptions){
     try {
         int option_int = stoi(option);
@@ -37,9 +44,9 @@ bool isValidOption(string option,int numOptions){
     }
     return false;
 }
-
-
-
+/**
+ * Displays the listing functions menu
+ */
 void Menu::showListingFunctionsMenu() {
     string option = "";
     list<vector<string>> listingMenu = parser.readFile("../docs/listingMenu");
@@ -71,7 +78,10 @@ void Menu::showListingFunctionsMenu() {
     showListingOption(option);
     showListingFunctionsMenu();
 }
-
+/**
+ * Serializes the user's airlines input
+ * @returns a vector with all the airlines chosen by user
+ */
 vector<Airline> Menu::getAirlines(){
     string input;
     cout << "0 - Cancel" << '\n';
@@ -85,7 +95,10 @@ vector<Airline> Menu::getAirlines(){
     }
     return res;
 }
-
+/**
+ * Serializes the user's airports input
+ * @returns a vector with all the airports chosen by user
+ */
 vector<Airport> Menu::getAirport(){
     string input;
     cout << "Set of airportCodes separated by ' ': ";
@@ -99,7 +112,9 @@ vector<Airport> Menu::getAirport(){
     }
     return res;
 }
-
+/**
+ * Displays the best flight option between two locations
+ */
 void Menu::showBestOption() {
     Utils::clearScreen();
     vector<Airport *> src = inputAirports("Source");
@@ -169,7 +184,11 @@ void Menu::showBestOption() {
     if(second_option == "1") showBestOption();
     else showMainMenu();
 }
-
+/**
+ * Prompt the user to choose the source/destination airport(s)
+ * @param element source/destination
+ * @returns vector of airports corresponding to the serialized location
+ */
 vector<Airport *> Menu::inputAirports(string element){
     string option;
     while(option != "1" && option != "2" && option != "3" && option != "0"){
@@ -217,7 +236,9 @@ vector<Airport *> Menu::inputAirports(string element){
     }
     return airport;
 }
-
+/**
+ * Displays the result of all listing functions
+ */
 void Menu::showListingOption(string option) {
     string second_option = "";
     while(second_option != "0"){
@@ -295,8 +316,8 @@ void Menu::showOption2() {
         cout << "AIRPORT NOT FOUND" << '\n';
         return;
     }
-    int numFlights = functions.getNumFlightsOutOfAnAirport(*ptrAirport);
-    int numAirlines = functions.getNumAirlinesOfAnAirport(*ptrAirport);
+    int numFlights = functions.getNumFlightsOutOfAnAirport(ptrAirport);
+    int numAirlines = functions.getNumAirlinesOfAnAirport(ptrAirport);
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Number of flights: " + to_string(numFlights));
     text.push_back("Number of airlines: "  + to_string(numAirlines));
@@ -361,7 +382,7 @@ void Menu::showOption4() {
             text = "AIRPORT NOT FOUND";
             return;
         } else{
-            text += to_string(functions.getReachableDestinationsFromAirport(*ptrAirport));
+            text += to_string(functions.getReachableDestinationsFromAirport(ptrAirport));
         }
     }
     Utils::drawBox({text});
@@ -377,9 +398,9 @@ void Menu::showOption5() {
         cout << "AIRPORT NOT FOUND" << '\n';
         return;
     }
-    int numAirports = functions.getNumDestinationsAirportsOfAnAirport(*ptrAirport);
-    int numCities = functions.getNumDestinationsCitiesOfAnAirport(*ptrAirport);
-    int numCountries = functions.getNumDestinationsCountriesOfAnAirport(*ptrAirport);
+    int numAirports = functions.getNumDestinationsAirportsOfAnAirport(ptrAirport);
+    int numCities = functions.getNumDestinationsCitiesOfAnAirport(ptrAirport);
+    int numCountries = functions.getNumDestinationsCountriesOfAnAirport(ptrAirport);
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Number of airports: " + to_string(numAirports));
     text.push_back("Number of cities: " + to_string(numCities));
@@ -406,8 +427,8 @@ void Menu::showOption6() {
     }
     int d = stoi(distance);
     int numAirports = functions.getNumAirportsAtDistance(ptrAirport,d);
-    int numCities = functions.getNumCitiesAtDistance(*ptrAirport,d);
-    int numCountries = functions.getNumCountriesAtDistance(*ptrAirport,d);
+    int numCities = functions.getNumCitiesAtDistance(ptrAirport,d);
+    int numCountries = functions.getNumCountriesAtDistance(ptrAirport,d);
     text.push_back("Airport: " + ptrAirport->getName());
     text.push_back("Distance: " + distance);
     text.push_back("Number of airports: " + to_string(numAirports));

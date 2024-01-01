@@ -8,7 +8,16 @@
 class Flight;
 
 using namespace std;
-
+/**
+ * This class creates Airport objects (graph nodes) with the following attributes:
+ * <ul>
+ *  <li> Airport's code
+ *  <li> Airport's name
+ *  <li> Airport's city
+ *  <li> Airport's country
+ *  <li> Airport's coordinates
+ *  <li> Airport's outgoing flights
+ */
 class Airport {
     private:
         string code;
@@ -17,6 +26,8 @@ class Airport {
         string country;
         Coordinate coordinates;
         vector<Flight *> flights;
+
+        // Graph traversal purposes
         bool visited;
         bool processing;
         int num;

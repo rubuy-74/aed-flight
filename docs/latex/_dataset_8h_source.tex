@@ -1,0 +1,40 @@
+\doxysection{Dataset.\+h}
+\hypertarget{_dataset_8h_source}{}\label{_dataset_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Dataset.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Dataset.h}}
+\mbox{\hyperlink{_dataset_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_DATASET\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_DATASET\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_graph_8h}{Graph.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpair_hash_function}{pairHashFunction}}\{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structpair_hash_function_a13df5c73d5030ae109eb254aef240c36}{operator()}}(\textcolor{keyword}{const}\ pair<string,string>\ p)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ new\_s\ =\ p.first\ +\ p.second;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ hash\_value\ =\ 0;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\ c\ :\ new\_s)\ hash\_value\ =\ 282943\ *\ (toupper(c)\ -\/\ \textcolor{charliteral}{'A'});}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hash\_value;}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ unordered\_map<pair<string,string>,vector<Airport*>,\mbox{\hyperlink{structpair_hash_function}{pairHashFunction}}>\ \mbox{\hyperlink{_dataset_8h_a7e7bc6646463381629f5c2c822d558eb}{hashCityAirport}};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_dataset}{Dataset}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_graph}{Graph}}\ network;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ unordered\_map<string,\ Airline>\ airlines;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_dataset_8h_a7e7bc6646463381629f5c2c822d558eb}{hashCityAirport}}\ cityAirports;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_dataset_a2ef0a4a688a218d55ef061c6df659a4a}{Dataset}}();}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_dataset_a2ef0a4a688a218d55ef061c6df659a4a}{Dataset}}(list<vector<string>>\ rawFlights,\ list<vector<string>>\ rawAirports,\ list<vector<string>>\ rawAirlines);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dataset_ab9e90c1cfc8b24b92d7d75db0295171a}{loadAirports}}(list<vector<string>>\ rawAirports);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dataset_a56f231006a744e93bd67326cb6cd254f}{loadFlights}}(list<vector<string>>\ rawFlights);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_dataset_ac8b710ae5065b47935b56254f2bdd4a1}{loadAirlines}}(list<vector<string>>\ rawAirlines);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_graph}{Graph}}\ \mbox{\hyperlink{class_dataset_a4b93a1d1e5a9c9dc606587671349508b}{getNetwork}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ unordered\_map<string,Airline>\ \mbox{\hyperlink{class_dataset_a6f1eee9c9186fd94e5302b70a3db8d1d}{getAirlines}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ airlines;\};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_dataset_8h_a7e7bc6646463381629f5c2c822d558eb}{hashCityAirport}}\ \mbox{\hyperlink{class_dataset_a7afe92713542d9dd64bce0a2b310d4f1}{getCityAirports}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_DATASET\_H}}
+
+\end{DoxyCode}

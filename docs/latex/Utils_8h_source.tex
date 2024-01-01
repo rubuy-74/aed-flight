@@ -1,0 +1,51 @@
+\doxysection{Utils.\+h}
+\hypertarget{Utils_8h_source}{}\label{Utils_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Utils.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_UTILS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_UTILS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Airport.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Airline.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTrip}{Trip}}\{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ stops;}
+\DoxyCodeLine{00013\ \ \ \ \ pair<Airport*,\ Airport*>\ source\_destination;}
+\DoxyCodeLine{00014\ \ \ \ \ vector<Airport*>\ airports;}
+\DoxyCodeLine{00015\ \ \ \ \ vector<Flight*>\ flights;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{structTrip}{Trip}}(\textcolor{keywordtype}{int}\ stops,\ pair<Airport*,\ Airport*>\ src\_dest,\ vector<Airport*>\ airports,\ vector<Flight*>\ flights)}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ :\ stops(stops),\ source\_destination(src\_dest),\ airports(airports),\ flights(flights)\ \{\}}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structFilters}{Filters}}\{}
+\DoxyCodeLine{00022\ \ \ \ \ vector<Airline>\ preferredAirlines;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ minimizeAirlines;}
+\DoxyCodeLine{00024\ \ \ \ \ vector<Airport>\ preferredAirports;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{structFilters}{Filters}}(vector<Airline>\ preferredAirlines,\ \textcolor{keywordtype}{bool}\ minimizeAirlines,\ vector<Airport>\ preferredAirports)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ :\ preferredAirlines(preferredAirlines),\ minimizeAirlines(minimizeAirlines),\ preferredAirports(preferredAirports)\ \{\}}
+\DoxyCodeLine{00028\ \};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classUtils}{Utils}}\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ showRaw(std::list<std::vector<std::string>>\ raw);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ showAirport(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ clearScreen();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ showFile(list<vector<string>>\ menu);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ drawPageAirports(vector<Airport\ *>\ airports);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ drawBox(vector<string>\ text);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ computeDistance(\mbox{\hyperlink{classCoordinate}{Coordinate}}\ c1,\ \mbox{\hyperlink{classCoordinate}{Coordinate}}\ c2);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ drawPageFlights(vector<Trip>\ trips,\textcolor{keywordtype}{bool}\ isPath);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_UTILS\_H}}
+
+\end{DoxyCode}

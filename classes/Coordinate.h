@@ -1,6 +1,12 @@
 #ifndef AED_FLIGHT_COORDINATE_H
 #define AED_FLIGHT_COORDINATE_H
-
+/**
+ * This class creates Coordinate objects with the following attributes:
+ * <ul>
+ *  <li> Latitude
+ *  <li> Longitude
+ * <ul>
+ */
 class Coordinate {
     private:
         double latitude;

@@ -18,7 +18,12 @@ std::vector<std::string> Parser::splitLine(std::string line,const std::string& d
     result.push_back(line.substr(0));
     return result;
 }
-
+/**
+ * Reads a given file.
+ * Time Complexity: O(n)
+ * @param path
+ * @return a list of vector of the attributes of the objects to be created
+ */
 std::list<std::vector<std::string>> Parser::readFile(const std::string &path) {
     ifstream file(path);
     string line;

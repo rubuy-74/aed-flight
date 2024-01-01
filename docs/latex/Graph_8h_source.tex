@@ -1,0 +1,57 @@
+\doxysection{Graph.\+h}
+\hypertarget{Graph_8h_source}{}\label{Graph_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_GRAPH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_GRAPH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}Airport.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Flight.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Coordinate.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Utils.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{enum}\ AIRPORT\_OPTION\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ CODE,NAME}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGraph}{Graph}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ unordered\_map<string,\ Airport\ *>\ airports;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGraph}{Graph}}(unordered\_map<string,\ Airport\ *>\ airports);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport}{Airport}}*\ findAirport(\mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAirport}{Airport}}*\ findAirport(\textcolor{keywordtype}{string}\ airportAtt,\ AIRPORT\_OPTION\ airportOption);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ addAirport(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ removeAirport(\textcolor{keyword}{const}\ \mbox{\hyperlink{classAirport}{Airport}}\ airport);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ unordered\_map<string,\ Airport\ *>\ getAirports()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ dfs();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ dfs(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ dfsAtDistance(\mbox{\hyperlink{classAirport}{Airport}}\ *airport,\textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ dfsVisit(\mbox{\hyperlink{classAirport}{Airport}}\ *a,\ vector<Airport\ *>\ \&res);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ bfs(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ bfsAtDistance(\mbox{\hyperlink{classAirport}{Airport}}\ *airport,\textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ vector<Trip>\ bfsMaxDepth(\mbox{\hyperlink{classAirport}{Airport}}\ *airport);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isDAG();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ numConnectedComponents();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ unordered\_set<Airport\ *>\ getArticulationPoints();}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_GRAPH\_H}}
+
+\end{DoxyCode}

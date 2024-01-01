@@ -1,0 +1,56 @@
+\doxysection{Graph.\+h}
+\hypertarget{_graph_8h_source}{}\label{_graph_8h_source}\index{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.h@{/Users/goiana/Desktop/Faculdade/2ºANO/1ºSEM/aed/aed-\/flight/classes/Graph.h}}
+\mbox{\hyperlink{_graph_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AED\_FLIGHT\_GRAPH\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AED\_FLIGHT\_GRAPH\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_airport_8h}{Airport.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_flight_8h}{Flight.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_coordinate_8h}{Coordinate.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_utils_8h}{Utils.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95}{AIRPORT\_OPTION}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95a5e182a58d9e70e1ae8f4bcf357203f9f}{CODE}},\mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95a67bc2ced260a8e43805d2480a785d312}{NAME}}}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_graph}{Graph}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ unordered\_map<string,\ Airport\ *>\ airports;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}(unordered\_map<string,\ Airport\ *>\ airports);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_airport}{Airport}}*\ \mbox{\hyperlink{class_graph_a104baa3ba6c76f19fad9e26167e1d0fb}{findAirport}}(\mbox{\hyperlink{class_airport}{Airport}}\ airport);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_airport}{Airport}}*\ \mbox{\hyperlink{class_graph_a104baa3ba6c76f19fad9e26167e1d0fb}{findAirport}}(\textcolor{keywordtype}{string}\ airportAtt,\ \mbox{\hyperlink{_graph_8h_a179bc1f0e2fee9cc5a43802954199d95}{AIRPORT\_OPTION}}\ airportOption);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_aef110c70d3cff095d58b4d7a1b911a97}{addAirport}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a0d5c73e0dbbb8040ef1215b0c2575435}{removeAirport}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_airport}{Airport}}\ airport);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ unordered\_map<string,\ Airport\ *>\ \mbox{\hyperlink{class_graph_a30a26154aa44656276641f177f6f55a4}{getAirports}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ \mbox{\hyperlink{class_graph_a2ac6f14c9b92593226619af72680fb2a}{dfs}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ \mbox{\hyperlink{class_graph_a2ac6f14c9b92593226619af72680fb2a}{dfs}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ \mbox{\hyperlink{class_graph_ae1578ce160843fc51d9aabf5e9d1f0ea}{dfsAtDistance}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport,\textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_graph_a7306cd70a6b0552f5bc41a1d31411267}{dfsVisit}}(\mbox{\hyperlink{class_airport}{Airport}}\ *a,\ vector<Airport\ *>\ \&res);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ \mbox{\hyperlink{class_graph_ac32d5a09e1ec1a06d6d89f42085a5afc}{bfs}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ vector<Airport\ *>\ \mbox{\hyperlink{class_graph_aaee3211c8a753050c44c4551b9f98ea0}{bfsAtDistance}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport,\textcolor{keywordtype}{int}\ distance);}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ vector<Trip>\ \mbox{\hyperlink{class_graph_a6e93edc02c69c28320063f2852b74d9c}{bfsMaxDepth}}(\mbox{\hyperlink{class_airport}{Airport}}\ *airport);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_graph_a265442030bf4618c7b89f84f7f96d5fe}{isDAG}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_graph_ae87f0a941112f8bb285662b7b4ba04d0}{numConnectedComponents}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ unordered\_set<Airport\ *>\ \mbox{\hyperlink{class_graph_a4cc148e20f236ac920c95935fbac7486}{getArticulationPoints}}();}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//AED\_FLIGHT\_GRAPH\_H}}
+
+\end{DoxyCode}
