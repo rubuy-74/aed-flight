@@ -96,17 +96,25 @@ void Functions::setAllAirportsUnvisited(){
  * @returns the number of airports at distance
  */
 int Functions::getNumAirportsAtDistance(Airport *airport, int distance) {
-    return dataset.getNetwork().bfsAtDistance(airport,distance).size();
+    int sum = 0;
+    for(int i = 1; i < distance + 1; i++){
+        sum += dataset.getNetwork().bfsAtDistance(airport,i).size();
+    }
+    return sum;
 }
 /**
  * Gets the number of cities at a specific distance from an airport
- * Time Complexity: O(V+E)
+ * Time Complexity: O(N²)
  * @param airport
  * @param distance
  * @returns the number of cities at distance
  */
 int Functions::getNumCitiesAtDistance(Airport *airport, int distance) {
-    auto destinations = dataset.getNetwork().bfsAtDistance(airport,distance);
+    vector<Airport*> destinations;
+    for(int i = 1; i < distance + 1; i++){
+        for(auto a : dataset.getNetwork().bfsAtDistance(airport,i))
+            destinations.push_back(a);
+    }
     vector<string> cities;
     for(auto a : destinations){
         if(find(cities.begin(),cities.end(),a->getCity()) == cities.end())
@@ -116,13 +124,18 @@ int Functions::getNumCitiesAtDistance(Airport *airport, int distance) {
 }
 /**
  * Gets the number of countries at a specific distance from an airport
- * Time Complexity: O(V+E)
+ * Time Complexity: O(N²)
  * @param airport
  * @param distance
  * @returns the number of countries at distance
  */
 int Functions::getNumCountriesAtDistance(Airport *airport, int distance) {
-    auto destinations = dataset.getNetwork().bfsAtDistance(airport,distance);
+    vector<Airport*> destinations;
+    for(int i = 1; i < distance + 1; i++) {
+        for(auto a : dataset.getNetwork().bfsAtDistance(airport,i))
+            destinations.push_back(a);
+    }
+    // auto destinations = dataset.getNetwork().bfsAtDistance(airport,distance);
     vector<string> countries;
     for(auto a: destinations){
         if(find(countries.begin(),countries.end(),a->getCountry()) == countries.end())
