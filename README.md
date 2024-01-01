@@ -23,7 +23,8 @@ To build this project:
 - Use Clion IDE to build the project **or**
 - Manually build project into cmake-build-release folder:
 ```bash
-cmake --build cmake-build-release --target aed_flight -j 10
+cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
+cmake --build build/
 ```
 
 ## How to run
