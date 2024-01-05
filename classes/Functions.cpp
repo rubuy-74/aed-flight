@@ -360,7 +360,7 @@ vector<Trip> Functions::maxTripsGraph() {
 
 double stol_with_check(string s){
     bool is_valid = true;
-    for(auto c : s) if(!isdigit(c) && c != '.') is_valid = false;
+    for(auto c : s) if(!isdigit(c) && c != '.' && c!= '-') is_valid = false;
     if(is_valid) return stod(s);
     else return -1;
 }
